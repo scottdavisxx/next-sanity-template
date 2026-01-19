@@ -10,7 +10,7 @@ interface CtaProps {
 
 export default function Cta({ href, buttonText, newTab, showIcon = false }: CtaProps) {
   return (
-    <Link target={newTab ? "_blank" : "_self"} href={href} className="flex gap-4 items-center w-fit text-dark-blue uppercase font-bold z-10">
+    <Link target={newTab ? "_blank" : "_self"} href={href} className="flex gap-4 items-center text-dark-blue w-fit uppercase font-bold z-10">
       <span className="text-2xl px-24 py-4 bg-white rounded-sm">{buttonText}</span>
       {showIcon && <OrlsIcon />}
     </Link>
