@@ -1,13 +1,44 @@
-import Image from "next/image";
 import NewCta from "./NewCta";
+import Image from "@/app/components/SanityImage";
+import { HeroBanner } from '@/sanity.types'
 
-export default function HeroBanner() {
+type HeroBannerProps = {
+  block: HeroBanner
+  index: number
+  pageId: string
+  pageType: string
+}
+
+export default function HeroBanner({ block }: HeroBannerProps) {
+  const image = block?.imageAndAltText?.image;
+  const altText = block?.imageAndAltText?.altText || "Hero Banner";
+
   return (
     <div className="flex flex-col relative h-[950px] justify-end">
-      <Image src="/fpo-hero-banner.png" alt="Hero Banner" width={1000} height={1000} className="absolute w-full top-0 -z-10" />
+      {image?.asset?._ref && (
+        <Image
+          id={image.asset._ref}
+          alt={altText}
+          width={1000}
+          height={1000}
+          crop={image.crop}
+          mode="cover"
+          className="absolute w-full h-full object-cover top-0 -z-10"
+        />
+      )}
       <div className="flex flex-col gap-8 ml-16 mb-16">
-        <h1 className="text-7xl font-bold relative">Education with Purpose<br></br>Faith with action</h1>
-        <NewCta showIcon href="#" buttonText="Schedule a Visit" />
+        <h1 className="text-7xl font-bold relative">
+          {block?.titleOne && block.titleOne}
+          {block?.titleTwo && <><br />{block.titleTwo}</>}
+        </h1>
+        {block?.cta && (
+          <NewCta
+            showIcon
+            href={block.cta.href || "#"}
+            buttonText={block.cta.buttonText || "Learn More"}
+            newTab={block.cta.newTab}
+          />
+        )}
       </div>
     </div>
   )

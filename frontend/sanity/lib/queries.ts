@@ -53,6 +53,12 @@ export const getPageQuery = defineQuery(`
           }
         }
       },
+      _type == "heroBanner" => {
+        titleOne,
+        titleTwo,
+        cta,
+        imageAndAltText
+      },
     },
   }
 `)

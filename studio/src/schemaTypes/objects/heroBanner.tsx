@@ -1,5 +1,5 @@
 import { defineType } from "sanity";
-import { titleOne, titleTwo, cta } from "../sharedFields";
+import { titleOne, titleTwo, cta, imageAndAltText } from "../sharedFields";
 
 
 export const heroBanner = defineType({
@@ -14,6 +14,7 @@ export const heroBanner = defineType({
   fields: [
     titleOne,
     titleTwo,
-    cta
+    cta,
+    imageAndAltText
   ]
 })

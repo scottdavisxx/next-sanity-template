@@ -13,23 +13,61 @@
  */
 
 // Source: ../studio/schema.json
+export type Cta = {
+  href: string
+  buttonText: string
+  newTab?: boolean
+}
+
+export type ImageAndAltText = {
+  image?: ImageAndAltTextImage
+  altText?: string
+}
+
+export type SanityImageAssetReference = {
+  _ref: string
+  _type: 'reference'
+  _weak?: boolean
+  [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+}
+
+export type ImageAndAltTextImage = {
+  asset?: SanityImageAssetReference
+  media?: unknown // Unable to locate the referenced type "imageAndAltText.image.media" in schema
+  hotspot?: SanityImageHotspot
+  crop?: SanityImageCrop
+  _type: 'image'
+}
+
+export type PageReference = {
+  _ref: string
+  _type: 'reference'
+  _weak?: boolean
+  [internalGroqTypeReferenceTo]?: 'page'
+}
+
+export type PostReference = {
+  _ref: string
+  _type: 'reference'
+  _weak?: boolean
+  [internalGroqTypeReferenceTo]?: 'post'
+}
+
 export type Link = {
   _type: 'link'
   linkType?: 'href' | 'page' | 'post'
   href?: string
-  page?: {
-    _ref: string
-    _type: 'reference'
-    _weak?: boolean
-    [internalGroqTypeReferenceTo]?: 'page'
-  }
-  post?: {
-    _ref: string
-    _type: 'reference'
-    _weak?: boolean
-    [internalGroqTypeReferenceTo]?: 'post'
-  }
+  page?: PageReference
+  post?: PostReference
   openInNewTab?: boolean
+}
+
+export type HeroBanner = {
+  _type: 'heroBanner'
+  titleOne: string
+  titleTwo?: string
+  cta?: Cta
+  imageAndAltText?: ImageAndAltText
 }
 
 export type CallToAction = {
@@ -39,12 +77,7 @@ export type CallToAction = {
   body?: BlockContentTextOnly
   button?: Button
   image?: {
-    asset?: {
-      _ref: string
-      _type: 'reference'
-      _weak?: boolean
-      [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
-    }
+    asset?: SanityImageAssetReference
     media?: unknown
     hotspot?: SanityImageHotspot
     crop?: SanityImageCrop
@@ -93,18 +126,8 @@ export type BlockContent = Array<
       markDefs?: Array<{
         linkType?: 'href' | 'page' | 'post'
         href?: string
-        page?: {
-          _ref: string
-          _type: 'reference'
-          _weak?: boolean
-          [internalGroqTypeReferenceTo]?: 'page'
-        }
-        post?: {
-          _ref: string
-          _type: 'reference'
-          _weak?: boolean
-          [internalGroqTypeReferenceTo]?: 'post'
-        }
+        page?: PageReference
+        post?: PostReference
         openInNewTab?: boolean
         _type: 'link'
         _key: string
@@ -114,12 +137,7 @@ export type BlockContent = Array<
       _key: string
     }
   | {
-      asset?: {
-        _ref: string
-        _type: 'reference'
-        _weak?: boolean
-        [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
-      }
+      asset?: SanityImageAssetReference
       media?: unknown
       hotspot?: SanityImageHotspot
       crop?: SanityImageCrop
@@ -153,18 +171,8 @@ export type Settings = {
     markDefs?: Array<{
       linkType?: 'href' | 'page' | 'post'
       href?: string
-      page?: {
-        _ref: string
-        _type: 'reference'
-        _weak?: boolean
-        [internalGroqTypeReferenceTo]?: 'page'
-      }
-      post?: {
-        _ref: string
-        _type: 'reference'
-        _weak?: boolean
-        [internalGroqTypeReferenceTo]?: 'post'
-      }
+      page?: PageReference
+      post?: PostReference
       openInNewTab?: boolean
       _type: 'link'
       _key: string
@@ -174,12 +182,7 @@ export type Settings = {
     _key: string
   }>
   ogImage?: {
-    asset?: {
-      _ref: string
-      _type: 'reference'
-      _weak?: boolean
-      [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
-    }
+    asset?: SanityImageAssetReference
     media?: unknown
     hotspot?: SanityImageHotspot
     crop?: SanityImageCrop
@@ -222,7 +225,17 @@ export type Page = {
     | ({
         _key: string
       } & InfoSection)
+    | ({
+        _key: string
+      } & HeroBanner)
   >
+}
+
+export type PersonReference = {
+  _ref: string
+  _type: 'reference'
+  _weak?: boolean
+  [internalGroqTypeReferenceTo]?: 'person'
 }
 
 export type Post = {
@@ -236,12 +249,7 @@ export type Post = {
   content?: BlockContent
   excerpt?: string
   coverImage?: {
-    asset?: {
-      _ref: string
-      _type: 'reference'
-      _weak?: boolean
-      [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
-    }
+    asset?: SanityImageAssetReference
     media?: unknown
     hotspot?: SanityImageHotspot
     crop?: SanityImageCrop
@@ -249,12 +257,7 @@ export type Post = {
     _type: 'image'
   }
   date?: string
-  author?: {
-    _ref: string
-    _type: 'reference'
-    _weak?: boolean
-    [internalGroqTypeReferenceTo]?: 'person'
-  }
+  author?: PersonReference
 }
 
 export type Person = {
@@ -266,12 +269,7 @@ export type Person = {
   firstName: string
   lastName: string
   picture: {
-    asset?: {
-      _ref: string
-      _type: 'reference'
-      _weak?: boolean
-      [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
-    }
+    asset?: SanityImageAssetReference
     media?: unknown
     hotspot?: SanityImageHotspot
     crop?: SanityImageCrop
@@ -324,14 +322,16 @@ export type SanityAssistOutputField = {
   path?: string
 }
 
+export type AssistInstructionContextReference = {
+  _ref: string
+  _type: 'reference'
+  _weak?: boolean
+  [internalGroqTypeReferenceTo]?: 'assist.instruction.context'
+}
+
 export type SanityAssistInstructionContext = {
   _type: 'sanity.assist.instruction.context'
-  reference: {
-    _ref: string
-    _type: 'reference'
-    _weak?: boolean
-    [internalGroqTypeReferenceTo]?: 'assist.instruction.context'
-  }
+  reference: AssistInstructionContextReference
 }
 
 export type AssistInstructionContext = {
@@ -518,7 +518,14 @@ export type Geopoint = {
 }
 
 export type AllSanitySchemaTypes =
+  | Cta
+  | ImageAndAltText
+  | SanityImageAssetReference
+  | ImageAndAltTextImage
+  | PageReference
+  | PostReference
   | Link
+  | HeroBanner
   | CallToAction
   | InfoSection
   | BlockContentTextOnly
@@ -528,6 +535,7 @@ export type AllSanitySchemaTypes =
   | SanityImageCrop
   | SanityImageHotspot
   | Page
+  | PersonReference
   | Post
   | Person
   | Slug
@@ -536,6 +544,7 @@ export type AllSanitySchemaTypes =
   | SanityAssistSchemaTypeAnnotations
   | SanityAssistOutputType
   | SanityAssistOutputField
+  | AssistInstructionContextReference
   | SanityAssistInstructionContext
   | AssistInstructionContext
   | SanityAssistInstructionUserInput
@@ -576,18 +585,8 @@ export type SettingsQueryResult = {
     markDefs?: Array<{
       linkType?: 'href' | 'page' | 'post'
       href?: string
-      page?: {
-        _ref: string
-        _type: 'reference'
-        _weak?: boolean
-        [internalGroqTypeReferenceTo]?: 'page'
-      }
-      post?: {
-        _ref: string
-        _type: 'reference'
-        _weak?: boolean
-        [internalGroqTypeReferenceTo]?: 'post'
-      }
+      page?: PageReference
+      post?: PostReference
       openInNewTab?: boolean
       _type: 'link'
       _key: string
@@ -597,12 +596,7 @@ export type SettingsQueryResult = {
     _key: string
   }>
   ogImage?: {
-    asset?: {
-      _ref: string
-      _type: 'reference'
-      _weak?: boolean
-      [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
-    }
+    asset?: SanityImageAssetReference
     media?: unknown
     hotspot?: SanityImageHotspot
     crop?: SanityImageCrop
@@ -614,7 +608,7 @@ export type SettingsQueryResult = {
 
 // Source: sanity/lib/queries.ts
 // Variable: getPageQuery
-// Query: *[_type == 'page' && slug.current == $slug][0]{    _id,    _type,    name,    slug,    heading,    subheading,    "pageBuilder": pageBuilder[]{      ...,      _type == "callToAction" => {        ...,        button {          ...,            link {      ...,        _type == "link" => {    "page": page->slug.current,    "post": post->slug.current  }      }        }      },      _type == "infoSection" => {        content[]{          ...,          markDefs[]{            ...,              _type == "link" => {    "page": page->slug.current,    "post": post->slug.current  }          }        }      },    },  }
+// Query: *[_type == 'page' && slug.current == $slug][0]{    _id,    _type,    name,    slug,    heading,    subheading,    "pageBuilder": pageBuilder[]{      ...,      _type == "callToAction" => {        ...,        button {          ...,            link {      ...,        _type == "link" => {    "page": page->slug.current,    "post": post->slug.current  }      }        }      },      _type == "infoSection" => {        content[]{          ...,          markDefs[]{            ...,              _type == "link" => {    "page": page->slug.current,    "post": post->slug.current  }          }        }      },      _type == "heroBanner" => {        titleOne,        titleTwo,        cta,        imageAndAltText      },    },  }
 export type GetPageQueryResult = {
   _id: string
   _type: 'page'
@@ -642,12 +636,7 @@ export type GetPageQueryResult = {
           } | null
         } | null
         image?: {
-          asset?: {
-            _ref: string
-            _type: 'reference'
-            _weak?: boolean
-            [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
-          }
+          asset?: SanityImageAssetReference
           media?: unknown
           hotspot?: SanityImageHotspot
           crop?: SanityImageCrop
@@ -655,6 +644,14 @@ export type GetPageQueryResult = {
         }
         theme?: 'dark' | 'light'
         contentAlignment?: 'imageFirst' | 'textFirst'
+      }
+    | {
+        _key: string
+        _type: 'heroBanner'
+        titleOne: string
+        titleTwo: string | null
+        cta: Cta | null
+        imageAndAltText: ImageAndAltText | null
       }
     | {
         _key: string
@@ -685,12 +682,7 @@ export type GetPageQueryResult = {
               _key: string
             }
           | {
-              asset?: {
-                _ref: string
-                _type: 'reference'
-                _weak?: boolean
-                [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
-              }
+              asset?: SanityImageAssetReference
               media?: unknown
               hotspot?: SanityImageHotspot
               crop?: SanityImageCrop
@@ -729,12 +721,7 @@ export type AllPostsQueryResult = Array<{
   slug: string
   excerpt: string | null
   coverImage: {
-    asset?: {
-      _ref: string
-      _type: 'reference'
-      _weak?: boolean
-      [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
-    }
+    asset?: SanityImageAssetReference
     media?: unknown
     hotspot?: SanityImageHotspot
     crop?: SanityImageCrop
@@ -746,12 +733,7 @@ export type AllPostsQueryResult = Array<{
     firstName: string
     lastName: string
     picture: {
-      asset?: {
-        _ref: string
-        _type: 'reference'
-        _weak?: boolean
-        [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
-      }
+      asset?: SanityImageAssetReference
       media?: unknown
       hotspot?: SanityImageHotspot
       crop?: SanityImageCrop
@@ -771,12 +753,7 @@ export type MorePostsQueryResult = Array<{
   slug: string
   excerpt: string | null
   coverImage: {
-    asset?: {
-      _ref: string
-      _type: 'reference'
-      _weak?: boolean
-      [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
-    }
+    asset?: SanityImageAssetReference
     media?: unknown
     hotspot?: SanityImageHotspot
     crop?: SanityImageCrop
@@ -788,12 +765,7 @@ export type MorePostsQueryResult = Array<{
     firstName: string
     lastName: string
     picture: {
-      asset?: {
-        _ref: string
-        _type: 'reference'
-        _weak?: boolean
-        [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
-      }
+      asset?: SanityImageAssetReference
       media?: unknown
       hotspot?: SanityImageHotspot
       crop?: SanityImageCrop
@@ -831,12 +803,7 @@ export type PostQueryResult = {
         _key: string
       }
     | {
-        asset?: {
-          _ref: string
-          _type: 'reference'
-          _weak?: boolean
-          [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
-        }
+        asset?: SanityImageAssetReference
         media?: unknown
         hotspot?: SanityImageHotspot
         crop?: SanityImageCrop
@@ -851,12 +818,7 @@ export type PostQueryResult = {
   slug: string
   excerpt: string | null
   coverImage: {
-    asset?: {
-      _ref: string
-      _type: 'reference'
-      _weak?: boolean
-      [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
-    }
+    asset?: SanityImageAssetReference
     media?: unknown
     hotspot?: SanityImageHotspot
     crop?: SanityImageCrop
@@ -868,12 +830,7 @@ export type PostQueryResult = {
     firstName: string
     lastName: string
     picture: {
-      asset?: {
-        _ref: string
-        _type: 'reference'
-        _weak?: boolean
-        [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
-      }
+      asset?: SanityImageAssetReference
       media?: unknown
       hotspot?: SanityImageHotspot
       crop?: SanityImageCrop
@@ -902,7 +859,7 @@ import '@sanity/client'
 declare module '@sanity/client' {
   interface SanityQueries {
     '*[_type == "settings"][0]': SettingsQueryResult
-    '\n  *[_type == \'page\' && slug.current == $slug][0]{\n    _id,\n    _type,\n    name,\n    slug,\n    heading,\n    subheading,\n    "pageBuilder": pageBuilder[]{\n      ...,\n      _type == "callToAction" => {\n        ...,\n        button {\n          ...,\n          \n  link {\n      ...,\n      \n  _type == "link" => {\n    "page": page->slug.current,\n    "post": post->slug.current\n  }\n\n      }\n\n        }\n      },\n      _type == "infoSection" => {\n        content[]{\n          ...,\n          markDefs[]{\n            ...,\n            \n  _type == "link" => {\n    "page": page->slug.current,\n    "post": post->slug.current\n  }\n\n          }\n        }\n      },\n    },\n  }\n': GetPageQueryResult
+    '\n  *[_type == \'page\' && slug.current == $slug][0]{\n    _id,\n    _type,\n    name,\n    slug,\n    heading,\n    subheading,\n    "pageBuilder": pageBuilder[]{\n      ...,\n      _type == "callToAction" => {\n        ...,\n        button {\n          ...,\n          \n  link {\n      ...,\n      \n  _type == "link" => {\n    "page": page->slug.current,\n    "post": post->slug.current\n  }\n\n      }\n\n        }\n      },\n      _type == "infoSection" => {\n        content[]{\n          ...,\n          markDefs[]{\n            ...,\n            \n  _type == "link" => {\n    "page": page->slug.current,\n    "post": post->slug.current\n  }\n\n          }\n        }\n      },\n      _type == "heroBanner" => {\n        titleOne,\n        titleTwo,\n        cta,\n        imageAndAltText\n      },\n    },\n  }\n': GetPageQueryResult
     '\n  *[_type == "page" || _type == "post" && defined(slug.current)] | order(_type asc) {\n    "slug": slug.current,\n    _type,\n    _updatedAt,\n  }\n': SitemapDataResult
     '\n  *[_type == "post" && defined(slug.current)] | order(date desc, _updatedAt desc) {\n    \n  _id,\n  "status": select(_originalId in path("drafts.**") => "draft", "published"),\n  "title": coalesce(title, "Untitled"),\n  "slug": slug.current,\n  excerpt,\n  coverImage,\n  "date": coalesce(date, _updatedAt),\n  "author": author->{firstName, lastName, picture},\n\n  }\n': AllPostsQueryResult
     '\n  *[_type == "post" && _id != $skip && defined(slug.current)] | order(date desc, _updatedAt desc) [0...$limit] {\n    \n  _id,\n  "status": select(_originalId in path("drafts.**") => "draft", "published"),\n  "title": coalesce(title, "Untitled"),\n  "slug": slug.current,\n  excerpt,\n  coverImage,\n  "date": coalesce(date, _updatedAt),\n  "author": author->{firstName, lastName, picture},\n\n  }\n': MorePostsQueryResult
