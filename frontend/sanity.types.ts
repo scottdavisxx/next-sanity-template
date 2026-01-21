@@ -33,10 +33,15 @@ export type SanityImageAssetReference = {
 
 export type ImageAndAltTextImage = {
   asset?: SanityImageAssetReference
-  media?: unknown // Unable to locate the referenced type "imageAndAltText.image.media" in schema
+  media?: unknown // Unable to locate the referenced type "image.media" in schema
   hotspot?: SanityImageHotspot
   crop?: SanityImageCrop
   _type: 'image'
+}
+
+export type Navigation = {
+  _type: 'navigation'
+  color?: 'white' | 'dark-blue'
 }
 
 export type PageReference = {
@@ -87,11 +92,26 @@ export type CallToAction = {
   contentAlignment?: 'textFirst' | 'imageFirst'
 }
 
-export type InfoSection = {
-  _type: 'infoSection'
-  heading?: string
-  subheading?: string
-  content?: BlockContent
+export type SanityImageCrop = {
+  _type: 'sanity.imageCrop'
+  top: number
+  bottom: number
+  left: number
+  right: number
+}
+
+export type SanityImageHotspot = {
+  _type: 'sanity.imageHotspot'
+  x: number
+  y: number
+  height: number
+  width: number
+}
+
+export type Button = {
+  _type: 'button'
+  buttonText?: string
+  link?: Link
 }
 
 export type BlockContentTextOnly = Array<{
@@ -112,6 +132,13 @@ export type BlockContentTextOnly = Array<{
   _type: 'block'
   _key: string
 }>
+
+export type InfoSection = {
+  _type: 'infoSection'
+  heading?: string
+  subheading?: string
+  content?: BlockContent
+}
 
 export type BlockContent = Array<
   | {
@@ -145,12 +172,6 @@ export type BlockContent = Array<
       _key: string
     }
 >
-
-export type Button = {
-  _type: 'button'
-  buttonText?: string
-  link?: Link
-}
 
 export type Settings = {
   _id: string
@@ -190,45 +211,6 @@ export type Settings = {
     metadataBase?: string
     _type: 'image'
   }
-}
-
-export type SanityImageCrop = {
-  _type: 'sanity.imageCrop'
-  top: number
-  bottom: number
-  left: number
-  right: number
-}
-
-export type SanityImageHotspot = {
-  _type: 'sanity.imageHotspot'
-  x: number
-  y: number
-  height: number
-  width: number
-}
-
-export type Page = {
-  _id: string
-  _type: 'page'
-  _createdAt: string
-  _updatedAt: string
-  _rev: string
-  name: string
-  slug: Slug
-  heading: string
-  subheading?: string
-  pageBuilder?: Array<
-    | ({
-        _key: string
-      } & CallToAction)
-    | ({
-        _key: string
-      } & InfoSection)
-    | ({
-        _key: string
-      } & HeroBanner)
-  >
 }
 
 export type PersonReference = {
@@ -282,6 +264,24 @@ export type Slug = {
   _type: 'slug'
   current: string
   source?: string
+}
+
+export type Page = {
+  _id: string
+  _type: 'page'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  name: string
+  slug: Slug
+  pageBuilder?: Array<
+    | ({
+        _key: string
+      } & HeroBanner)
+    | ({
+        _key: string
+      } & Navigation)
+  >
 }
 
 export type SanityAssistInstructionTask = {
@@ -522,23 +522,24 @@ export type AllSanitySchemaTypes =
   | ImageAndAltText
   | SanityImageAssetReference
   | ImageAndAltTextImage
+  | Navigation
   | PageReference
   | PostReference
   | Link
   | HeroBanner
   | CallToAction
-  | InfoSection
-  | BlockContentTextOnly
-  | BlockContent
-  | Button
-  | Settings
   | SanityImageCrop
   | SanityImageHotspot
-  | Page
+  | Button
+  | BlockContentTextOnly
+  | InfoSection
+  | BlockContent
+  | Settings
   | PersonReference
   | Post
   | Person
   | Slug
+  | Page
   | SanityAssistInstructionTask
   | SanityAssistTaskStatus
   | SanityAssistSchemaTypeAnnotations
@@ -614,37 +615,9 @@ export type GetPageQueryResult = {
   _type: 'page'
   name: string
   slug: Slug
-  heading: string
-  subheading: string | null
+  heading: null
+  subheading: null
   pageBuilder: Array<
-    | {
-        _key: string
-        _type: 'callToAction'
-        eyebrow?: string
-        heading: string
-        body?: BlockContentTextOnly
-        button: {
-          _type: 'button'
-          buttonText?: string
-          link: {
-            _type: 'link'
-            linkType?: 'href' | 'page' | 'post'
-            href?: string
-            page: string | null
-            post: string | null
-            openInNewTab?: boolean
-          } | null
-        } | null
-        image?: {
-          asset?: SanityImageAssetReference
-          media?: unknown
-          hotspot?: SanityImageHotspot
-          crop?: SanityImageCrop
-          _type: 'image'
-        }
-        theme?: 'dark' | 'light'
-        contentAlignment?: 'imageFirst' | 'textFirst'
-      }
     | {
         _key: string
         _type: 'heroBanner'
@@ -655,42 +628,8 @@ export type GetPageQueryResult = {
       }
     | {
         _key: string
-        _type: 'infoSection'
-        heading?: string
-        subheading?: string
-        content: Array<
-          | {
-              children?: Array<{
-                marks?: Array<string>
-                text?: string
-                _type: 'span'
-                _key: string
-              }>
-              style?: 'blockquote' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'normal'
-              listItem?: 'bullet' | 'number'
-              markDefs: Array<{
-                linkType?: 'href' | 'page' | 'post'
-                href?: string
-                page: string | null
-                post: string | null
-                openInNewTab?: boolean
-                _type: 'link'
-                _key: string
-              }> | null
-              level?: number
-              _type: 'block'
-              _key: string
-            }
-          | {
-              asset?: SanityImageAssetReference
-              media?: unknown
-              hotspot?: SanityImageHotspot
-              crop?: SanityImageCrop
-              _type: 'image'
-              _key: string
-              markDefs: null
-            }
-        > | null
+        _type: 'navigation'
+        color?: 'dark-blue' | 'white'
       }
   > | null
 } | null
