@@ -1,6 +1,5 @@
-import { defineType } from "sanity";
-import { titleOne, titleTwo, cta, imageAndAltText } from "../sharedFields";
-
+import {defineType} from 'sanity'
+import {titleOne, titleTwo, cta, imageAndAltText} from '../sharedFields'
 
 export const heroBanner = defineType({
   name: 'heroBanner',
@@ -11,23 +10,18 @@ export const heroBanner = defineType({
   //   {},
   //   {}
   // ],
-  fields: [
-    titleOne,
-    titleTwo,
-    cta,
-    imageAndAltText
-  ],
+  fields: [titleOne, titleTwo, cta, imageAndAltText],
   preview: {
     select: {
       titleOne: 'titleOne',
-      media: 'imageAndAltText.image'
+      media: 'imageAndAltText.image',
     },
-    prepare({ titleOne, media }) {
+    prepare({titleOne, media}) {
       return {
         title: 'Hero Banner',
         subtitle: titleOne || 'No title set',
-        media: media
+        media: media,
       }
-    }
-  }
+    },
+  },
 })
