@@ -1,18 +1,43 @@
-import { Suspense } from 'react'
-import Link from 'next/link'
-import { PortableText } from '@portabletext/react'
+import HeroBanner from './components/HeroBanner'
+import Navigation from './components/Navigation'
+import Subnav from './components/Subnav'
 
-import { AllPosts } from '@/app/components/Posts'
-import { settingsQuery } from '@/sanity/lib/queries'
-import { sanityFetch } from '@/sanity/lib/live'
-import { dataAttr } from '@/sanity/lib/utils'
+const tempNavigationContent = {
+  "_key": "9cb3816cfaf4",
+  "_type": "navigation",
+  "color": "white"
+}
+
+const tempHeroContent = {
+  "_key": "48df50bb7cf9",
+  "_type": "heroBanner",
+  "cta": {
+    "buttonText": "Schedule A Visit",
+    "href": "#",
+    "newTab": true
+  },
+  "imageAndAltText": {
+    "altText": "Kids at School",
+    "image": {
+      "_type": "image",
+      "asset": {
+        "_ref": "image-47cc3c814eba1e8eac1b6d50dc63b52ec521a575-871x581-png",
+        "_type": "reference"
+      }
+    }
+  },
+  "titleOne": "Test Title One .",
+  "titleTwo": "Test Title Two"
+}
+
 
 export default async function Page() {
-  const { data: settings } = await sanityFetch({
-    query: settingsQuery,
-  })
 
   return (
-    <h1 className='text-center text-4xl font-bold mt-24'>Index Page</h1>
+    <>
+      <Navigation block={tempNavigationContent} />
+      <HeroBanner block={tempHeroContent} />
+      <Subnav />
+    </>
   )
 }
