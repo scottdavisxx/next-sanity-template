@@ -5,6 +5,7 @@ import Navigation from './components/Navigation'
 import StatisticsTwoCol from './components/StatisticsTwoCol'
 import Subnav from './components/Subnav'
 import TextWithLogo from './components/TextWithLogo'
+import ThreeColCards from './components/ThreeColCards'
 
 const tempNavigationContent = {
   "_key": "9cb3816cfaf4",
@@ -48,9 +49,9 @@ export default async function Page() {
       <HeroBanner block={tempHeroContent} />
       <Subnav />
       <TextWithLogo {...tempTextWithLogoContent} />
+      <ThreeColCards />
       <StatisticsTwoCol />
       <FeaturedEvents />
-      <CtaCardWithImage />
     </>
   )
 }
