@@ -14,7 +14,7 @@ export default function HeroBanner({ block }: HeroBannerProps) {
   const altText = block?.imageAndAltText?.altText || "Hero Banner";
 
   return (
-    <div className="flex flex-col relative h-[950px] justify-end">
+    <div className="flex flex-col relative h-[650px] justify-end">
       {image?.asset?._ref && (
         <Image
           id={image.asset._ref}
