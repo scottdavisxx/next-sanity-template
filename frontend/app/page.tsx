@@ -45,7 +45,9 @@ export default async function Page() {
 
   return (
     <>
+      {/* @ts-ignore */}
       <Navigation block={tempNavigationContent} />
+      {/* @ts-ignore */}
       <HeroBanner block={tempHeroContent} />
       <Subnav />
       <TextWithLogo {...tempTextWithLogoContent} />
