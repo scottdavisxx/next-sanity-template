@@ -1,4 +1,5 @@
 import CtaWithCard from "@/app/components/CtaWithCard";
+import FeaturedEvents from "@/app/components/FeaturedEvents";
 import HeroBanner from "@/app/components/HeroBanner";
 import Navigation from "@/app/components/Navigation";
 import Subnav from "@/app/components/Subnav";
@@ -52,6 +53,8 @@ export default function AboutPage() {
       <HeroBanner block={tempHeroContent} />
       <Subnav />
       <CtaWithCard {...ctaWithCardContent} />
+      <FeaturedEvents />
+
     </>
   )
 }
