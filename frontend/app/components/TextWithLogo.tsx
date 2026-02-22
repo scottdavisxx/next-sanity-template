@@ -13,7 +13,7 @@ export default function TextWithLogo({ title, blurb }: TextWithLogoProps) {
       <h2 className="text-6xl font-bold w-3/5 leading-20">{title}</h2>
       <p className="w-3/5">{blurb}</p>
       <div className="absolute -right-48 -top-1/5">
-        <OrlsIcon width={513} height={513} color="var(--color-light-blue)" />
+        <OrlsIcon width={513} height={513} color="light-blue" />
       </div>
     </div>
   )

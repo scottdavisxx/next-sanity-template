@@ -49,6 +49,14 @@ const ctaWithCardContent = {
   OR Dallas is also accredited through National Lutheran School Accreditation (NLSA), reflecting our commitment to educational quality and continuous improvement.`,
   ctaText: "Meet Our Pastors",
   ctaLink: "#",
+  bgImage: "/bg-pattern.png",
+  image: "/church.png",
+  altText: "Church",
+  cta: {
+    buttonText: "Meet Our Pastors",
+    href: "#",
+    dark: true,
+  }
 }
 
 

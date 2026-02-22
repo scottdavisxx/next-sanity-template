@@ -32,12 +32,15 @@ const tempHeroContent = {
 }
 
 const ctaWithCardContent = {
-  title: "Our Lutheran Identity",
-  blurb: `As a school of The Lutheran Church Missouri Synod, Our Redeemer is rooted in Scripture and centered on Jesus Christ. We pair a high-quality, individualized education with daily faith formation, so students grow in wisdom, character, and strong academics from Preschool through 8th grade. 
+  title: "Shaping Students Since 1961",
+  blurb: `Founded in 1961 as a ministry of Our Redeemer Lutheran Church, OR Dallas began with one kindergarten class and one teacher.
   
-  OR Dallas is also accredited through National Lutheran School Accreditation (NLSA), reflecting our commitment to educational quality and continuous improvement.`,
-  ctaText: "Meet Our Pastors",
-  ctaLink: "#",
+  In the decades since, we’ve grown grade by grade, building a Christ-centered school community that has served North Dallas families for more than 65 years.
+  
+  Today, we are proud to be part of The Lutheran Church Missouri Synod (LCMS), which operates the largest Protestant parochial school system in America.`,
+  image: "/about-card.png",
+  altText: "About Card",
+  icon: true,
 }
 
 export default function AboutPage() {

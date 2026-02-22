@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-interface CtaProps {
+export interface CtaProps {
   href: string;
   buttonText: string;
   newTab?: boolean;
