@@ -1,7 +1,7 @@
 'use client'
 
 import Link from "next/link";
-import { useSearchParams } from "next/navigation";
+import { usePathname } from "next/navigation";
 
 const subnavItems = [
   {
@@ -21,7 +21,7 @@ const subnavItems = [
     label: "Student Life"
   },
   {
-    href: "/support",
+    href: "/support-orls",
     label: "Support ORLS"
   },
   {
@@ -30,17 +30,20 @@ const subnavItems = [
   }
 ]
 
-
-
 export default function Subnav() {
 
-  const searchParams = useSearchParams()
-  const currentPage = searchParams.get('page')
+  const pathName = usePathname()
 
   return (
     <nav className="flex justify-between items-center">
       {subnavItems.map((item) => (
-        <Link className={`text-center py-8 w-1/6 text-dark-blue uppercase font-bold hover:bg-dark-blue hover:text-white ${currentPage === item.href ? "bg-dark-blue text-white" : ""}`} href={item.href} key={item.href}>{item.label}</Link>
+        <Link
+          className={`text-center py-8 w-1/6 text-dark-blue uppercase font-bold hover:bg-dark-blue 
+            ${pathName === item.href ? "underline text-lg font-bold hover:bg-white hover:text-dark-blue cursor-default" : "hover:text-white "}`}
+          href={item.href}
+          key={item.href}>
+          {item.label}
+        </Link>
       ))}
     </nav>
   )
