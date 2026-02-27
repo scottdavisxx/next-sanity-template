@@ -4,7 +4,7 @@ import Link from "next/link"
 export default function Footer() {
   return (
     <footer className="flex items-center justify-between gap-6 bg-dark-blue text-white py-4 px-24">
-      <Image src="/logo-2.png" alt="Logo" width={424} height={239} />
+      {/* <Image src="/logo-2.png" alt="Logo" width={424} height={239} />
       <div className="flex justify-between gap-8 w-8/12 ">
         <div>
           <h3 className="text-2xl font-bold">Contact Us</h3>
@@ -26,7 +26,7 @@ export default function Footer() {
           <Link href="#" className="underline">Schedule a Visit</Link>
           <Link href="#" className="underline">Privacy Policy</Link>
         </div>
-      </div>
+      </div> */}
     </footer>
   )
 }

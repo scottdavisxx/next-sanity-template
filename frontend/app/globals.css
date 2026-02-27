@@ -3,6 +3,7 @@
 @plugin "@tailwindcss/typography";
 
 @layer base {
+
   h1,
   h2,
   h3,
@@ -29,3 +30,20 @@
   --color-yellow: #ffcf06;
   --color-whisper-blue: #e3e8f2;
 }
+
+
+.crossSize svg , .crossSize {
+
+
+  @media (max-width: 1024px) {
+      width: 400px !important;
+      height: 400px !important;
+  }
+
+  @media (max-width: 784px) {
+      width: 200px !important;
+      height: 200px !important;
+  }
+
+}
+

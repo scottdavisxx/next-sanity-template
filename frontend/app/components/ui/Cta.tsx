@@ -25,7 +25,7 @@ export default function Cta({ href, buttonText, newTab, className, dark, buttonC
     <Link
       target={newTab ? "_blank" : "_self"}
       href={href}
-      className={`flex gap-4 items-center w-fit uppercase font-bold z-10 transition-all duration-300 text-2xl px-12 py-2 rounded-sm 
+      className={`flex gap-4 items-center text-center w-fit uppercase font-bold z-10 transition-all duration-300 text-2xl px-12 py-2 rounded-sm 
         ${font == "small" ? "text-xl" : "text-2xl"}
        ${buttonColor != undefined ?
           buttonColor ? `${config.bg} ${config.hover} ${config.text}` : null

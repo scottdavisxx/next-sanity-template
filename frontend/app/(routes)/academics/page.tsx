@@ -50,11 +50,13 @@ const intro = {
     ctas: [
         {
             buttonText: 'Schedule A tour',
-            link: '/'
+            link: '/',
+            font: "small" 
         },
         {
             buttonText: 'Inquire',
-            link: '/'
+            link: '/',
+            font: "small" 
         }
     ],
     bgImage: "/bg-pattern.png",
@@ -91,7 +93,7 @@ export default function AcademicsPage() {
   return (
     <>
       {/* @ts-ignore */}
-      <Navigation block={tempNavigationContent} />
+      {/* <Navigation block={tempNavigationContent} /> */}
       {/* @ts-ignore */}
       <HeroBanner block={tempHeroContent} />
       <Subnav />
