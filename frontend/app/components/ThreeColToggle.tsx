@@ -39,8 +39,7 @@ export default function ThreeColToggle({ block }: ThreeColToggleProps) {
 
   return (
     <section className="relative px-6 py-12 md:px-16 md:py-16 lg:px-[86px] lg:py-[37px]">
-      {/* Desktop layout */}
-      <div className="relative hidden md:flex flex-row gap-4 lg:gap-6 items-stretch">
+      <div className=" relative max-w-[1400px] mx-auto max-[769px]:hidden min-[769px]:flex flex-row gap-4 lg:gap-6 items-stretch">
         {cards.map((card, index) => {
           const isActive = index === activeIndex
 
@@ -53,16 +52,15 @@ export default function ThreeColToggle({ block }: ThreeColToggleProps) {
               }}
               className="relative"
             >
-              {/* Gradient border box behind active card */}
               {isActive && (
                 <div
-                  className="absolute border-4 shadow-lg rounded-[20px] top-[15px] left-[15px] right-[-15px] bottom-[-15px]"
+                  className="absolute border-2 shadow-lg rounded-[20px] top-[15px] left-[15px] right-[-15px] bottom-[-15px]"
                   style={{ borderColor: '#242D65' }}
                 />
               )}
 
               <div
-                className={`relative overflow-hidden bg-white rounded-[20px] flex flex-col justify-end min-h-[400px] ${
+                className={`relative overflow-hidden bg-white rounded-[20px] flex flex-col justify-end min-h-[500px] ${
                   isActive
                     ? ' p-8 lg:p-10'
                     : 'border-0 p-6 lg:p-8 cursor-pointer group hover:scale-[1.02] transition-transform duration-300'
@@ -152,18 +150,17 @@ export default function ThreeColToggle({ block }: ThreeColToggleProps) {
         })}
       </div>
 
-      {/* Mobile layout */}
-      <div className="relative flex md:hidden">
+      <div className="relative flex min-[769px]:hidden">
         <div className="w-full overflow-hidden bg-white border-4 border-[#242d65] rounded-[20px] flex flex-col justify-end p-6 min-h-[400px]">
           {cards[activeIndex].imageAndAltText.image?.asset?._ref && (
             <Image
               src={`/${cards[activeIndex].imageAndAltText.image.asset._ref}`}
               alt={cards[activeIndex].imageAndAltText.altText}
               fill
-              className="object-cover"
+              className="object-cover rounded-[20px]"
             />
           )}
-          <div className="absolute inset-0 bg-black/20" />
+          <div className="absolute inset-0 bg-black/20 rounded-[20px] " />
 
           <div className="relative z-10">
             <h3 className="font-bold text-2xl text-white leading-tight">

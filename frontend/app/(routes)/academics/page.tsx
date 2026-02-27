@@ -144,9 +144,9 @@ export default function AcademicsPage() {
       <Subnav />
       <Intro {...intro} />
       <ImageWithText {...imageWithText}/>
+      <ThreeColToggle block={threeColToggleBlock} />
       <TwoColBulletsWithCTAs {...twoColBulletsWithCTAsProps} />
       {/* @ts-ignore */}
-      <ThreeColToggle block={threeColToggleBlock} />
       <ThreeColCardsTall />
     </>
   )

@@ -32,7 +32,6 @@ export default function ThreeColCardsTall() {
   return (
     <div className="bg-white px-6 py-16 lg:px-8">
       <div className="max-w-[85rem] mx-auto">
-        {/* Header Section */}
         <div className="flex flex-col lg:flex-row items-start lg:items-center mb-12 gap-12">
           <h2 className="text-[4.375rem] min-md:max-lg:text-[4rem] max-md:[3.5rem] max-sm:text-[3rem] font-bold text-black leading-tight ">
             Explore<br />Each Stage
@@ -42,16 +41,12 @@ export default function ThreeColCardsTall() {
           </p>
         </div>
 
-        {/* Cards Grid */}
         <div className="grid max-[769px]:grid-cols-1 max-[769px]:justify-items-center max-[1200px]:grid-cols-2 grid-cols-3 gap-6 ">
           {cards.map((card) => (
             <div key={card.title} className="relative w-[398px]  max-sm:w-[300px] max-sm:h-[550px] max-[769px]:w-[400px] max-[1200px]:w-[95%] max-[1299px]:w-[340px] min-h-[508px] pb-8">
-              {/* Gradient Overlay - Behind */}
-              <div className="absolute border-4 shadow-lg w-[398px] max-sm:hidden max-[769px]:w-[400px] max-[1200px]:w-[95%] max-[1299px]:w-[340px] h-[508px] rounded-3xl top-[30px] left-[25px]" style={{ borderColor: '#242D65' }}></div>
+              <div className="absolute border-2 shadow-lg w-[398px] max-sm:hidden max-[769px]:w-[400px] max-[1200px]:w-[95%] max-[1299px]:w-[340px] h-[508px] rounded-3xl top-[30px] left-[25px]" style={{ borderColor: '#242D65' }}></div>
 
-              {/* Card Container */}
               <div className="relative rounded-3xl group w-[398px] max-sm:w-[300px] max-sm:h-[550px] max-[769px]:w-[400px] max-[1200px]:w-[95%] max-[1299px]:w-[340px] h-[508px] overflow-hidden">
-                {/* Background Image */}
                 <Image
                   src={card.image}
                   alt={card.altText}
@@ -59,14 +54,12 @@ export default function ThreeColCardsTall() {
                   className="object-cover rounded-3xl"
                 />
 
-                {/* Content */}
                 <div className="absolute bottom-0 left-0 right-0 z-10 flex flex-col p-8 text-white">
                   <h3 className="text-[2rem] font-semibold mb-2">{card.title}</h3>
                   <p className="text-xl mb-6 leading-relaxed">
                     {card.description}
                   </p>
 
-                  {/* CTA Button */}
                   <Cta
                     href={card.href}
                     buttonText={card.buttonText}
