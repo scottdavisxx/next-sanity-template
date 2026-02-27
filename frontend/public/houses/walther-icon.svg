@@ -1,0 +1,21 @@
+<svg preserveAspectRatio="none" width="100%" height="100%" overflow="visible" style="display: block;" viewBox="0 0 189 250" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Isolation_Mode" clip-path="url(#clip0_510_66)">
+<g id="Group">
+<path id="Vector" d="M100.77 176.806V250H124.143V123.805C109.392 138.516 101.603 157.54 100.773 176.808L100.77 176.806Z" fill="var(--fill-0, #F47E60)" fill-opacity="0.98"/>
+<path id="Vector_2" d="M177.27 100.493C157.959 101.329 138.89 109.099 124.146 123.802H189.003V100.493H177.272H177.27Z" fill="var(--fill-0, #F47E60)" fill-opacity="0.98"/>
+</g>
+<path id="Vector_3" d="M177.27 87.9875C157.959 87.1515 138.89 79.3818 124.146 64.6783H189.003V87.9875H177.272H177.27Z" fill="var(--fill-0, #F47E60)" fill-opacity="0.98"/>
+<g id="Group_2">
+<path id="Vector_4" d="M88.2298 176.806V250H64.8565V123.805C79.6082 138.516 87.3967 157.54 88.2273 176.808L88.2298 176.806Z" fill="var(--fill-0, #F47E60)" fill-opacity="0.98"/>
+<path id="Vector_5" d="M11.7304 100.493C31.041 101.329 50.11 109.099 64.8539 123.802H0V100.493H11.7304Z" fill="var(--fill-0, #F47E60)" fill-opacity="0.98"/>
+</g>
+<path id="Vector_6" d="M100.77 0V11.6751C101.601 30.9429 109.389 49.9672 124.141 64.6783V0H100.768H100.77Z" fill="var(--fill-0, #F47E60)" fill-opacity="0.98"/>
+<path id="Vector_7" d="M11.7304 87.9875C31.041 87.1515 50.11 79.3818 64.8539 64.6783H0V87.9875H11.7304Z" fill="var(--fill-0, #F47E60)" fill-opacity="0.98"/>
+<path id="Vector_8" d="M88.2298 0V11.6751C87.3993 30.9429 79.6107 49.9672 64.8591 64.6783V0H88.2324H88.2298Z" fill="var(--fill-0, #F47E60)" fill-opacity="0.98"/>
+</g>
+<defs>
+<clipPath id="clip0_510_66">
+<rect width="189" height="250" fill="white"/>
+</clipPath>
+</defs>
+</svg>
