@@ -11,6 +11,10 @@ const SCROLL_THRESHOLD = 250;
 
 const navigationItems = [
   {
+    href: "/",
+    label: "Home"
+  },
+  {
     href: "/about",
     label: "About ORLS"
   },
@@ -75,7 +79,13 @@ export default function Navigation({
         md:flex-row md:items-center md:pl-0
         ${isOpen ? "h-full" : "h-0 overflow-hidden hidden md:flex md:h-auto md:overflow-visible"}`}>
           {navigationItems.map((item) => (
-            <Link key={item.href} href={item.href} className={`${block?.color === LogoColor.light ? "hover:underline" : "hover:text-white"}`}>{item.label}</Link>
+            <Link
+              key={item.href}
+              href={item.href}
+              className={`${item.href === "/" ? "md:hidden" : ""} ${block?.color === LogoColor.light ? "hover:underline" : "hover:text-white"}`}
+            >
+              {item.label}
+            </Link>
           ))}
         </div>
       </div >
