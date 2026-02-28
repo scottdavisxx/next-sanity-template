@@ -7,6 +7,7 @@ import ThreeColExpandingCards from "@/app/components/ThreeColExpandingCards";
 import TwoColInfoWithCard from "@/app/components/TwoColInfoWithCard";
 import TwoColInfoWithImage from "@/app/components/TwoColInfoWithImage";
 import ThreeColEventCards from "@/app/components/ThreeColEventCards";
+import Calendar from "@/app/components/Calendar";
 
 const howHousesWorkItems: { number?: number; heading: string; body: ReactNode }[] = [
   {
@@ -94,6 +95,7 @@ export default function TuitionPage() {
       <NumberedList title="How Houses Work" items={howHousesWorkItems} />
       <ThreeColExpandingCards />
       <TwoColInfoWithCard />
+      <Calendar />
       <TwoColInfoWithImage />
       <ThreeColEventCards />
     </>
