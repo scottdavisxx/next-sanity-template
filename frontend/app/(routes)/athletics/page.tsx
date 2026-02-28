@@ -95,7 +95,7 @@ export default function TuitionPage() {
       <NumberedList title="How Houses Work" items={howHousesWorkItems} />
       <ThreeColExpandingCards />
       <TwoColInfoWithCard />
-      <Calendar />
+      <Calendar title="Athletic Calendar" />
       <TwoColInfoWithImage />
       <ThreeColEventCards />
     </>
