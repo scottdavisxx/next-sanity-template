@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export default function ThreeColCtas() {
   return (
-    <div className="bg-white">
+    <div className="bg-white flex">
       <div className="flex flex-col items-stretch w-full text-center
       md:flex-row">
         <Link href="#" className="flex flex-col gap-2 items-center justify-center border border-black py-4 px-12
