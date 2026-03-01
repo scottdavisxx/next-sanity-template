@@ -3,6 +3,7 @@ import CtaWithMediaCard from "@/app/components/CtaWithMediaCard";
 import FeaturedEvents from "@/app/components/FeaturedEvents";
 import FourColStatistics from "@/app/components/FourColStatistics";
 import HeroBanner from "@/app/components/HeroBanner";
+import Leadership from "@/app/components/Leadership";
 import Navigation from "@/app/components/Navigation";
 import Subnav from "@/app/components/Subnav";
 import ThreeColCtas from "@/app/components/ThreeColCtas";
@@ -67,6 +68,7 @@ export default function AboutPage() {
       <FourColStatistics />
       <ThreeColCtas />
       <CtaWithMediaCard {...ctaWithMediaCardContent} />
+      <Leadership />
     </>
   )
 }
