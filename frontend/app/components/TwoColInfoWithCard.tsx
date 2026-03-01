@@ -1,19 +1,81 @@
 import Image from 'next/image'
 
-export default function TwoColInfoWithCard() {
+type Props = {
+  bg?: 'white' | 'dark-blue'
+  photoSide?: 'left' | 'right'
+  heading: string
+  subtitle?: string
+  bio: string[]
+  photo: { src: string; alt: string }
+}
+
+export default function TwoColInfoWithCard({
+  bg = 'white',
+  photoSide = 'right',
+  heading,
+  subtitle,
+  bio,
+  photo,
+}: Props) {
+  const isDark = bg === 'dark-blue'
+  const photoOnRight = photoSide === 'right'
+  const borderColor = isDark ? 'border-white' : 'border-black'
+
   return (
-    <section className="bg-white px-6 py-12 md:px-16 md:py-14 lg:px-[85px] lg:py-[57px]">
-      <div className="flex flex-col lg:flex-row items-start gap-8 lg:gap-10">
+    <section className={`${isDark ? 'bg-dark-blue' : 'bg-white'} px-6 py-12 md:px-16 md:py-14 lg:px-[85px] lg:py-[57px]`}>
+      <div className="max-w-7xl mx-auto px-6 md:px-16 lg:px-24">
 
-        {/* Left column — photo card with depth effect (desktop only) */}
-        <div className="hidden lg:block lg:w-[40%] flex-shrink-0">
-          <div className="relative pb-[62px]">
+        <h2 className={`font-bold text-3xl md:text-5xl lg:text-[64px] leading-tight ${isDark ? 'text-white' : 'text-dark-blue'} ${photoOnRight ? 'lg:max-w-[57%]' : 'lg:ml-[43%]'}`}>
+          {heading}
+        </h2>
 
-            {/* Depth shadow card — same horizontal position as photo, offset 62px down */}
-            <div className="absolute inset-x-0 top-[62px] bottom-0 bg-white border-2 border-black rounded-[26px] z-0" />
+        {subtitle && (
+          <p className={`font-medium italic text-xl md:text-2xl lg:text-[32px] mt-2 lg:mt-3 ${isDark ? 'text-white' : 'text-black'} ${photoOnRight ? 'lg:max-w-[57%]' : 'lg:ml-[43%]'}`}>
+            {subtitle}
+          </p>
+        )}
 
-            {/* Decorative circle — upper left, behind everything */}
-            <div className="absolute -top-8 left-0 w-[66%] aspect-square z-10 pointer-events-none">
+        {/* Mobile photo — between subtitle and bio card, no absolute positioning */}
+        <div className={`lg:hidden mt-6 rounded-[26px] border-2 ${borderColor} overflow-hidden`}>
+          <div className="relative w-full" style={{ aspectRatio: '443 / 571' }}>
+            <Image
+              src={photo.src}
+              alt={photo.alt}
+              fill
+              className="object-cover object-top"
+            />
+          </div>
+        </div>
+
+        {/* Row: full-width bio card + absolutely positioned photo card */}
+        {/* pb-10 (40px) extends row below bio card bottom — photo card bottom anchors here */}
+        <div className="relative mt-6 lg:mt-8 lg:pb-10">
+
+          {/* Bio card — full section content width */}
+          <div className={`border-2 ${borderColor} rounded-[12px] p-6 lg:p-8`}>
+            {/* Text constrained away from the photo side */}
+            <div className={photoOnRight ? 'lg:pr-[43%]' : 'lg:pl-[43%]'}>
+              {bio.map((paragraph, i) => (
+                <p
+                  key={i}
+                  className={`text-sm md:text-base lg:text-[20px] leading-relaxed ${isDark ? 'text-white' : 'text-black'} ${i > 0 ? 'mt-4' : ''}`}
+                >
+                  {paragraph}
+                </p>
+              ))}
+            </div>
+          </div>
+
+          {/* Photo card — desktop only, absolutely positioned */}
+          {/* aspect-ratio drives height; bottom-0 anchors photo bottom 40px below bio card bottom */}
+          <div
+            className={`hidden lg:block absolute bottom-0 w-[40%] rounded-[26px] ${photoOnRight ? 'right-0' : 'left-0'} ${isDark ? 'bg-dark-blue' : 'bg-white'}`}
+            style={{ aspectRatio: '443 / 571' }}
+          >
+            {/* Circular border */}
+            <div className={`absolute bottom-0 left-0 right-0 z-0 h-5/6 rounded-[26px] border-2 ${borderColor}`}></div>
+            {/* Decorative circle — overflows above, positioned on same side as photo */}
+            <div className={`absolute -top-14 w-[66%] aspect-square z-10 pointer-events-none ${photoOnRight ? '-right-14' : '-left-14'}`}>
               <img
                 src="/staff/orls-L-circle.svg"
                 alt=""
@@ -22,62 +84,20 @@ export default function TwoColInfoWithCard() {
               />
             </div>
 
-            {/* Photo card — front layer */}
-            <div className="relative z-20 rounded-[26px] overflow-hidden">
-              <div className="relative w-full" style={{ aspectRatio: '443 / 571' }}>
+            {/* Photo — fills outer wrapper, bordered and rounded */}
+            <div className="absolute inset-0 z-20 rounded-[26px] overflow-hidden">
+              <div className="relative w-full h-full">
                 <Image
-                  src="/staff/linsie-branch.png"
-                  alt="Linsie Branch, Director of Student Life and Family"
+                  src={photo.src}
+                  alt={photo.alt}
                   fill
                   className="object-cover object-top"
                 />
               </div>
             </div>
-
           </div>
+
         </div>
-
-        {/* Right column — heading, subtitle, bio card */}
-        <div className="flex-1 flex flex-col">
-          <h2 className="font-bold text-3xl md:text-5xl lg:text-[64px] text-dark-blue leading-tight">
-            Meet Linsie Branch
-          </h2>
-          <p className="font-medium italic text-xl md:text-2xl lg:text-[32px] text-black mt-2 lg:mt-3">
-            Director of Student Life and Family
-          </p>
-
-          {/* Photo — mobile only, between subtitle and bio card */}
-          <div className="lg:hidden mt-6 rounded-[26px] border-2 border-black overflow-hidden">
-            <div className="relative w-full" style={{ aspectRatio: '443 / 571' }}>
-              <Image
-                src="/staff/linsie-branch.png"
-                alt="Linsie Branch, Director of Student Life and Family"
-                fill
-                className="object-cover object-top"
-              />
-            </div>
-          </div>
-
-          {/* Bio card — mt-10 on desktop matches the Figma gap below the subtitle */}
-          <div className="border-2 border-black rounded-[12px] p-6 lg:p-8 mt-6 lg:mt-10">
-            <p className="text-sm md:text-base lg:text-[20px] text-black leading-relaxed">
-              Linsie Branch serves Our Redeemer as part of Student &amp; Family Life, helping
-              strengthen the relationships that make ORLS feel like a close-knit, faith-filled
-              community.
-            </p>
-            <p className="text-sm md:text-base lg:text-[20px] text-black leading-relaxed mt-4">
-              Her love for school culture began early, helping her mom in the front office at her
-              elementary school, where she learned how powerful a warm welcome can be for students
-              and families.
-            </p>
-            <p className="text-sm md:text-base lg:text-[20px] text-black leading-relaxed mt-4">
-              Linsie will be overseeing the ORLS House system, building connection, belonging, and
-              school spirit across campus. Guided by Ephesians 4:32, she strives to lead with
-              kindness, compassion, and grace in every interaction.
-            </p>
-          </div>
-        </div>
-
       </div>
     </section>
   )

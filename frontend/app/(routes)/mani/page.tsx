@@ -5,6 +5,7 @@ import OneColInfo from "@/app/components/OneColInfo";
 import FilteredThreeColCards from "@/app/components/FilteredThreeColCards";
 import NumberedList from "@/app/components/NumberedList";
 import ThreeColEventCards from "@/app/components/ThreeColEventCards";
+import TwoColInfoWithCard from "@/app/components/TwoColInfoWithCard";
 
 // ─── Variant 1: Icon cards (white bg, SVG foreground icon, no photo) ───────────
 
@@ -201,6 +202,29 @@ const howHousesWorkItems: { number?: number; heading: string; body: ReactNode }[
 export default function ManiPage() {
   return (
     <>
+      <TwoColInfoWithCard
+        bg="white"
+        photoSide="right"
+        heading="Meet Linsie Branch"
+        subtitle="Director of Student Life and Family"
+        bio={[
+          "Linsie Branch serves Our Redeemer as part of Student & Family Life, helping strengthen the relationships that make ORLS feel like a close-knit, faith-filled community.",
+          "Her love for school culture began early, helping her mom in the front office at her elementary school, where she learned how powerful a warm welcome can be for students and families.",
+          "Linsie will be overseeing the ORLS House system, building connection, belonging, and school spirit across campus. Guided by Ephesians 4:32, she strives to lead with kindness, compassion, and grace in every interaction.",
+        ]}
+        photo={{ src: '/staff/linsie-branch.png', alt: 'Linsie Branch, Director of Student Life and Family' }}
+      />
+      <TwoColInfoWithCard 
+        bg="dark-blue" photoSide="left" 
+        heading="Meet Carol Blackwood"
+        subtitle="Director of Student Life and Family"
+        bio={[
+          "Carol Blackwood serves Our Redeemer as part of Student & Family Life, helping strengthen the relationships that make ORLS feel like a close-knit, faith-filled community.",
+          "Her love for school culture began early, helping her mom in the front office at her elementary school, where she learned how powerful a warm welcome can be for students and families.",
+          "Carol will be overseeing the ORLS House system, building connection, belonging, and school spirit across campus. Guided by Ephesians 4:32, she strives to lead with kindness, compassion, and grace in every interaction.",
+        ]}
+        photo={{ src: '/staff/carol-blackwood.png', alt: 'Carol Blackwood, Director of Student Life and Family' }}
+      />
       <ThreeColEventCards
         heading="Beyond The Classroom"
         bgTexture
