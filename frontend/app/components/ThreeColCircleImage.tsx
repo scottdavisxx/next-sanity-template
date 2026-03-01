@@ -10,13 +10,13 @@ export default function ThreeColCircleImage() {
       altText: "First Last"
     },
     {
-      name: "First Last",
+      name: "First Last 1",
       blurb: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
       image: "/person-2.png",
       altText: "First Last"
     },
     {
-      name: "First Last",
+      name: "First Last 2",
       blurb: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
       image: "/person-3.png",
       altText: "First Last"
