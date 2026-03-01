@@ -29,7 +29,7 @@ export default function CtaWithCard({ title, blurb, cta, image, altText, bgImage
         )}
       </div>
       {/* Content */}
-      <div className=" border-2 border-dark-blue rounded-4xl w-full relative
+      <div className=" border-2 border-dark-blue rounded-4xl w-full relative overflow-hidden
       md:my-12">
         {/* BG Image */}
         {bgImage && (
@@ -37,7 +37,8 @@ export default function CtaWithCard({ title, blurb, cta, image, altText, bgImage
         )}
         {/* Icon */}
         {icon && (
-          <div className="absolute top-0 right-0">
+          <div className="absolute top-4 right-4 w-3/4
+          md:top-0 md:right-0">
             <OrlsIcon color="whisper-blue" width={419} height={419} />
           </div>
         )}

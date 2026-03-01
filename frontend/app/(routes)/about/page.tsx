@@ -54,7 +54,6 @@ export default function AboutPage() {
       <Subnav />
       <CtaWithCard {...ctaWithCardContent} />
       <FeaturedEvents />
-
     </>
   )
 }
