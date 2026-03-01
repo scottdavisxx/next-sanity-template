@@ -40,7 +40,13 @@ const navigationItems = [
   }
 ]
 
-export default function Navigation() {
+interface NavigationProps {
+  block: Navigation;
+  color?: LogoColor;
+}
+export default function Navigation({
+  block
+}: NavigationProps) {
   const [scrolled, setScrolled] = useState(false);
 
   const [isOpen, setIsOpen] = useState(false);
@@ -56,15 +62,16 @@ export default function Navigation() {
 
   return (
     <nav
-      className={`px-6 py-4 w-screen flex uppercase fixed top-0 left-0 right-0 z-50 font-bold transition-colors duration-600 bg-dark-blue text-white
+      className={`px-6 py-4 w-screen flex uppercase just fixed top-0 left-0 right-0 z-50 font-bold transition-colors duration-600 bg-dark-blue
         md:px-11 md:py-6 md:justify-between md:items-center
-        ${scrolled ? "md:bg-dark-blue" : "md:bg-transparent"}`}
+        ${scrolled ? "md:bg-dark-blue" : "md:bg-transparent"}
+        ${block?.color === LogoColor.light ? "text-white" : "text-dark-blue"}`}
     >
       <div className={`flex flex-col justify-between w-full items-start
       md:flex-row md:container md:items-center md:gap-0 ${isOpen ? "gap-6" : ""}`}>
         <Link href="/">
           <OrlsLogo
-            color={LogoColor.light}
+            color={block?.color && block.color === 'white' ? LogoColor.light : LogoColor.dark}
             className="w-9/12 md:w-auto"
           />
         </Link>
@@ -75,7 +82,7 @@ export default function Navigation() {
             <Link
               key={item.href}
               href={item.href}
-              className={`${item.href === "/" ? "md:hidden" : ""} hover:text-white`}
+              className={`${item.href === "/" ? "md:hidden" : ""} ${block?.color === LogoColor.light ? "hover:underline" : "hover:text-white"}`}
             >
               {item.label}
             </Link>
