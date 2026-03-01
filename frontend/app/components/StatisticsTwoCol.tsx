@@ -9,7 +9,8 @@ export default function StatisticsTwoCol() {
     md:flex-row md:px-20 md:py-16">
       <h2 className="text-4xl font-bold mb-8
       md:w-1/3 md:mb-0 md:text-7xl">Our Impact, Measured.</h2>
-      <div className="flex md:gap-24">
+      <div className="flex gap-6
+      md:gap-24">
         <div className="flex flex-col gap-20">
           <div className="flex gap-4">
             <AbacusIcon />
