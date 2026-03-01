@@ -2,37 +2,40 @@ import Image from "next/image";
 
 export default function Leadership() {
   return (
-    <div className="flex flex-col">
-      <div className="bg-dark-blue text-center pt-8 pb-60">
-        <h2 className="text-6xl font-bold text-white">OR Dallas Leadership Team</h2>
-      </div>
-      <div className="flex items-center justify-between px-24 -mt-28">
-        <div className="flex flex-col gap 2">
-          <Image src="/tobaben.jpg" alt="Person" width={266} height={333} />
-          <div className="flex flex-col">
-            <span>Dr. Kara Tobaben</span>
-            <span>Head of School</span>
+    <div className="flex flex-col text-white">
+      <div className="flex flex-col gap-8 bg-dark-blue text-center pt-10 pb-16">
+        <h2 className="text-4xl font-bold text-white
+        md:text-6xl">OR Dallas Leadership Team</h2>
+        {/* People container */}
+        <div className="flex flex-col gap-8 items-center justify-between px-8 text-2xl font-bold
+        md:flex-row md:px-24">
+          <div className="flex flex-col gap-2">
+            <Image src="/tobaben-2.jpg" alt="Person" width={266} height={333} className="rounded-full" />
+            <div className="flex flex-col">
+              <span>Dr. Kara Tobaben</span>
+              <span>Head of School</span>
+            </div>
           </div>
-        </div>
-        <div className="flex flex-col gap 2">
-          <Image src="/booker.jpg" alt="Person" width={266} height={333} />
-          <div className="flex flex-col">
-            <span>Sara Booker</span>
-            <span>Director of Finance</span>
+          <div className="flex flex-col gap-2">
+            <Image src="/booker-2.jpg" alt="Person" width={266} height={333} className="rounded-full" />
+            <div className="flex flex-col">
+              <span>Sara Booker</span>
+              <span>Director of Finance</span>
+            </div>
           </div>
-        </div>
-        <div className="flex flex-col gap 2">
-          <Image src="/mcquire.jpg" alt="Person" width={266} height={333} />
-          <div className="flex flex-col">
-            <span></span>
-            <span></span>
+          <div className="flex flex-col gap-2">
+            <Image src="/mcguire-2.jpg" alt="Person" width={266} height={333} className="rounded-full" />
+            <div className="flex flex-col">
+              <span>Pastor Brent McGuire</span>
+              <span>Lead Pastor</span>
+            </div>
           </div>
-        </div>
-        <div className="flex flex-col gap 2">
-          <Image src="/douthwaite.jpg" alt="Person" width={266} height={333} />
-          <div className="flex flex-col">
-            <span></span>
-            <span></span>
+          <div className="flex flex-col gap-2">
+            <Image src="/douthwaite-2.jpg" alt="Person" width={266} height={333} className="rounded-full" />
+            <div className="flex flex-col">
+              <span>Pastor Adam Douthwaite</span>
+              <span>Pastor</span>
+            </div>
           </div>
         </div>
       </div>
