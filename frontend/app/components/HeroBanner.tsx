@@ -1,6 +1,7 @@
 import Image from "@/app/components/SanityImage";
 import type { HeroBanner } from '@/sanity.types'
 import CtaWithIcon from "./ui/CtaWithIcon";
+import HeroCtaWithIcon from "./ui/HeroCtaWithIcon";
 
 type HeroBannerProps = {
   block: HeroBanner
@@ -33,7 +34,7 @@ export default function HeroBanner({ block }: HeroBannerProps) {
           {block?.titleTwo && <><br />{block.titleTwo}</>}
         </h1>
         {block?.cta && (
-          <CtaWithIcon
+          <HeroCtaWithIcon
             href={block.cta.href || "#"}
             buttonText={block.cta.buttonText || "Learn More"}
             newTab={block.cta.newTab}

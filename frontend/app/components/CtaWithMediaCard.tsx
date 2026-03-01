@@ -18,12 +18,15 @@ export interface CtaWithMediaCardProps {
 
 export default function CtaWithMediaCard({ title, blurb, image, altText }: CtaWithMediaCardProps) {
   return (
-    <div className="flex items-center justify-center py-16 px-24 relative">
+    <div className="flex flex-col md:flex-row items-center justify-center py-8 px-2 relative
+    md:px-24 md:py-16">
       {/* Content */}
-      <div className="py-8 border-2 border-dark-blue rounded-l-4xl w-[40%] border-r-0">
-        <div className="flex flex-col pl-8 py-8 items-start z-10">
-          <h2 className="text-2xl font-bold text-medium-blue leading-tight w-3/4">{title}</h2>
-          <p className="text-lg whitespace-pre-line w-3/4">{blurb}</p>
+      <div className="py-2 border-2 border-dark-blue rounded-t-4xl md:rounded-l-4xl md:rounded-tr-none w-full md:w-[40%] border-b-0 
+      md:border-b-2 md:border-r-0 md:py-8">
+        <div className="flex flex-col pl-4 pr-4 py-4 md:pl-8 md:pr-0 items-start z-10
+        md:py-8">
+          <h2 className="text-2xl font-bold text-medium-blue leading-tight w-full md:w-3/4">{title}</h2>
+          <p className="text-lg whitespace-pre-line w-full md:w-3/4">{blurb}</p>
           {block.cta && (
             <div className="flex items-center gap-1 mt-4">
               <CtaWithIcon
@@ -35,13 +38,14 @@ export default function CtaWithMediaCard({ title, blurb, image, altText }: CtaWi
           )}
         </div>
       </div>
-      {/* Card */}
-      <div className="border-2 border-dark-blue rounded-4xl bg-white z-10 w-fit">
+      {/* Card - appears below content on mobile, beside on desktop */}
+      <div className="border-2 border-dark-blue rounded-4xl bg-white z-10 w-full overflow-hidden border-t-0 
+      md:border-t-2 md:rounded-4xl md:w-fit">
         <Image
           src={image}
           alt={altText}
           width={698} height={533}
-          className="relative z-10 rounded-4xl" />
+          className="relative z-10 rounded-b-4xl md:rounded-4xl w-full object-cover" />
       </div>
     </div>
   )
