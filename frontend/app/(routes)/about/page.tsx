@@ -28,8 +28,8 @@ const tempHeroContent = {
       }
     }
   },
-  "titleOne": "Test Title One .",
-  "titleTwo": "Test Title Two"
+  "titleOne": "Education with Purpose.",
+  "titleTwo": "Faith with Action."
 }
 
 const ctaWithCardContent = {

@@ -27,7 +27,8 @@ export default function HeroBanner({ block }: HeroBannerProps) {
       )}
       <div className="flex flex-col gap-8 ml-4 mb-16
       md:ml-16">
-        <h1 className="text-7xl font-bold relative text-white">
+        <h1 className="text-6xl font-bold relative text-white
+        md:text-7xl">
           {block?.titleOne && block.titleOne}
           {block?.titleTwo && <><br />{block.titleTwo}</>}
         </h1>
