@@ -1,8 +1,11 @@
 import CtaWithCard from "@/app/components/CtaWithCard";
+import CtaWithMediaCard from "@/app/components/CtaWithMediaCard";
 import FeaturedEvents from "@/app/components/FeaturedEvents";
+import FourColStatistics from "@/app/components/FourColStatistics";
 import HeroBanner from "@/app/components/HeroBanner";
 import Navigation from "@/app/components/Navigation";
 import Subnav from "@/app/components/Subnav";
+import ThreeColCtas from "@/app/components/ThreeColCtas";
 
 const tempNavigationContent = {
   "_key": "9cb3816cfaf4",
@@ -44,6 +47,13 @@ const ctaWithCardContent = {
   icon: true,
 }
 
+const ctaWithMediaCardContent = {
+  title: "OR Dallas is growing in excellence and impact.",
+  blurb: `Learn how our school is expanding to serve more families and strengthen what we offer students`,
+  image: "/about-video.png",
+  altText: "About Card",
+}
+
 export default function AboutPage() {
   return (
     <>
@@ -54,6 +64,9 @@ export default function AboutPage() {
       <Subnav />
       <CtaWithCard {...ctaWithCardContent} />
       <FeaturedEvents />
+      <FourColStatistics />
+      <ThreeColCtas />
+      <CtaWithMediaCard {...ctaWithMediaCardContent} />
     </>
   )
 }
