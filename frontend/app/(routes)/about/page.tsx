@@ -68,7 +68,7 @@ export default function AboutPage() {
       <FourColStatistics />
       <ThreeColCtas />
       <CtaWithMediaCard {...ctaWithMediaCardContent} />
-      <Leadership />
+      {/* <Leadership /> */}
     </>
   )
 }

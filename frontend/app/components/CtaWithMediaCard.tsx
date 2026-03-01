@@ -39,7 +39,7 @@ export default function CtaWithMediaCard({ title, blurb, image, altText }: CtaWi
         </div>
       </div>
       {/* Card - appears below content on mobile, beside on desktop */}
-      <div className="border-2 border-dark-blue rounded-4xl bg-white z-10 w-full overflow-hidden border-t-0 
+      <div className="border-2 border-dark-blue rounded-4xl bg-white z-10 w-full overflow-hidden border-t-0
       md:border-t-2 md:rounded-4xl md:w-fit">
         <Image
           src={image}
