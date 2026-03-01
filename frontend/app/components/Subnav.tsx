@@ -35,7 +35,7 @@ export default function Subnav() {
   const pathName = usePathname()
 
   return (
-    <div className="bg-white">
+    <div className="bg-white hidden md:block">
       <nav className="flex justify-between items-center container">
         {subnavItems.map((item) => (
           <Link
