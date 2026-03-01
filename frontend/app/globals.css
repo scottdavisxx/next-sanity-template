@@ -19,6 +19,20 @@
   padding: 0 2rem;
 }
 
+
+.container {
+  width: 100%;
+  @media (width >= 1440px) {
+    max-width: 1440px;
+  }
+}
+
+/* I added this so that the content is full width on 1440 - Scott */
+.container {
+  margin: 0 auto;
+  padding: 0 2rem /* 32px */;
+}
+
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme inline {
