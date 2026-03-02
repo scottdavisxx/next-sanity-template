@@ -60,7 +60,7 @@ export default function ThreeColToggle({ block }: ThreeColToggleProps) {
               )}
 
               <div
-                className={`relative overflow-hidden bg-white rounded-[20px] flex flex-col justify-end min-h-[500px] ${
+                className={`relative overflow-hidden bg-white rounded-[20px] flex flex-col justify-end h-[500px] ${
                   isActive
                     ? ' p-8 lg:p-10'
                     : 'border-0 p-6 lg:p-8 cursor-pointer group hover:scale-[1.02] transition-transform duration-300'
