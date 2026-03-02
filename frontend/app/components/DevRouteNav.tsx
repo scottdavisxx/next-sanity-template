@@ -68,7 +68,7 @@ export default function DevRouteNav() {
             <div className="overflow-y-auto p-4">
               <ul className="flex flex-col gap-0.5">
                 {ROUTES.map((route) =>
-                  route.dynamic ? (
+                  ('dynamic' in route && route.dynamic) ? (
                     <li key={route.path} className="text-sm text-gray-500 py-2 px-3">
                       <span className="font-mono">{route.path}</span>
                       <span className="ml-2">— {route.label}</span>
