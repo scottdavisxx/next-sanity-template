@@ -13,6 +13,7 @@
     "typegen": "sanity typegen generate"
   },
   "dependencies": {
+    "@heroicons/react": "^2.2.0",
     "@sanity/client": "^7.13.2",
     "@sanity/image-url": "^1.2.0",
     "@sanity/uuid": "^3.0.2",
