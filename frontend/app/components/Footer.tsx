@@ -3,30 +3,40 @@ import Link from "next/link"
 
 export default function Footer() {
   return (
-    <footer className="flex flex-col items-center justify-between gap-6 bg-dark-blue text-white py-4 px-6 pb-10
+    <footer className="bg-dark-blue py-4
+    md:py-16">
+      <div className="container flex flex-col items-center justify-between gap-6 bg-dark-blue text-white py-4 px-6 pb-10
     md:flex-row md:px-24 md:mb-0 md:pb-0">
-      <Image src="/logo-2.png" alt="Logo" width={424} height={239} />
-      <div className="flex flex-col justify-between gap-8
-       md:flex-row md:w-8/12">
-        <div>
-          <h3 className="text-2xl font-bold">Contact Us</h3>
-          <p>Phone: <a href="tel:217-368-1465">217-368-1465</a></p>
-          <p>Email: <a href="mailto:info@ordallas.org">info@ordallas.org</a></p>
-          <p>Office Hours: Monday - Friday 7:30 AM - 4:30 PM</p>
-        </div>
-        <div>
-          <h3 className="text-2xl font-bold">Address</h3>
-          <p>Our Redeemer Lutheran School</p>
-          <p>7611 Park Lane</p>
-          <p>Dallas, TX 75225</p>
-          <p>Proudly serving North Dallas since 1961</p>
-        </div>
-        <div className="flex flex-col text-nowrap">
-          <h3 className="text-2xl font-bold">Helpful Links</h3>
-          <Link href="/admissions" className="underline">Admissions</Link>
-          <Link href="#" className="underline">Calendar</Link>
-          <Link href="#" className="underline">Schedule a Visit</Link>
-          <Link href="#" className="underline">Privacy Policy</Link>
+        <Image src="/logo-cropped.png" alt="Logo" width={424} height={239} />
+        <div className="flex flex-col justify-between gap-8
+       md:flex-row md:w-8/12
+       2xl:w-[63%]">
+          <div className="flex flex-col justify-between items-stretch">
+            <h3 className="text-2xl font-bold">Contact Us</h3>
+            <div>
+              <p>Phone: <a href="tel:217-368-1465">217-368-1465</a></p>
+              <p>Email: <a href="mailto:info@ordallas.org">info@ordallas.org</a></p>
+              <p>Office Hours: Monday - Friday 7:30 AM - 4:30 PM</p>
+            </div>
+          </div>
+          <div className="flex flex-col justify-between items-stretch">
+            <h3 className="text-2xl font-bold">Address</h3>
+            <div>
+              <p>Our Redeemer Lutheran School</p>
+              <p>7611 Park Lane</p>
+              <p>Dallas, TX 75225</p>
+              <p>Proudly serving North Dallas since 1961</p>
+            </div>
+          </div>
+          <div className="flex flex-col text-nowrap items-stretch">
+            <h3 className="text-2xl font-bold">Helpful Links</h3>
+            <div className="flex flex-col">
+              <Link href="/admissions" className="underline">Admissions</Link>
+              <Link href="#" className="underline">Calendar</Link>
+              <Link href="#" className="underline">Schedule a Visit</Link>
+              <Link href="#" className="underline">Privacy Policy</Link>
+            </div>
+          </div>
         </div>
       </div>
     </footer>

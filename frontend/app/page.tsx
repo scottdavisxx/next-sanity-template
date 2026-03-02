@@ -62,7 +62,7 @@ const ctaWithCardContent = {
 export default async function Page() {
 
   return (
-    <>
+    <div className="relative overflow-hidden">
       {/* @ts-ignore */}
       <HeroBanner block={tempHeroContent} />
       <Subnav />
@@ -72,6 +72,6 @@ export default async function Page() {
       <FeaturedEvents />
       <CtaWithCard {...ctaWithCardContent} />
       <ThreeColCircleImage />
-    </>
+    </div>
   )
 }

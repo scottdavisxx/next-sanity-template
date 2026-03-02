@@ -28,11 +28,11 @@ export default function ThreeColCircleImage() {
     md:px-24 md:py-16">
       <h2 className="text-4xl font-bold text-center
       md:text-6xl">Trusted by Families Across North Texas</h2>
-      <div className="flex flex-col justify-between px-8 gap-8
-      md:flex-row">
+      <div className="flex flex-col justify-between gap-8
+      md:flex-row md:px-8">
         {columnContent.map((column) => (
-          <div key={column.name} className="flex flex-col items-center text-center gap-4 px-6
-          md:w-1/3">
+          <div key={column.name} className="flex flex-col items-center text-center gap-4
+          md:w-1/3 md:px-6">
             <Image src={column.image} alt={column.altText} width={238} height={238} className="rounded-full" />
             <h3 className="text-4xl font-bold">{column.name}</h3>
             <p>{column.blurb}</p>
