@@ -7,12 +7,7 @@ import Subnav from './components/Subnav'
 import TextWithLogo from './components/TextWithLogo'
 import ThreeColCards from './components/ThreeColCards'
 import ThreeColCircleImage from './components/ThreeColCircleImage'
-
-const tempNavigationContent = {
-  "_key": "9cb3816cfaf4",
-  "_type": "navigation",
-  "color": "white"
-}
+import ThreeColToggle from './components/ThreeColToggle'
 
 const tempHeroContent = {
   "_key": "48df50bb7cf9",
@@ -34,6 +29,49 @@ const tempHeroContent = {
   },
   "titleOne": "Rooted in Christ.",
   "titleTwo": "Ready for Life."
+}
+
+const threeColToggleBlock = {
+  _key: "threeColToggle",
+  _type: "threeColToggle",
+  cards: [
+    {
+      title: "Academic Excellence",
+      description: "Degreed, certified teachers deliver rigorous, individualized instruction so every student is known, challenged, and supported to grow.",
+      imageAndAltText: {
+        image: {
+          asset: {
+            _ref: "academic.png"
+          }
+        },
+        altText: "Academic Excellence"
+      }
+    },
+    {
+      title: "Faith Formation",
+      description: "Students grow in their understanding of God's love and are encouraged to live out their faith with confidence and integrity.",
+      imageAndAltText: {
+        image: {
+          asset: {
+            _ref: "faith.png"
+          }
+        },
+        altText: "Faith Formation"
+      }
+    },
+    {
+      title: "Purpose & Belonging",
+      description: "Through our house system and community culture, students build meaningful relationships and discover their unique purpose.",
+      imageAndAltText: {
+        image: {
+          asset: {
+            _ref: "purpose.png"
+          }
+        },
+        altText: "Purpose & Belonging"
+      }
+    }
+  ]
 }
 
 const tempTextWithLogoContent = {
@@ -58,7 +96,6 @@ const ctaWithCardContent = {
   }
 }
 
-
 export default async function Page() {
 
   return (
@@ -69,7 +106,8 @@ export default async function Page() {
       <TextWithLogo {...tempTextWithLogoContent} />
       <ThreeColCards />
       <StatisticsTwoCol />
-      <FeaturedEvents />
+      {/* <FeaturedEvents /> */}
+      <ThreeColToggle block={threeColToggleBlock} />
       <CtaWithCard {...ctaWithCardContent} />
       <ThreeColCircleImage />
     </div>
