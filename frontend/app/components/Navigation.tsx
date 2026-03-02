@@ -57,25 +57,25 @@ export default function Navigation() {
   return (
     <nav
       className={`px-6 py-4 w-screen flex uppercase fixed top-0 left-0 right-0 z-50 font-bold transition-colors duration-600 bg-dark-blue text-white
-        md:px-11 md:py-6 md:justify-between md:items-center
-        ${scrolled ? "md:bg-dark-blue" : "md:bg-transparent"}`}
+        lg:px-11 lg:py-6 lg:justify-between lg:items-center
+        ${scrolled ? "lg:bg-dark-blue" : "lg:bg-transparent"}`}
     >
       <div className={`flex flex-col justify-between w-full items-start
-      md:flex-row md:container md:items-center md:gap-0 ${isOpen ? "gap-6" : ""}`}>
+      lg:flex-row lg:container lg:items-center lg:gap-0 ${isOpen ? "gap-6" : ""}`}>
         <Link href="/" onClick={() => setIsOpen(false)}>
           <OrlsLogo
             color={LogoColor.light}
-            className="w-9/12 md:w-auto"
+            className="w-9/12 lg:w-auto"
           />
         </Link>
         <div className={`flex flex-col justify-between gap-8 
-        md:flex-row md:items-center md:pl-0
-        ${isOpen ? "h-full" : "h-0 overflow-hidden hidden md:flex md:h-auto md:overflow-visible"}`}>
+        lg:flex-row lg:items-center lg:pl-0
+        ${isOpen ? "h-full" : "h-0 overflow-hidden hidden lg:flex lg:h-auto lg:overflow-visible"}`}>
           {navigationItems.map((item) => (
             <Link
               key={item.href}
               href={item.href}
-              className={`${item.href === "/" ? "md:hidden" : ""} hover:text-white`}
+              className={`${item.href === "/" ? "lg:hidden" : ""} hover:text-white`}
               onClick={() => setIsOpen(false)}
             >
               {item.label}
@@ -83,8 +83,8 @@ export default function Navigation() {
           ))}
         </div>
       </div >
-      {isOpen && <XMarkIcon onClick={handleToggle} className="w-8 h-8 absolute right-5 top-5 md:hidden" />}
-      {!isOpen && <Bars3Icon onClick={handleToggle} className="w-8 h-8 absolute right-5 top-5 md:hidden" />}
+      {isOpen && <XMarkIcon onClick={handleToggle} className="w-8 h-8 absolute right-5 top-5 lg:hidden" />}
+      {!isOpen && <Bars3Icon onClick={handleToggle} className="w-8 h-8 absolute right-5 top-5 lg:hidden" />}
     </nav>
   );
 }
