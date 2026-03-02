@@ -50,14 +50,13 @@ export default function ThreeColToggle({ block }: ThreeColToggleProps) {
                 flex: isActive ? '7 7 0%' : '2.5 2.5 0%',
                 transition: 'all 0.3s ease-in-out'
               }}
-              className="relative"
+              className="relative group overflow-visible"
             >
-              {isActive && (
-                <div
-                  className="absolute border-2 shadow-lg rounded-[20px] top-[15px] left-[15px] right-[-15px] bottom-[-15px]"
-                  style={{ borderColor: '#242D65' }}
-                />
-              )}
+              {/* Offset Border - starts aligned with card, shifts on hover (from FeaturedEvents) */}
+              <div
+                className="absolute top-0 left-0 w-full h-full border-2 rounded-[20px] group-hover:translate-x-4 group-hover:translate-y-4 transition-all duration-300"
+                style={{ borderColor: '#242D65' }}
+              />
 
               <div
                 className={`relative overflow-hidden bg-white rounded-[20px] flex flex-col justify-end h-[500px] ${
