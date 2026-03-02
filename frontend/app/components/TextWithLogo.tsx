@@ -9,7 +9,7 @@ interface TextWithLogoProps {
 export default function TextWithLogo({ title, blurb }: TextWithLogoProps) {
 
   return (
-    <div className="md:container">
+    <div className="container">
       <div className="flex flex-col gap-4 text-black py-16 relative overflow-hidden px-6
       md:overflow-visible md:px-0">
         <h2 className="text-4xl font-bold
