@@ -65,10 +65,10 @@ export default function Navigation() {
         <Link href="/" onClick={() => setIsOpen(false)}>
           <OrlsLogo
             color={LogoColor.light}
-            className="w-9/12 lg:w-auto"
+            className="w-9/12 xl:w-auto"
           />
         </Link>
-        <div className={`flex flex-col justify-between gap-8 
+        <div className={`flex flex-col justify-between gap-8 text-center
         lg:flex-row lg:items-center lg:pl-0
         ${isOpen ? "h-full" : "h-0 overflow-hidden hidden lg:flex lg:h-auto lg:overflow-visible"}`}>
           {navigationItems.map((item) => (
