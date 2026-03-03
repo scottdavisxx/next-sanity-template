@@ -56,12 +56,12 @@ export default function Navigation() {
 
   return (
     <nav
-      className={`px-6 py-4 w-screen flex uppercase fixed top-0 left-0 right-0 z-50 font-bold transition-colors duration-600 bg-dark-blue text-white
-        lg:px-11 lg:py-6 lg:justify-between lg:items-center
+      className={`lg:pr-6 py-4 w-screen flex uppercase fixed top-0 left-0 right-0 z-50 font-bold transition-colors duration-600 bg-dark-blue text-white
+        lg:py-6 lg:justify-between lg:items-center
         ${scrolled ? "lg:bg-dark-blue" : "lg:bg-transparent"}`}
     >
-      <div className={`flex flex-col justify-between w-full items-start
-      lg:flex-row lg:container lg:items-center lg:gap-0 ${isOpen ? "gap-6" : ""}`}>
+      <div className={`flex flex-col justify-between w-full items-start container
+      lg:flex-row lg:items-center lg:gap-0 ${isOpen ? "gap-6" : ""}`}>
         <Link href="/" onClick={() => setIsOpen(false)}>
           <OrlsLogo
             color={LogoColor.light}
