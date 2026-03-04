@@ -1,0 +1,90 @@
+"use client";
+
+import Link from "next/link";
+import { useEffect, useState } from "react";
+import OrlsLogo, { LogoColor } from "./icons/orls-logo";
+import type { Navigation } from "@/sanity.types";
+import { Bars3Icon } from "@heroicons/react/24/outline";
+import { XMarkIcon } from "@heroicons/react/24/solid";
+
+const SCROLL_THRESHOLD = 250;
+
+const navigationItems = [
+  {
+    href: "/",
+    label: "Home"
+  },
+  {
+    href: "/about",
+    label: "About ORLS"
+  },
+  {
+    href: "/admissions",
+    label: "Admissions"
+  },
+  {
+    href: "/academics",
+    label: "Academics"
+  },
+  {
+    href: "/student-life",
+    label: "Student Life"
+  },
+  {
+    href: "/support-orls",
+    label: "Support ORLS"
+  },
+  {
+    href: "/alumni",
+    label: "Alumni"
+  }
+]
+
+export default function Navigation() {
+  const [scrolled, setScrolled] = useState(false);
+
+  const [isOpen, setIsOpen] = useState(false);
+
+  const handleToggle = () => setIsOpen(!isOpen);
+
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY >= SCROLL_THRESHOLD);
+    handleScroll();
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  return (
+    <nav
+      className={`lg:pr-6 py-4 w-screen flex uppercase fixed top-0 left-0 right-0 z-50 font-bold transition-colors duration-600 bg-dark-blue text-white
+        lg:py-6 lg:justify-between lg:items-center
+        ${scrolled ? "lg:bg-dark-blue" : "lg:bg-transparent"}`}
+    >
+      <div className={`flex flex-col justify-between w-full items-start container
+      lg:flex-row lg:items-center lg:gap-0 ${isOpen ? "gap-6" : ""}`}>
+        <Link href="/" onClick={() => setIsOpen(false)}>
+          <OrlsLogo
+            color={LogoColor.light}
+            className="w-9/12 xl:w-auto"
+          />
+        </Link>
+        <div className={`flex flex-col justify-between gap-10 
+        lg:flex-row lg:items-center lg:pl-0 lg:text-center
+        ${isOpen ? "h-full" : "h-0 overflow-hidden hidden lg:flex lg:h-auto lg:overflow-visible"}`}>
+          {navigationItems.map((item) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              className={`${item.href === "/" ? "lg:hidden" : ""} hover:text-white`}
+              onClick={() => setIsOpen(false)}
+            >
+              {item.label}
+            </Link>
+          ))}
+        </div>
+      </div >
+      {isOpen && <XMarkIcon onClick={handleToggle} className="w-8 h-8 absolute right-5 top-5 lg:hidden" />}
+      {!isOpen && <Bars3Icon onClick={handleToggle} className="w-8 h-8 absolute right-5 top-5 lg:hidden" />}
+    </nav>
+  );
+}

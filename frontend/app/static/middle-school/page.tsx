@@ -1,4 +1,4 @@
-import TwoColInfoWithImage from "@/app/components/TwoColInfoWithImage";
+import TwoColInfoWithImage from "@/app/static-components/TwoColInfoWithImage";
 
 export default function MiddleSchoolPage() {
   return (

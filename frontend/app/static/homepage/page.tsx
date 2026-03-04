@@ -1,14 +1,14 @@
 // import CtaCardWithImage from './components/CtaCardWithImage'
-import CtaWithCard from '../../components/CtaWithCard'
+import CtaWithCard from "@/app/static-components/CtaWithCard"
 // import FeaturedEvents from './components/FeaturedEvents'
-import HeroBanner from '../../components/HeroBanner'
-import StatisticsTwoCol from '../../components/StatisticsTwoCol'
-import Subnav from '../../components/Subnav'
-import TextWithLogo from '../../components/TextWithLogo'
-import ThreeColCards from '../../components/ThreeColCards'
-import ThreeColCircleImage from '../../components/ThreeColCircleImage'
-import ThreeColToggle from '../../components/ThreeColToggle'
-import TitleAndSubtitle from '../../components/TitleAndSubtitle'
+import HeroBanner from "@/app/static-components/HeroBanner"
+import StatisticsTwoCol from "@/app/static-components/StatisticsTwoCol"
+import Subnav from "@/app/static-components/Subnav"
+import TextWithLogo from "@/app/static-components/TextWithLogo"
+import ThreeColCards from "@/app/static-components/ThreeColCards"
+import ThreeColCircleImage from "@/app/static-components/ThreeColCircleImage"
+import ThreeColToggle from "@/app/static-components/ThreeColToggle"
+import TitleAndSubtitle from "@/app/static-components/TitleAndSubtitle"
 
 const tempHeroContent = {
   "_key": "48df50bb7cf9",

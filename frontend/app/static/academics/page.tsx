@@ -1,11 +1,11 @@
-import HeroBanner from "@/app/components/HeroBanner";
-import Subnav from "@/app/components/Subnav";
-import Intro from "@/app/components/IntroBlade";
-import ImageWithText from "@/app/components/ImageWithText";
-import TwoColBulletsWithCTAs from "@/app/components/TwoColBulletsWithCTAs";
-import ThreeColCardsTall from "@/app/components/ThreeColCardsTall";
-import ThreeColToggle from "@/app/components/ThreeColToggle";
-import CardGrid from "@/app/components/CardGrid";
+import HeroBanner from "@/app/static-components/HeroBanner";
+import Subnav from "@/app/static-components/Subnav";
+import Intro from "@/app/static-components/IntroBlade";
+import ImageWithText from "@/app/static-components/ImageWithText";
+import TwoColBulletsWithCTAs from "@/app/static-components/TwoColBulletsWithCTAs";
+import ThreeColCardsTall from "@/app/static-components/ThreeColCardsTall";
+import ThreeColToggle from "@/app/static-components/ThreeColToggle";
+import CardGrid from "@/app/static-components/CardGrid";
 
 const tempHeroContent = {
   "_key": "48df50bb7cf9",

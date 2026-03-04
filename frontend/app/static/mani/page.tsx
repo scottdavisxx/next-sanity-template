@@ -1,11 +1,11 @@
 import { ReactNode } from "react";
-import TwoColInfo from "@/app/components/TwoColInfo";
-import ThreeColExpandingCards from "@/app/components/ThreeColExpandingCards";
-import OneColInfo from "@/app/components/OneColInfo";
-import FilteredThreeColCards from "@/app/components/FilteredThreeColCards";
-import NumberedList from "@/app/components/NumberedList";
-import ThreeColEventCards from "@/app/components/ThreeColEventCards";
-import TwoColInfoWithCard from "@/app/components/TwoColInfoWithCard";
+import TwoColInfo from "@/app/static-components/TwoColInfo";
+import ThreeColExpandingCards from "@/app/static-components/ThreeColExpandingCards";
+import OneColInfo from "@/app/static-components/OneColInfo";
+import FilteredThreeColCards from "@/app/static-components/FilteredThreeColCards";
+import NumberedList from "@/app/static-components/NumberedList";
+import ThreeColEventCards from "@/app/static-components/ThreeColEventCards";
+import TwoColInfoWithCard from "@/app/static-components/TwoColInfoWithCard";
 
 // ─── Variant 1: Icon cards (white bg, SVG foreground icon, no photo) ───────────
 
