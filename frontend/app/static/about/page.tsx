@@ -1,12 +1,12 @@
-import CtaWithCard from "@/app/components/CtaWithCard";
-import CtaWithMediaCard from "@/app/components/CtaWithMediaCard";
-import FeaturedEvents from "@/app/components/FeaturedEvents";
-import FourColStatistics from "@/app/components/FourColStatistics";
-import HeroBanner from "@/app/components/HeroBanner";
-import Leadership from "@/app/components/Leadership";
-import Navigation from "@/app/components/Navigation";
-import Subnav from "@/app/components/Subnav";
-import ThreeColCtas from "@/app/components/ThreeColCtas";
+import CtaWithCard from "@/app/static-components/CtaWithCard";
+import CtaWithMediaCard from "@/app/static-components/CtaWithMediaCard";
+import FeaturedEvents from "@/app/static-components/FeaturedEvents";
+import FourColStatistics from "@/app/static-components/FourColStatistics";
+import HeroBanner from "@/app/static-components/HeroBanner";
+import Leadership from "@/app/static-components/Leadership";
+import Navigation from "@/app/static-components/Navigation";
+import Subnav from "@/app/static-components/Subnav";
+import ThreeColCtas from "@/app/static-components/ThreeColCtas";
 
 const tempNavigationContent = {
   "_key": "9cb3816cfaf4",

@@ -1,6 +1,6 @@
 import { ReactNode } from 'react'
-import OneColInfo from "@/app/components/OneColInfo";
-import TwoColInfo from "@/app/components/TwoColInfo";
+import OneColInfo from "@/app/static-components/OneColInfo";
+import TwoColInfo from "@/app/static-components/TwoColInfo";
 
 export default function TuitionPage() {
   return (

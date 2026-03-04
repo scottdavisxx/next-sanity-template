@@ -1,5 +1,5 @@
-import ThreeColExpandingCards from "@/app/components/ThreeColExpandingCards";
-import TwoColInfoWithCard from "@/app/components/TwoColInfoWithCard";
+import ThreeColExpandingCards from "@/app/static-components/ThreeColExpandingCards";
+import TwoColInfoWithCard from "@/app/static-components/TwoColInfoWithCard";
 
 const housesItems = [
   {

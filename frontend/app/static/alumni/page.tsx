@@ -1,6 +1,6 @@
-import HeroBanner from "@/app/components/HeroBanner";
-import Navigation from "@/app/components/Navigation";
-import Subnav from "@/app/components/Subnav";
+import HeroBanner from "@/app/static-components/HeroBanner";
+import Navigation from "@/app/static-components/Navigation";
+import Subnav from "@/app/static-components/Subnav";
 
 const tempNavigationContent = {
   "_key": "9cb3816cfaf4",

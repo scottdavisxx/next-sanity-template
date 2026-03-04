@@ -1,13 +1,13 @@
 import { ReactNode } from 'react'
-import OneColInfo from "@/app/components/OneColInfo";
-import TwoColInfo from "@/app/components/TwoColInfo";
-import FilteredThreeColCards from "@/app/components/FilteredThreeColCards";
-import NumberedList from "@/app/components/NumberedList"
-import ThreeColExpandingCards from "@/app/components/ThreeColExpandingCards";
-import TwoColInfoWithCard from "@/app/components/TwoColInfoWithCard";
-import TwoColInfoWithImage from "@/app/components/TwoColInfoWithImage";
-import ThreeColEventCards from "@/app/components/ThreeColEventCards";
-import Calendar from "@/app/components/Calendar";
+import OneColInfo from "@/app/static-components/OneColInfo";
+import TwoColInfo from "@/app/static-components/TwoColInfo";
+import FilteredThreeColCards from "@/app/static-components/FilteredThreeColCards";
+import NumberedList from "@/app/static-components/NumberedList"
+import ThreeColExpandingCards from "@/app/static-components/ThreeColExpandingCards";
+import TwoColInfoWithCard from "@/app/static-components/TwoColInfoWithCard";
+import TwoColInfoWithImage from "@/app/static-components/TwoColInfoWithImage";
+import ThreeColEventCards from "@/app/static-components/ThreeColEventCards";
+import Calendar from "@/app/static-components/Calendar";
 
 const howHousesWorkItems: { number?: number; heading: string; body: ReactNode }[] = [
   {
