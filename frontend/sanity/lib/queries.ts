@@ -2,7 +2,7 @@ import {defineQuery} from 'next-sanity'
 
 export const settingsQuery = defineQuery(`*[_type == "settings"][0]`)
 
-const postFields = /* groq */ `
+const eventFields = /* groq */ `
   _id,
   "status": select(_originalId in path("drafts.**") => "draft", "published"),
   "title": coalesce(title, "Untitled"),
@@ -16,7 +16,7 @@ const postFields = /* groq */ `
 const linkReference = /* groq */ `
   _type == "link" => {
     "page": page->slug.current,
-    "post": post->slug.current
+    "event": event->slug.current
   }
 `
 
@@ -64,27 +64,27 @@ export const getPageQuery = defineQuery(`
 `)
 
 export const sitemapData = defineQuery(`
-  *[_type == "page" || _type == "post" && defined(slug.current)] | order(_type asc) {
+  *[_type == "page" || _type == "event" && defined(slug.current)] | order(_type asc) {
     "slug": slug.current,
     _type,
     _updatedAt,
   }
 `)
 
-export const allPostsQuery = defineQuery(`
-  *[_type == "post" && defined(slug.current)] | order(date desc, _updatedAt desc) {
-    ${postFields}
+export const allEventsQuery = defineQuery(`
+  *[_type == "event" && defined(slug.current)] | order(date desc, _updatedAt desc) {
+    ${eventFields}
   }
 `)
 
-export const morePostsQuery = defineQuery(`
-  *[_type == "post" && _id != $skip && defined(slug.current)] | order(date desc, _updatedAt desc) [0...$limit] {
-    ${postFields}
+export const moreEventsQuery = defineQuery(`
+  *[_type == "event" && _id != $skip && defined(slug.current)] | order(date desc, _updatedAt desc) [0...$limit] {
+    ${eventFields}
   }
 `)
 
-export const postQuery = defineQuery(`
-  *[_type == "post" && slug.current == $slug] [0] {
+export const eventQuery = defineQuery(`
+  *[_type == "event" && slug.current == $slug] [0] {
     content[]{
     ...,
     markDefs[]{
@@ -92,12 +92,12 @@ export const postQuery = defineQuery(`
       ${linkReference}
     }
   },
-    ${postFields}
+    ${eventFields}
   }
 `)
 
-export const postPagesSlugs = defineQuery(`
-  *[_type == "post" && defined(slug.current)]
+export const eventPagesSlugs = defineQuery(`
+  *[_type == "event" && defined(slug.current)]
   {"slug": slug.current}
 `)
 

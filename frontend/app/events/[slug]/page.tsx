@@ -1,18 +1,18 @@
-import type {Metadata, ResolvingMetadata} from 'next'
-import {notFound} from 'next/navigation'
-import {type PortableTextBlock} from 'next-sanity'
-import {Suspense} from 'react'
+import type { Metadata, ResolvingMetadata } from 'next'
+import { notFound } from 'next/navigation'
+import { type PortableTextBlock } from 'next-sanity'
+import { Suspense } from 'react'
 
 import Avatar from '@/app/components/Avatar'
-import {MorePosts} from '@/app/components/Posts'
+import { MoreEvents } from '@/app/components/Events'
 import PortableText from '@/app/components/PortableText'
 import Image from '@/app/components/SanityImage'
-import {sanityFetch} from '@/sanity/lib/live'
-import {postPagesSlugs, postQuery} from '@/sanity/lib/queries'
-import {resolveOpenGraphImage} from '@/sanity/lib/utils'
+import { sanityFetch } from '@/sanity/lib/live'
+import { eventPagesSlugs, eventQuery } from '@/sanity/lib/queries'
+import { resolveOpenGraphImage } from '@/sanity/lib/utils'
 
 type Props = {
-  params: Promise<{slug: string}>
+  params: Promise<{ slug: string }>
 }
 
 /**
@@ -20,8 +20,8 @@ type Props = {
  * Learn more: https://nextjs.org/docs/app/api-reference/functions/generate-static-params
  */
 export async function generateStaticParams() {
-  const {data} = await sanityFetch({
-    query: postPagesSlugs,
+  const { data } = await sanityFetch({
+    query: eventPagesSlugs,
     // Use the published perspective in generateStaticParams
     perspective: 'published',
     stega: false,
@@ -35,33 +35,33 @@ export async function generateStaticParams() {
  */
 export async function generateMetadata(props: Props, parent: ResolvingMetadata): Promise<Metadata> {
   const params = await props.params
-  const {data: post} = await sanityFetch({
-    query: postQuery,
+  const { data: event } = await sanityFetch({
+    query: eventQuery,
     params,
     // Metadata should never contain stega
     stega: false,
   })
   const previousImages = (await parent).openGraph?.images || []
-  const ogImage = resolveOpenGraphImage(post?.coverImage)
+  const ogImage = resolveOpenGraphImage(event?.coverImage)
 
   return {
     authors:
-      post?.author?.firstName && post?.author?.lastName
-        ? [{name: `${post.author.firstName} ${post.author.lastName}`}]
+      event?.author?.firstName && event?.author?.lastName
+        ? [{ name: `${event.author.firstName} ${event.author.lastName}` }]
         : [],
-    title: post?.title,
-    description: post?.excerpt,
+    title: event?.title,
+    description: event?.excerpt,
     openGraph: {
       images: ogImage ? [ogImage, ...previousImages] : previousImages,
     },
   } satisfies Metadata
 }
 
-export default async function PostPage(props: Props) {
+export default async function EventPage(props: Props) {
   const params = await props.params
-  const [{data: post}] = await Promise.all([sanityFetch({query: postQuery, params})])
+  const [{ data: event }] = await Promise.all([sanityFetch({ query: eventQuery, params })])
 
-  if (!post?._id) {
+  if (!event?._id) {
     return notFound()
   }
 
@@ -72,33 +72,33 @@ export default async function PostPage(props: Props) {
           <div>
             <div className="pb-6 grid gap-6 mb-6 border-b border-gray-100">
               <div className="max-w-3xl flex flex-col gap-6">
-                <h1 className="text-4xl text-gray-900 sm:text-5xl lg:text-7xl">{post.title}</h1>
+                <h1 className="text-4xl text-gray-900 sm:text-5xl lg:text-7xl">{event.title}</h1>
               </div>
               <div className="max-w-3xl flex gap-4 items-center">
-                {post.author && post.author.firstName && post.author.lastName && (
-                  <Avatar person={post.author} date={post.date} />
+                {event.author && event.author.firstName && event.author.lastName && (
+                  <Avatar person={event.author} date={event.date} />
                 )}
               </div>
             </div>
             <article className="gap-6 grid max-w-4xl">
               <div className="">
-                {post?.coverImage && (
+                {event?.coverImage && (
                   <Image
-                    id={post.coverImage.asset?._ref || ''}
-                    alt={post.coverImage.alt || ''}
+                    id={event.coverImage.asset?._ref || ''}
+                    alt={event.coverImage.alt || ''}
                     className="rounded-sm w-full"
                     width={1024}
                     height={538}
                     mode="cover"
-                    hotspot={post.coverImage.hotspot}
-                    crop={post.coverImage.crop}
+                    hotspot={event.coverImage.hotspot}
+                    crop={event.coverImage.crop}
                   />
                 )}
               </div>
-              {post.content?.length && (
+              {event.content?.length && (
                 <PortableText
                   className="max-w-2xl prose-headings:font-medium prose-headings:tracking-tight"
-                  value={post.content as PortableTextBlock[]}
+                  value={event.content as PortableTextBlock[]}
                 />
               )}
             </article>
@@ -108,7 +108,7 @@ export default async function PostPage(props: Props) {
       <div className="border-t border-gray-100 bg-gray-50">
         <div className="container py-12 lg:py-24 grid gap-12">
           <aside>
-            <Suspense>{await MorePosts({skip: post._id, limit: 2})}</Suspense>
+            <Suspense>{await MoreEvents({ skip: event._id, limit: 2 })}</Suspense>
           </aside>
         </div>
       </div>

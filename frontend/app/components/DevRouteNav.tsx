@@ -18,7 +18,7 @@ const ROUTES = [
   { path: '/student-life', label: 'Student Life' },
   { path: '/support-orls', label: 'Support ORLS' },
   { path: '/tuition', label: 'Tuition' },
-  { path: '/posts/[slug]', label: 'Post (dynamic)', dynamic: true },
+  { path: '/events/[slug]', label: 'Event (dynamic)', dynamic: true },
   { path: '[slug]', label: 'Page (dynamic)', dynamic: true },
 ] as const
 

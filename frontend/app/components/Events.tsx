@@ -1,23 +1,23 @@
 import Link from 'next/link'
 
 import {sanityFetch} from '@/sanity/lib/live'
-import {morePostsQuery, allPostsQuery} from '@/sanity/lib/queries'
-import {AllPostsQueryResult} from '@/sanity.types'
+import {moreEventsQuery, allEventsQuery} from '@/sanity/lib/queries'
+import {AllEventsQueryResult} from '@/sanity.types'
 import DateComponent from '@/app/components/Date'
 import OnBoarding from '@/app/components/Onboarding'
 import Avatar from '@/app/components/Avatar'
 import {dataAttr} from '@/sanity/lib/utils'
 
-const Post = ({post}: {post: AllPostsQueryResult[number]}) => {
-  const {_id, title, slug, excerpt, date, author} = post
+const Event = ({event}: {event: AllEventsQueryResult[number]}) => {
+  const {_id, title, slug, excerpt, date, author} = event
 
   return (
     <article
-      data-sanity={dataAttr({id: _id, type: 'post', path: 'title'}).toString()}
+      data-sanity={dataAttr({id: _id, type: 'event', path: 'title'}).toString()}
       key={_id}
       className="border border-gray-200 rounded-sm p-6 bg-gray-50 flex flex-col justify-between transition-colors hover:bg-white relative"
     >
-      <Link className="hover:text-brand underline transition-colors" href={`/posts/${slug}`}>
+      <Link className="hover:text-brand underline transition-colors" href={`/events/${slug}`}>
         <span className="absolute inset-0 z-10" />
       </Link>
       <div>
@@ -39,7 +39,7 @@ const Post = ({post}: {post: AllPostsQueryResult[number]}) => {
   )
 }
 
-const Posts = ({
+const Events = ({
   children,
   heading,
   subHeading,
@@ -55,9 +55,9 @@ const Posts = ({
   </div>
 )
 
-export const MorePosts = async ({skip, limit}: {skip: string; limit: number}) => {
+export const MoreEvents = async ({skip, limit}: {skip: string; limit: number}) => {
   const {data} = await sanityFetch({
-    query: morePostsQuery,
+    query: moreEventsQuery,
     params: {skip, limit},
   })
 
@@ -66,29 +66,29 @@ export const MorePosts = async ({skip, limit}: {skip: string; limit: number}) =>
   }
 
   return (
-    <Posts heading={`Recent Posts (${data?.length})`}>
-      {data?.map((post: AllPostsQueryResult[number]) => (
-        <Post key={post._id} post={post} />
+    <Events heading={`Recent Events (${data?.length})`}>
+      {data?.map((event: AllEventsQueryResult[number]) => (
+        <Event key={event._id} event={event} />
       ))}
-    </Posts>
+    </Events>
   )
 }
 
-export const AllPosts = async () => {
-  const {data} = await sanityFetch({query: allPostsQuery})
+export const AllEvents = async () => {
+  const {data} = await sanityFetch({query: allEventsQuery})
 
   if (!data || data.length === 0) {
     return <OnBoarding />
   }
 
   return (
-    <Posts
-      heading="Recent Posts"
-      subHeading={`${data.length === 1 ? 'This blog post is' : `These ${data.length} blog posts are`} populated from your Sanity Studio.`}
+    <Events
+      heading="Recent Events"
+      subHeading={`${data.length === 1 ? 'This event is' : `These ${data.length} events are`} populated from your Sanity Studio.`}
     >
-      {data.map((post: AllPostsQueryResult[number]) => (
-        <Post key={post._id} post={post} />
+      {data.map((event: AllEventsQueryResult[number]) => (
+        <Event key={event._id} event={event} />
       ))}
-    </Posts>
+    </Events>
   )
 }
