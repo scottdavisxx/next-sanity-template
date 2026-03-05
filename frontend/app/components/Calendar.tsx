@@ -20,7 +20,7 @@ export default function Calendar({ block }: CalendarProps) {
         {title && <h2 className="text-6xl font-bold text-white leading-20 text-center">{title}</h2>}
         <iframe
           src={iframeUrl}
-          style={{ border: 0 }}
+          style={{ border: 0, borderRadius: '16px' }}
           width="1400"
           height="750"
           scrolling="no"
