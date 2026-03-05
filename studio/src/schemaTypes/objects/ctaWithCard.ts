@@ -20,7 +20,7 @@ export const ctaWithCard = defineType({
     }),
     defineField({
       name: 'icon',
-      title: 'Show Icon',
+      title: 'Show Logo',
       type: 'boolean',
       initialValue: false,
     }),
