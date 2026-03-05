@@ -2,7 +2,7 @@ import './globals.css'
 // import { SpeedInsights } from '@vercel/speed-insights/next'
 import type { Metadata } from 'next'
 // import { Inter, IBM_Plex_Mono } from 'next/font/google'
-import { Albert_Sans } from "next/font/google";
+import { Albert_Sans, Alegreya } from "next/font/google";
 import { draftMode } from 'next/headers'
 import { toPlainText } from 'next-sanity'
 import { VisualEditing } from 'next-sanity/visual-editing'
@@ -70,12 +70,17 @@ const albertSans = Albert_Sans({
   subsets: ["latin"],
 });
 
+const alegreya = Alegreya({
+  variable: "--font-alegreya",
+  subsets: ["latin"],
+});
+
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   const { isEnabled: isDraftMode } = await draftMode()
 
   return (
     <html lang="en">
-      <body className={albertSans.variable}  >
+      <body className={`${albertSans.variable} ${alegreya.variable}`}>
         <section className="min-h-screen relative">
           {/* <DevRouteNav /> */}
           {/* The <Toaster> component is responsible for rendering toast notifications used in /app/client-utils.ts and /app/components/DraftModeToast.tsx */}
