@@ -37,6 +37,7 @@
 
 @theme inline {
   --font-sans: var(--font-albert-sans);
+  --font-serif: var(--font-alegreya);
   --color-dark-blue: #242d65;
   --color-medium-blue: #355ba5;
   --color-light-blue: #e3e8f2;
