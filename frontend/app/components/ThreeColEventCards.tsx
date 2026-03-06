@@ -132,53 +132,56 @@ export default function ThreeColEventCards({ block }: ThreeColEventCardsProps) {
         </div>
       )}
 
-      {heading && (
-        <h2 className="relative font-bold text-4xl md:text-5xl lg:text-7xl text-black text-center mb-10 lg:mb-9 px-6 md:px-16 lg:px-19">
-          {heading}
-        </h2>
-      )}
+      <div className="max-w-7xl mx-auto px-6 md:px-16 lg:px-24">
 
-      <div className="relative px-12 md:px-18 lg:px-25">
-        {showNav && (
-          <button
-            onClick={() => scroll('prev')}
-            aria-label="Previous"
-            disabled={!canPrev}
-            className="absolute left-0 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-dark-blue text-white flex items-center justify-center transition-opacity disabled:opacity-40 hover:opacity-80"
-          >
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-              <path d="M15 18l-6-6 6-6" />
-            </svg>
-          </button>
+        {heading && (
+          <h2 className="relative font-bold text-4xl md:text-5xl lg:text-7xl text-black text-center mb-10 lg:mb-9 px-6 md:px-16 lg:px-19">
+            {heading}
+          </h2>
         )}
 
-        <div ref={trackRef} className={trackClasses}>
-          {cards.map((card, i) => (
-            <div key={i} className="flex-none w-full md:w-[calc((100%-28px)/2)] lg:w-[calc((100%-56px)/3)]">
-              <SliderCard
-                title={card.title}
-                imageAndAltText={card.imageAndAltText}
-                imageSrc={card.imageSrc}
-                subtitle={card.subtitle}
-                body={card.body}
-                cta={card.cta}
-              />
-            </div>
-          ))}
+        <div className="relative px-12 md:px-18 lg:px-25">
+          {showNav && (
+            <button
+              onClick={() => scroll('prev')}
+              aria-label="Previous"
+              disabled={!canPrev}
+              className="absolute left-0 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-dark-blue text-white flex items-center justify-center transition-opacity disabled:opacity-40 hover:opacity-80"
+            >
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <path d="M15 18l-6-6 6-6" />
+              </svg>
+            </button>
+          )}
+
+          <div ref={trackRef} className={trackClasses}>
+            {cards.map((card, i) => (
+              <div key={i} className="flex-none w-full md:w-[calc((100%-28px)/2)] lg:w-[calc((100%-56px)/3)]">
+                <SliderCard
+                  title={card.title}
+                  imageAndAltText={card.imageAndAltText}
+                  imageSrc={card.imageSrc}
+                  subtitle={card.subtitle}
+                  body={card.body}
+                  cta={card.cta}
+                />
+              </div>
+            ))}
+          </div>
+
+          {showNav && (
+            <button
+              onClick={() => scroll('next')}
+              aria-label="Next"
+              disabled={!canNext}
+              className="absolute right-0 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-dark-blue text-white flex items-center justify-center transition-opacity disabled:opacity-40 hover:opacity-80"
+            >
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <path d="M9 18l6-6-6-6" />
+              </svg>
+            </button>
+          )}
         </div>
-
-        {showNav && (
-          <button
-            onClick={() => scroll('next')}
-            aria-label="Next"
-            disabled={!canNext}
-            className="absolute right-0 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-dark-blue text-white flex items-center justify-center transition-opacity disabled:opacity-40 hover:opacity-80"
-          >
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-              <path d="M9 18l6-6-6-6" />
-            </svg>
-          </button>
-        )}
       </div>
     </section>
   )
