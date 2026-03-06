@@ -35,6 +35,11 @@ export const getPageQuery = defineQuery(`
     slug,
     heading,
     subheading,
+    metaTitle,
+    metaDescription,
+    ogImage,
+    ogDescription,
+    robots,
     "pageBuilder": pageBuilder[]{
       ...,
       _type == "callToAction" => {

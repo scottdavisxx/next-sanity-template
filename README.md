@@ -10,4 +10,4 @@
 - [ ] Confirm all blades are integrated in Sanity and have proper fields (I will make notes on them)
 - [ ] Put limits on fields that will break with more cards.
 - [ ] Leadership should pull from People content type, need boolean toggle for “Leader”
-- [ ] Page level fields (see NPI)
+- [ ] Page level fields (Jose)

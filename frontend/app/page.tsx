@@ -5,6 +5,7 @@ import { sanityFetch } from '@/sanity/lib/live'
 import { getPageQuery, pagesSlugs } from '@/sanity/lib/queries'
 import { GetPageQueryResult } from '@/sanity.types'
 import { PageOnboarding } from '@/app/components/Onboarding'
+import { resolveOpenGraphImage } from '@/sanity/lib/utils'
 
 export async function generateStaticParams() {
   const { data } = await sanityFetch({
@@ -23,9 +24,17 @@ export async function generateMetadata(): Promise<Metadata> {
     stega: false,
   })
 
+  const ogImage = resolveOpenGraphImage(page?.ogImage)
+
   return {
-    title: page?.name,
-    description: page?.heading,
+    title: page?.metaTitle || page?.name,
+    description: page?.metaDescription || undefined,
+    robots: page?.robots || 'index, follow',
+    openGraph: {
+      title: page?.metaTitle || page?.name,
+      description: page?.ogDescription || page?.metaDescription || undefined,
+      images: ogImage ? [ogImage] : undefined,
+    },
   } satisfies Metadata
 }
 
