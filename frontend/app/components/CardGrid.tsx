@@ -35,7 +35,7 @@ export default function CardGrid({ block }: CardGridProps) {
           <div className='flex flex-col text-black
           md:flex-row md:items-end'>
             <h2 className="text-3xl md:text-7xl font-bold text-center mb-8 
-            md:mb-12 md:text-left">
+            md:mb-12 md:text-left md:w-1/3 md:mr-12">
               {heading}
             </h2>
             <p className="text:xl md:text-3xl md:mb-12 w-7/12">
