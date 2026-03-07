@@ -16,9 +16,8 @@ export default function TwoColInfo({ block }: TwoColInfoProps) {
   const rightItems = items.slice(Math.ceil(items.length / 2))
 
   return (
-    <section className="relative overflow-hidden bg-dark-blue py-10 md:py-14 lg:py-12">
+    <div className="relative overflow-hidden bg-dark-blue py-10 md:py-14 lg:py-12">
       <div className="container">
-        {/* Background texture */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-5">
           <Image
             src="/early-education/tuition-bg.png"
@@ -30,7 +29,6 @@ export default function TwoColInfo({ block }: TwoColInfoProps) {
           />
         </div>
 
-        {/* Header row */}
         <div className="relative flex flex-col lg:flex-row lg:items-end gap-6 lg:gap-16">
           <div className="lg:w-[30%] flex-shrink-0">
             <h2 className="font-bold text-4xl md:text-5xl lg:text-7xl text-white leading-tight">
@@ -44,9 +42,7 @@ export default function TwoColInfo({ block }: TwoColInfoProps) {
           </div>
         </div>
 
-        {/* Tuition grid */}
         <div className="relative mt-10 lg:mt-16 grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-x-20">
-          {/* Left column */}
           <div className="flex flex-col gap-8">
             {leftItems.map((item, i) => (
               <div key={i}>
@@ -61,7 +57,6 @@ export default function TwoColInfo({ block }: TwoColInfoProps) {
             ))}
           </div>
 
-          {/* Right column */}
           <div className="flex flex-col gap-8">
             {rightItems.map((item, i) => (
               <div key={i}>
@@ -79,6 +74,6 @@ export default function TwoColInfo({ block }: TwoColInfoProps) {
           </div>
         </div>
       </div>
-    </section>
+    </div>
   );
 }

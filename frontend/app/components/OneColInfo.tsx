@@ -15,7 +15,7 @@ export default function OneColInfo({ block }: OneColInfoProps) {
   const title = block?.title
 
   return (
-    <section className="bg-white py-10 md:py-14 lg:py-16">
+    <div className="bg-white py-10 md:py-14 lg:py-16">
       <div className="container">
         <div className="max-w-4xl mx-auto text-center">
           <div className="flex items-center gap-4">
@@ -52,6 +52,6 @@ export default function OneColInfo({ block }: OneColInfoProps) {
           )}
         </div>
       </div>
-    </section>
+    </div>
   )
 }
