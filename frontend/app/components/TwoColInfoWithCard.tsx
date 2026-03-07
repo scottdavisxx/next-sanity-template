@@ -1,5 +1,5 @@
 import Image from '@/app/components/SanityImage'
-import { PortableText } from 'next-sanity'
+import { PortableText, type PortableTextBlock } from 'next-sanity'
 import type { ExtractPageBuilderType } from '@/sanity/lib/types'
 
 type TwoColInfoWithCardProps = {
@@ -59,7 +59,7 @@ export default function TwoColInfoWithCard({ block }: TwoColInfoWithCardProps) {
             <div className={photoOnRight ? 'lg:pr-[43%]' : 'lg:pl-[43%]'}>
               {Array.isArray(bio) && bio.length > 0 ? (
                 <div className={`text-sm md:text-base lg:text-[20px] leading-relaxed prose max-w-none ${isDark ? 'prose-invert' : ''}`}>
-                  <PortableText value={bio} />
+                  <PortableText value={bio as PortableTextBlock[]} />
                 </div>
               ) : null}
             </div>

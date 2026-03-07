@@ -1,5 +1,5 @@
 import Image from '@/app/components/SanityImage'
-import { PortableText } from 'next-sanity'
+import { PortableText, type PortableTextBlock } from 'next-sanity'
 import type { ExtractPageBuilderType } from '@/sanity/lib/types'
 
 type TwoColInfoWithImageProps = {
@@ -29,7 +29,7 @@ export default function TwoColInfoWithImage({ block }: TwoColInfoWithImageProps)
 
         {Array.isArray(blurb) ? (
           <div className="text-sm md:text-base lg:text-[20px] text-black leading-relaxed prose max-w-none mt-4 lg:mt-6 lg:max-w-[57%]">
-            <PortableText value={blurb} />
+            <PortableText value={blurb as PortableTextBlock[]} />
           </div>
         ) : blurb ? (
           <p className="text-sm md:text-base lg:text-[20px] text-black leading-relaxed mt-4 lg:mt-6 lg:max-w-[57%]">{blurb}</p>
@@ -65,7 +65,7 @@ export default function TwoColInfoWithImage({ block }: TwoColInfoWithImageProps)
                 )}
                 {Array.isArray(card.bio) && card.bio.length > 0 && (
                   <div className="mt-4 space-y-4 text-sm md:text-base lg:text-[18px] text-black leading-relaxed prose max-w-none">
-                    <PortableText value={card.bio} />
+                    <PortableText value={card.bio as PortableTextBlock[]} />
                   </div>
                 )}
               </div>

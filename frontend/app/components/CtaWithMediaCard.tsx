@@ -5,7 +5,7 @@ import Image from '@/app/components/SanityImage'
 import NextImage from 'next/image'
 import CtaWithIcon from './ui/CtaWithIcon'
 import VideoOverlay from './ui/VideoOverlay'
-import { PortableText } from 'next-sanity'
+import { PortableText, type PortableTextBlock } from 'next-sanity'
 import type { ExtractPageBuilderType } from '@/sanity/lib/types'
 
 type CtaWithMediaCardProps = {
@@ -35,7 +35,7 @@ export default function CtaWithMediaCard({ block }: CtaWithMediaCardProps) {
             <h2 className="text-2xl font-bold text-medium-blue leading-tight w-full md:w-3/4">{title}</h2>
             {Array.isArray(blurb) ? (
               <div className="text-lg w-full md:w-3/4 prose max-w-none">
-                <PortableText value={blurb} />
+                <PortableText value={blurb as PortableTextBlock[]} />
               </div>
             ) : (
               <p className="text-lg whitespace-pre-line w-full md:w-3/4">{blurb}</p>

@@ -1,7 +1,7 @@
 import Image from '@/app/components/SanityImage'
 import Cta from './ui/Cta'
 import OrlsIcon from './icons/orls-icon'
-import { PortableText } from 'next-sanity'
+import { PortableText, type PortableTextBlock } from 'next-sanity'
 import type { ExtractPageBuilderType } from '@/sanity/lib/types'
 import { getImageUrl } from '@/sanity/lib/utils'
 
@@ -17,7 +17,6 @@ export default function CtaWithCard({ block }: CtaWithCardProps) {
   const blurb = block?.blurb
   const cta = block?.cta
   const image = block?.imageAndAltText?.image
-  const imageSrc = block?.imageSrc
   const altText = block?.imageAndAltText?.altText || ''
   const bgImage = block?.bgImage
   const icon = block?.icon
@@ -30,11 +29,6 @@ export default function CtaWithCard({ block }: CtaWithCardProps) {
         {hasSanityImage && (
           <div className="border-2 border-dark-blue rounded-4xl absolute left-8 bg-white z-10 hidden md:block">
             <Image id={(image as {asset: {_ref: string}}).asset._ref} alt={altText} width={415} height={537} className="p-6 relative z-10" />
-          </div>
-        )}
-        {!hasSanityImage && imageSrc && (
-          <div className="border-2 border-dark-blue rounded-4xl absolute left-8 bg-white z-10 hidden md:block">
-            <img src={imageSrc} alt={altText} width={415} height={537} className="p-6 relative z-10 object-cover" />
           </div>
         )}
         {/* Content */}
@@ -56,7 +50,7 @@ export default function CtaWithCard({ block }: CtaWithCardProps) {
           md:text-7xl">{title}</h2>
             {Array.isArray(blurb) ? (
               <div className="text-lg prose max-w-none">
-                <PortableText value={blurb} />
+                <PortableText value={blurb as PortableTextBlock[]} />
               </div>
             ) : (
               <p className="text-lg whitespace-pre-line">{blurb}</p>
