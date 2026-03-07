@@ -3,9 +3,10 @@
 import { useRef, useCallback, useState } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import type { Swiper as SwiperType } from 'swiper'
-import 'swiper/css'
 import Image from '@/app/components/SanityImage'
 import type { ExtractPageBuilderType } from '@/sanity/lib/types'
+
+import 'swiper/css'
 
 type ThreeColEventCardsProps = {
   block: ExtractPageBuilderType<'threeColEventCards'>
@@ -31,8 +32,9 @@ function SliderCard({
 }) {
   const image = imageAndAltText?.image
   const hasSanityImage = image?.asset?._ref
+  
   return (
-    <div className="relative overflow-hidden rounded-xl" style={{ height: '274px' }}>
+    <div className="relative overflow-hidden rounded-xl h-48 md:h-64 lg:h-72">
       <div className="absolute inset-0 border-2 border-dark-blue rounded-xl overflow-hidden">
         {hasSanityImage && (
           <Image
@@ -53,9 +55,9 @@ function SliderCard({
         )}
       </div>
 
-      <div className="absolute right-0 top-0 h-full w-[47%] bg-white border-2 border-dark-blue rounded-xl z-10 flex flex-col overflow-hidden px-6 pt-15 pb-7.5">
-        <div>
-          <p className="font-bold text-lg lg:text-2xl text-black leading-tight">{title}</p>
+      <div className="absolute right-0 top-0 h-full w-1/2 bg-white border-2 border-dark-blue rounded-xl z-10 flex flex-col overflow-hidden px-3 py-6">
+        <div className="my-auto">
+          <p className="font-bold text-lg lg:text-2xl text-black">{title}</p>
           {subtitle && (
             <p className="text-medium-blue text-sm font-medium mt-1">{subtitle}</p>
           )}
@@ -78,7 +80,7 @@ function SliderCard({
   )
 }
 
-const PrevNextButton = ({
+const SliderButton = ({
   direction,
   onClick,
   disabled,
@@ -92,17 +94,14 @@ const PrevNextButton = ({
     onClick={onClick}
     aria-label={direction === 'prev' ? 'Previous' : 'Next'}
     disabled={disabled}
-    className="shrink-0 w-10 h-10 rounded-full bg-dark-blue text-white flex items-center justify-center transition-opacity disabled:opacity-40 hover:opacity-80"
+    className="shrink-0 size-9 flex items-center justify-center cursor-pointer transition-opacity disabled:opacity-40"
   >
-    {direction === 'prev' ? (
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-        <path d="M15 18l-6-6 6-6" />
-      </svg>
-    ) : (
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-        <path d="M9 18l6-6-6-6" />
-      </svg>
-    )}
+    <img
+      src="/houses/arrow-right.svg"
+      alt=""
+      aria-hidden
+      className={`size-full ${direction === 'prev' ? 'rotate-180' : ''}`}
+    />
   </button>
 )
 
@@ -125,33 +124,31 @@ export default function ThreeColEventCards({ block }: ThreeColEventCardsProps) {
   const showNav = cards.length > 1
 
   return (
-    <section className="relative overflow-hidden bg-white py-12 md:py-14 lg:py-9">
+    <div className="relative overflow-hidden bg-white py-12 md:py-14 lg:py-9">
       {bgTexture && (
         <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-5">
           <img
-            alt=""
+            alt="background texture"
             aria-hidden="true"
             src="/beyond-classroom/section-bg.png"
-            className="absolute h-full max-w-none top-0 object-cover"
-            style={{ left: '-4.83%', width: '109.8%' }}
+            className="absolute h-full w-full top-0 object-cover"
           />
         </div>
       )}
 
       <div className="container">
         {heading && (
-          <h2 className="relative font-bold text-4xl md:text-5xl lg:text-7xl text-black text-center mb-10 lg:mb-9 px-6 md:px-16 lg:px-19">
+          <h2 className="text-4xl md:text-5xl lg:text-7xl text-center font-bold mb-8 md:mb-10 lg:mb-12">
             {heading}
           </h2>
         )}
 
-        {/* Carousel: nav buttons outside the Swiper container on all breakpoints */}
         <div className="relative flex items-center gap-3 md:gap-4">
           {showNav && (
-            <PrevNextButton direction="prev" onClick={prev} disabled={!canPrev} />
+            <SliderButton direction="prev" onClick={prev} disabled={!canPrev} />
           )}
 
-          <div className="min-w-0 flex-1 overflow-hidden">
+          <div className="flex-1 overflow-hidden">
             <Swiper
               onSwiper={(swiper) => {
                 swiperRef.current = swiper
@@ -161,11 +158,11 @@ export default function ThreeColEventCards({ block }: ThreeColEventCardsProps) {
               slidesPerView={1}
               spaceBetween={16}
               breakpoints={{
-                768: {
+                1024: {
                   slidesPerView: 2,
                   spaceBetween: 24,
                 },
-                1024: {
+                1280: {
                   slidesPerView: 3,
                   spaceBetween: 32,
                 },
@@ -188,10 +185,10 @@ export default function ThreeColEventCards({ block }: ThreeColEventCardsProps) {
           </div>
 
           {showNav && (
-            <PrevNextButton direction="next" onClick={next} disabled={!canNext} />
+            <SliderButton direction="next" onClick={next} disabled={!canNext} />
           )}
         </div>
       </div>
-    </section>
+    </div>
   )
 }
