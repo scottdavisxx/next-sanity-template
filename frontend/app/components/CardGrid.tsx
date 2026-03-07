@@ -55,8 +55,8 @@ export default function CardGrid({ block }: CardGridProps) {
                   {card.description}
                 </p>
 
-                {card.href && (
-                  <Cta href={card.href} buttonText="Learn More" buttonColor="brand-white" font="small" />
+                {card.cta?.href && (
+                  <Cta href={card.cta.href} buttonText={card.cta.buttonText || 'Learn More'} buttonColor="brand-white" font="small" newTab={card.cta.newTab} />
                 )}
               </div>
 
@@ -69,8 +69,8 @@ export default function CardGrid({ block }: CardGridProps) {
           <div className="relative overflow-visible rounded-3xl min-h-[500px] w-full">
             {cards[activeIndex]?.imageAndAltText?.image?.asset?._ref && (
               <Image
-                id={cards[activeIndex].imageAndAltText.image.asset._ref}
-                alt={cards[activeIndex].imageAndAltText.altText || cards[activeIndex].title || ''}
+                id={cards[activeIndex]?.imageAndAltText?.image?.asset?._ref ?? ''}
+                alt={cards[activeIndex]?.imageAndAltText?.altText || cards[activeIndex]?.title || ''}
                 width={800}
                 height={600}
                 mode="cover"
@@ -81,17 +81,18 @@ export default function CardGrid({ block }: CardGridProps) {
             <div className="absolute inset-0 bg-black/44 rounded-3xl z-20" />
 
             <div className="absolute bottom-0 left-0 right-0 z-30 flex flex-col p-8 text-white">
-              <h3 className="text-2xl font-semibold mb-2">{cards[activeIndex].title}</h3>
+              <h3 className="text-2xl font-semibold mb-2">{cards[activeIndex]?.title}</h3>
               <p className="text-xl mb-6 leading-relaxed">
-                {cards[activeIndex].description}
+                {cards[activeIndex]?.description}
               </p>
 
-              {cards[activeIndex]?.href && (
+              {cards[activeIndex]?.cta?.href && (
                 <Cta
-                  href={cards[activeIndex].href}
-                  buttonText="Learn More"
+                  href={cards[activeIndex]?.cta?.href ?? ''}
+                  buttonText={cards[activeIndex]?.cta?.buttonText || 'Learn More'}
                   buttonColor="brand-white"
                   font="small"
+                  newTab={cards[activeIndex]?.cta?.newTab}
                 />
               )}
 

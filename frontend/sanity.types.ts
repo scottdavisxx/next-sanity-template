@@ -149,7 +149,7 @@ export type CardGrid = {
     title: string
     description?: string
     imageAndAltText?: ImageAndAltText
-    href: string
+    cta?: Cta
     fullWidth?: boolean
     _key: string
   }>
@@ -1276,7 +1276,7 @@ export type GetPageQueryResult = {
           title: string
           description?: string
           imageAndAltText?: ImageAndAltText
-          href: string
+          cta?: Cta
           fullWidth?: boolean
           _key: string
         }>

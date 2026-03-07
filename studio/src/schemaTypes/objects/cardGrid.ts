@@ -1,5 +1,5 @@
 import {defineField, defineType} from 'sanity'
-import {imageAndAltText, removePaddingTop} from '../sharedFields'
+import {imageAndAltText, removePaddingTop, cta} from '../sharedFields'
 import {ComponentIcon} from '@sanity/icons'
 
 export const cardGrid = defineType({
@@ -33,12 +33,7 @@ export const cardGrid = defineType({
               type: 'string',
             }),
             imageAndAltText,
-            defineField({
-              name: 'href',
-              title: 'Link URL',
-              type: 'string',
-              validation: (Rule) => Rule.required(),
-            }),
+            cta,
             defineField({
               name: 'fullWidth',
               title: 'Full Width',
