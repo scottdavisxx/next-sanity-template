@@ -1,10 +1,10 @@
 import {defineField, defineType} from 'sanity'
-import {title, blurb, imageAndAltText, cta} from '../sharedFields'
+import {title, imageAndAltText, cta} from '../sharedFields'
 import {ComponentIcon} from '@sanity/icons'
 
-export const threeColCardsTall = defineType({
-  name: 'threeColCardsTall',
-  title: 'Three Column Tall Cards',
+export const clubCards = defineType({
+  name: 'clubCards',
+  title: 'Club Cards',
   type: 'object',
   icon: ComponentIcon,
   fields: [
@@ -39,7 +39,7 @@ export const threeColCardsTall = defineType({
     select: {title: 'title'},
     prepare({title}) {
       return {
-        title: 'Three Column Tall Cards',
+        title: 'Club Cards',
         subtitle: title || 'No title set',
       }
     },

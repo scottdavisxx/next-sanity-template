@@ -14,7 +14,7 @@ import ThreeColEventCards from '@/app/components/ThreeColEventCards'
 import ThreeColCtas from '@/app/components/ThreeColCtas'
 import ThreeColCircleImage from '@/app/components/ThreeColCircleImage'
 import ThreeColCards from '@/app/components/ThreeColCards'
-import ThreeColCardsTall from '@/app/components/ThreeColCardsTall'
+import ClubCards from '@/app/components/ClubCards'
 import StatisticsTwoCol from '@/app/components/StatisticsTwoCol'
 import FourColStatistics from '@/app/components/FourColStatistics'
 import OneColInfo from '@/app/components/OneColInfo'
@@ -55,7 +55,7 @@ const Blocks = {
   threeColCtas: ThreeColCtas,
   threeColCircleImage: ThreeColCircleImage,
   threeColCards: ThreeColCards,
-  threeColCardsTall: ThreeColCardsTall,
+  clubCards: ClubCards,
   statisticsTwoCol: StatisticsTwoCol,
   fourColStatistics: FourColStatistics,
   oneColInfo: OneColInfo,

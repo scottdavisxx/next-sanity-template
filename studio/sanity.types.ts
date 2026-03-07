@@ -335,8 +335,8 @@ export type StatisticsTwoCol = {
   }>
 }
 
-export type ThreeColCardsTall = {
-  _type: 'threeColCardsTall'
+export type ClubCards = {
+  _type: 'clubCards'
   title: string
   subtitle?: string
   cards?: Array<{
@@ -850,7 +850,7 @@ export type Page = {
       } & ThreeColCards)
     | ({
         _key: string
-      } & ThreeColCardsTall)
+      } & ClubCards)
     | ({
         _key: string
       } & StatisticsTwoCol)
@@ -1156,7 +1156,7 @@ export type AllSanitySchemaTypes =
   | OneColInfo
   | FourColStatistics
   | StatisticsTwoCol
-  | ThreeColCardsTall
+  | ClubCards
   | ThreeColCards
   | ThreeColCircleImage
   | ThreeColCtas

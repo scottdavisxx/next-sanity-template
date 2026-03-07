@@ -2260,7 +2260,7 @@
     }
   },
   {
-    "name": "threeColCardsTall",
+    "name": "clubCards",
     "type": "type",
     "value": {
       "type": "object",
@@ -2269,7 +2269,7 @@
           "type": "objectAttribute",
           "value": {
             "type": "string",
-            "value": "threeColCardsTall"
+            "value": "clubCards"
           }
         },
         "title": {
@@ -5875,7 +5875,7 @@
                 },
                 "rest": {
                   "type": "inline",
-                  "name": "threeColCardsTall"
+                  "name": "clubCards"
                 }
               },
               {

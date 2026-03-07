@@ -1,7 +1,7 @@
 import Image from "next/image"
 import Cta from "./ui/Cta"
 
-export default function ThreeColCardsTall() {
+export default function ClubCards() {
   const cards = [
     {
       title: "Early Education PK1 to KinderBridge",

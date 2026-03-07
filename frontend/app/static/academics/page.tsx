@@ -3,7 +3,7 @@ import Subnav from "@/app/static-components/Subnav";
 import Intro from "@/app/static-components/IntroBlade";
 import ImageWithText from "@/app/static-components/ImageWithText";
 import TwoColBulletsWithCTAs from "@/app/static-components/TwoColBulletsWithCTAs";
-import ThreeColCardsTall from "@/app/static-components/ThreeColCardsTall";
+import ClubCards from "@/app/static-components/ClubCards";
 import ThreeColToggle from "@/app/static-components/ThreeColToggle";
 import CardGrid from "@/app/static-components/CardGrid";
 
@@ -201,7 +201,7 @@ export default function AcademicsPage() {
       <ThreeColToggle block={threeColToggleBlock} />
       <TwoColBulletsWithCTAs {...twoColBulletsWithCTAsProps} />
       {/* @ts-ignore */}
-      <ThreeColCardsTall />
+      <ClubCards />
       <CardGrid {...cardGridProps} />
     </>
   )

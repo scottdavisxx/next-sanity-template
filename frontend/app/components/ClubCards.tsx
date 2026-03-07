@@ -1,15 +1,15 @@
 import Image from '@/app/components/SanityImage'
 import Cta from './ui/Cta'
-import type { ThreeColCardsTall } from '@/sanity.types'
+import type { ClubCards } from '@/sanity.types'
 
-type ThreeColCardsTallProps = {
-  block: ThreeColCardsTall
+type ClubCardsProps = {
+  block: ClubCards
   index: number
   pageId: string
   pageType: string
 }
 
-export default function ThreeColCardsTall({ block }: ThreeColCardsTallProps) {
+export default function ClubCards({ block }: ClubCardsProps) {
   const title = block?.title
   const subtitle = block?.subtitle
   const cards = block?.cards ?? []

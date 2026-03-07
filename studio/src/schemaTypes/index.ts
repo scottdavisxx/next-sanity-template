@@ -22,7 +22,7 @@ import {threeColEventCards} from './objects/threeColEventCards'
 import {threeColCtas} from './objects/threeColCtas'
 import {threeColCircleImage} from './objects/threeColCircleImage'
 import {threeColCards} from './objects/threeColCards'
-import {threeColCardsTall} from './objects/threeColCardsTall'
+import {clubCards} from './objects/clubCards'
 import {statisticsTwoCol} from './objects/statisticsTwoCol'
 import {fourColStatistics} from './objects/fourColStatistics'
 import {oneColInfo} from './objects/oneColInfo'
@@ -59,7 +59,7 @@ export const schemaTypes = [
   threeColCtas,
   threeColCircleImage,
   threeColCards,
-  threeColCardsTall,
+  clubCards,
   statisticsTwoCol,
   fourColStatistics,
   oneColInfo,

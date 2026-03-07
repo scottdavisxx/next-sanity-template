@@ -335,8 +335,8 @@ export type StatisticsTwoCol = {
   }>
 }
 
-export type ThreeColCardsTall = {
-  _type: 'threeColCardsTall'
+export type ClubCards = {
+  _type: 'clubCards'
   title: string
   subtitle?: string
   cards?: Array<{
@@ -851,7 +851,7 @@ export type Page = {
       } & ThreeColCards)
     | ({
         _key: string
-      } & ThreeColCardsTall)
+      } & ClubCards)
     | ({
         _key: string
       } & StatisticsTwoCol)
@@ -1157,7 +1157,7 @@ export type AllSanitySchemaTypes =
   | OneColInfo
   | FourColStatistics
   | StatisticsTwoCol
-  | ThreeColCardsTall
+  | ClubCards
   | ThreeColCards
   | ThreeColCircleImage
   | ThreeColCtas
@@ -1296,6 +1296,19 @@ export type GetPageQueryResult = {
           _key: string
         }>
         removePaddingTop?: boolean
+      }
+    | {
+        _key: string
+        _type: 'clubCards'
+        title: string
+        subtitle?: string
+        cards?: Array<{
+          title: string
+          description?: string
+          imageAndAltText?: ImageAndAltText
+          cta?: Cta
+          _key: string
+        }>
       }
     | {
         _key: string
@@ -1548,19 +1561,6 @@ export type GetPageQueryResult = {
           title: string
           imageAndAltText?: ImageAndAltText
           href: string
-          _key: string
-        }>
-      }
-    | {
-        _key: string
-        _type: 'threeColCardsTall'
-        title: string
-        subtitle?: string
-        cards?: Array<{
-          title: string
-          description?: string
-          imageAndAltText?: ImageAndAltText
-          cta?: Cta
           _key: string
         }>
       }
