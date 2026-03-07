@@ -21,7 +21,7 @@ export default function IntroBlade({ block }: IntroBladeProps) {
     return (
         <div className="relative flex flex-col px-24 py-8 gap-2  justify-between min-h-[478px] max-md:px-8">
             {bgImage && (
-              <div className="absolute inset-0 left-0 right-0 w-full h-full overflow-hidden">
+              <div className="absolute inset-0 left-0 right-0 w-full h-full overflow-hidden opacity-10">
                 {typeof bgImage === 'string' ? (
                   /* eslint-disable-next-line @next/next/no-img-element */
                   <img src={bgImage} alt="" className="w-full h-full object-cover opacity-75" />
