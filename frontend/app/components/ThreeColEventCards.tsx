@@ -1,6 +1,9 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
+import { useRef, useCallback, useState } from 'react'
+import { Swiper, SwiperSlide } from 'swiper/react'
+import type { Swiper as SwiperType } from 'swiper'
+import 'swiper/css'
 import Image from '@/app/components/SanityImage'
 import type { ExtractPageBuilderType } from '@/sanity/lib/types'
 
@@ -75,48 +78,51 @@ function SliderCard({
   )
 }
 
+const PrevNextButton = ({
+  direction,
+  onClick,
+  disabled,
+}: {
+  direction: 'prev' | 'next'
+  onClick: () => void
+  disabled: boolean
+}) => (
+  <button
+    type="button"
+    onClick={onClick}
+    aria-label={direction === 'prev' ? 'Previous' : 'Next'}
+    disabled={disabled}
+    className="shrink-0 w-10 h-10 rounded-full bg-dark-blue text-white flex items-center justify-center transition-opacity disabled:opacity-40 hover:opacity-80"
+  >
+    {direction === 'prev' ? (
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <path d="M15 18l-6-6 6-6" />
+      </svg>
+    ) : (
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <path d="M9 18l6-6-6-6" />
+      </svg>
+    )}
+  </button>
+)
+
 export default function ThreeColEventCards({ block }: ThreeColEventCardsProps) {
   const heading = block?.heading
   const bgTexture = block?.bgTexture ?? false
   const cards = block?.cards ?? []
-  const trackRef = useRef<HTMLDivElement>(null)
+  const swiperRef = useRef<SwiperType | null>(null)
   const [canPrev, setCanPrev] = useState(false)
   const [canNext, setCanNext] = useState(false)
 
-  useEffect(() => {
-    const track = trackRef.current
-    if (!track) return
+  const prev = useCallback(() => swiperRef.current?.slidePrev(), [])
+  const next = useCallback(() => swiperRef.current?.slideNext(), [])
 
-    const update = () => {
-      setCanPrev(track.scrollLeft > 0)
-      setCanNext(track.scrollLeft < track.scrollWidth - track.clientWidth - 1)
-    }
-
-    update()
-    track.addEventListener('scroll', update, { passive: true })
-    window.addEventListener('resize', update)
-    return () => {
-      track.removeEventListener('scroll', update)
-      window.removeEventListener('resize', update)
-    }
+  const updateNav = useCallback((swiper: SwiperType) => {
+    setCanPrev(!swiper.isBeginning)
+    setCanNext(!swiper.isEnd)
   }, [])
 
-  const scroll = (dir: 'prev' | 'next') => {
-    const track = trackRef.current
-    if (!track) return
-    const firstCard = track.firstElementChild as HTMLElement
-    if (!firstCard) return
-    const amount = firstCard.offsetWidth + 28
-    track.scrollBy({ left: dir === 'next' ? amount : -amount, behavior: 'smooth' })
-  }
-
-  const showNav = canPrev || canNext
-
-  const trackClasses = [
-    'flex gap-7 overflow-x-scroll [scrollbar-width:none] [&::-webkit-scrollbar]:hidden',
-    cards.length <= 2 ? 'md:justify-center' : '',
-    cards.length <= 3 ? 'lg:justify-center' : '',
-  ].filter(Boolean).join(' ')
+  const showNav = cards.length > 1
 
   return (
     <section className="relative overflow-hidden bg-white py-12 md:py-14 lg:py-9">
@@ -132,54 +138,57 @@ export default function ThreeColEventCards({ block }: ThreeColEventCardsProps) {
         </div>
       )}
 
-      <div className="max-w-7xl mx-auto px-6 md:px-16 lg:px-24">
-
+      <div className="container">
         {heading && (
           <h2 className="relative font-bold text-4xl md:text-5xl lg:text-7xl text-black text-center mb-10 lg:mb-9 px-6 md:px-16 lg:px-19">
             {heading}
           </h2>
         )}
 
-        <div className="relative px-12 md:px-18 lg:px-25">
+        {/* Carousel: nav buttons outside the Swiper container on all breakpoints */}
+        <div className="relative flex items-center gap-3 md:gap-4">
           {showNav && (
-            <button
-              onClick={() => scroll('prev')}
-              aria-label="Previous"
-              disabled={!canPrev}
-              className="absolute left-0 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-dark-blue text-white flex items-center justify-center transition-opacity disabled:opacity-40 hover:opacity-80"
-            >
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                <path d="M15 18l-6-6 6-6" />
-              </svg>
-            </button>
+            <PrevNextButton direction="prev" onClick={prev} disabled={!canPrev} />
           )}
 
-          <div ref={trackRef} className={trackClasses}>
-            {cards.map((card, i) => (
-              <div key={i} className="flex-none w-full md:w-[calc((100%-28px)/2)] lg:w-[calc((100%-56px)/3)]">
-                <SliderCard
-                  title={card.title}
-                  imageAndAltText={card.imageAndAltText}
-                  imageSrc={card.imageSrc}
-                  subtitle={card.subtitle}
-                  body={card.body}
-                  cta={card.cta}
-                />
-              </div>
-            ))}
+          <div className="min-w-0 flex-1 overflow-hidden">
+            <Swiper
+              onSwiper={(swiper) => {
+                swiperRef.current = swiper
+                updateNav(swiper)
+              }}
+              onSlideChange={updateNav}
+              slidesPerView={1}
+              spaceBetween={16}
+              breakpoints={{
+                768: {
+                  slidesPerView: 2,
+                  spaceBetween: 24,
+                },
+                1024: {
+                  slidesPerView: 3,
+                  spaceBetween: 32,
+                },
+              }}
+              className="!overflow-hidden"
+            >
+              {cards.map((card, i) => (
+                <SwiperSlide key={i}>
+                  <SliderCard
+                    title={card.title}
+                    imageAndAltText={card.imageAndAltText}
+                    imageSrc={'imageSrc' in card ? card.imageSrc : undefined}
+                    subtitle={card.subtitle}
+                    body={card.body}
+                    cta={card.cta}
+                  />
+                </SwiperSlide>
+              ))}
+            </Swiper>
           </div>
 
           {showNav && (
-            <button
-              onClick={() => scroll('next')}
-              aria-label="Next"
-              disabled={!canNext}
-              className="absolute right-0 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-dark-blue text-white flex items-center justify-center transition-opacity disabled:opacity-40 hover:opacity-80"
-            >
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                <path d="M9 18l6-6-6-6" />
-              </svg>
-            </button>
+            <PrevNextButton direction="next" onClick={next} disabled={!canNext} />
           )}
         </div>
       </div>
