@@ -38,8 +38,8 @@ export default function CtaWithCard({ block }: CtaWithCardProps) {
           )}
           {/* Icon */}
           {icon && (
-            <div className="absolute top-4 right-4
-          md:top-0 md:right-12">
+            <div className="absolute top-1/2 -translate-y-1/2 right-4
+          md:right-12">
               <OrlsIcon color="whisper-blue" width={419} height={419} />
             </div>
           )}
