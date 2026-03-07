@@ -2,15 +2,16 @@
   "name": "frontend",
   "private": true,
   "scripts": {
-    "prebuild": "npm run typegen",
+    "prebuild": "npm run sanity:typegen",
     "build": "next build",
-    "predev": "npm run typegen",
+    "predev": "npm run sanity:typegen",
     "dev": "next dev",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "start": "next start",
     "type-check": "tsc --noEmit",
-    "typegen": "sanity typegen generate"
+    "typegen": "sanity typegen generate",
+    "sanity:typegen": "npm run extract-types --prefix ../studio && npm run typegen"
   },
   "dependencies": {
     "@heroicons/react": "^2.2.0",
