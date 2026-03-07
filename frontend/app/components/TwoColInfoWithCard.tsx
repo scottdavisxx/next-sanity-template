@@ -1,4 +1,5 @@
 import Image from '@/app/components/SanityImage'
+import NextImage from 'next/image'
 import { PortableText, type PortableTextBlock } from 'next-sanity'
 import type { ExtractPageBuilderType } from '@/sanity/lib/types'
 
@@ -70,12 +71,15 @@ export default function TwoColInfoWithCard({ block }: TwoColInfoWithCardProps) {
             <div className={`absolute bottom-0 left-0 right-0 z-0 h-5/6 rounded-[26px] border-2 ${borderColor}`}></div>
             {/* Decorative circle — overflows above, positioned on same side as photo */}
             <div className={`absolute -top-14 w-[66%] aspect-square z-10 pointer-events-none ${photoOnRight ? '-right-14' : '-left-14'}`}>
-              <img
-                src="/staff/orls-L-circle.svg"
-                alt=""
-                aria-hidden="true"
-                className="w-full h-full"
-              />
+              <div className="relative w-full h-full">
+                <NextImage
+                  src="/staff/orls-L-circle.svg"
+                  alt=""
+                  aria-hidden
+                  fill
+                  className="object-contain"
+                />
+              </div>
             </div>
 
             {/* Photo */}

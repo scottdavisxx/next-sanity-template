@@ -1,4 +1,5 @@
 import Image from '@/app/components/SanityImage'
+import NextImage from 'next/image'
 import { PortableText, type PortableTextBlock } from 'next-sanity'
 import type { ExtractPageBuilderType } from '@/sanity/lib/types'
 
@@ -79,23 +80,26 @@ export default function TwoColInfoWithImage({ block }: TwoColInfoWithImageProps)
             >
               <div className="absolute bottom-0 left-0 right-0 z-0 h-5/6 rounded-[26px] border-2 border-black" />
               <div className="absolute -top-14 -right-14 w-[66%] aspect-square z-10 pointer-events-none">
-                <img
-                  src="/staff/orls-L-circle.svg"
-                  alt=""
-                  aria-hidden="true"
-                  className="w-full h-full"
-                />
+                <div className="relative w-full h-full">
+                  <NextImage
+                    src="/staff/orls-L-circle.svg"
+                    alt=""
+                    aria-hidden
+                    fill
+                    className="object-contain"
+                  />
+                </div>
               </div>
               <div className="absolute inset-0 z-20 rounded-[26px] border-2 border-transparent overflow-hidden">
                 <div className="relative w-full h-full">
                   <Image
-                    id={image!.asset!._ref}
-                    alt={altText}
-                    width={443}
-                    height={527}
-                    mode="cover"
-                    className="w-full h-full object-cover object-top"
-                  />
+                  id={image!.asset!._ref}
+                  alt={altText}
+                  width={443}
+                  height={527}
+                  mode="cover"
+                  className="w-full h-full object-cover object-top"
+                />
                 </div>
               </div>
             </div>

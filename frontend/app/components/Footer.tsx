@@ -14,8 +14,8 @@ export default function Footer() {
           <div className="flex flex-col justify-between items-stretch">
             <h3 className="text-2xl font-bold">Contact Us</h3>
             <div>
-              <p>Phone: <a href="tel:217-368-1465">217-368-1465</a></p>
-              <p>Email: <a href="mailto:info@ordallas.org">info@ordallas.org</a></p>
+              <p>Phone: <Link href="tel:217-368-1465">217-368-1465</Link></p>
+              <p>Email: <Link href="mailto:info@ordallas.org">info@ordallas.org</Link></p>
               <p>Office Hours: Monday - Friday 7:30 AM - 4:30 PM</p>
             </div>
           </div>

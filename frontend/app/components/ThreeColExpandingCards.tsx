@@ -3,6 +3,9 @@
 import { useRef, useCallback } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import type { Swiper as SwiperType } from 'swiper'
+import Link from 'next/link'
+import Image from '@/app/components/SanityImage'
+import NextImage from 'next/image'
 import 'swiper/css'
 
 interface Cta {
@@ -34,7 +37,6 @@ export interface CardItem {
 
 import type { ExtractPageBuilderType } from '@/sanity/lib/types'
 import type { SanityImageSource } from '@sanity/image-url/lib/types/types'
-import { getImageUrl } from '@/sanity/lib/utils'
 
 type ThreeColExpandingCardsProps = {
   block: ExtractPageBuilderType<'threeColExpandingCards'>
@@ -45,9 +47,10 @@ type ThreeColExpandingCardsProps = {
 
 // group-hover classes work here because the outer card wrapper (in the parent) carries the `group` class.
 function CollapsedCardInner({ card }: { card: CollapsedCard }) {
-  const bgUrl = getImageUrl(card.bgImage as SanityImageSource | string | undefined)
-  const iconUrl = getImageUrl(card.icon as SanityImageSource | string | undefined)
-  const hasBg = !!bgUrl
+  const bgImage = card.bgImage as SanityImageSource | string | undefined
+  const icon = card.icon as SanityImageSource | string | undefined
+  const hasBg = typeof bgImage === 'object' && bgImage?.asset?._ref
+  const hasIcon = typeof icon === 'object' && icon?.asset?._ref
   const textColor = hasBg ? 'text-white' : 'text-dark-blue'
 
   return (
@@ -56,20 +59,28 @@ function CollapsedCardInner({ card }: { card: CollapsedCard }) {
     >
       {hasBg && (
         <>
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src={bgUrl}
+          <Image
+            id={(bgImage as { asset: { _ref: string } }).asset._ref}
             alt={card.name ?? ''}
+            width={800}
+            height={600}
+            mode="cover"
             className="absolute inset-0 w-full h-full object-cover z-10"
           />
           <div className="absolute inset-0 bg-black/45 group-hover:bg-black/65 transition-all duration-300 z-20" />
         </>
       )}
 
-      {iconUrl && (
+      {hasIcon && (
         <div className="absolute inset-0 z-30 flex items-center justify-center pb-14">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={iconUrl} alt="" className="w-[65%] max-h-[200px] object-contain" />
+          <Image
+            id={(icon as { asset: { _ref: string } }).asset._ref}
+            alt=""
+            width={400}
+            height={400}
+            mode="contain"
+            className="w-[65%] max-h-[200px] object-contain"
+          />
         </div>
       )}
 
@@ -78,12 +89,12 @@ function CollapsedCardInner({ card }: { card: CollapsedCard }) {
           <p className={`font-bold text-sm lg:text-xl ${textColor}`}>{card.name}</p>
         )}
         {card.cta && (
-          <a
+          <Link
             href={card.cta.href}
             className={`inline-block mt-2 px-4 py-1.5 rounded-md font-semibold text-sm ${hasBg ? 'bg-white text-dark-blue' : 'bg-dark-blue text-white'}`}
           >
             {card.cta.label}
-          </a>
+          </Link>
         )}
       </div>
     </div>
@@ -105,13 +116,15 @@ export default function ThreeColExpandingCards({ block }: ThreeColExpandingCards
   return (
     <section className="relative overflow-hidden bg-white py-12 md:py-16 lg:py-9">
       <div className="container">
-        {sectionBgImage ? (
+        {typeof sectionBgImage === 'object' && sectionBgImage?.asset?._ref ? (
           <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-5">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
+            <Image
+              id={(sectionBgImage as { asset: { _ref: string } }).asset._ref}
               alt=""
-              aria-hidden="true"
-              src={getImageUrl(sectionBgImage as SanityImageSource | string | undefined)}
+              aria-hidden
+              width={1200}
+              height={800}
+              mode="cover"
               className="absolute h-full max-w-none top-0 object-cover"
               style={{ left: '-4.83%', width: '109.8%' }}
             />
@@ -148,14 +161,10 @@ export default function ThreeColExpandingCards({ block }: ThreeColExpandingCards
                 {({ isActive }) => {
                   if (isActive && item.expanded) {
                     const exp = item.expanded
-                    const expBgUrl = getImageUrl(
-                      exp?.bgImage as SanityImageSource | string | undefined
-                    )
-                    const expIconUrl = getImageUrl(
-                      exp?.icon as SanityImageSource | string | undefined
-                    )
-                    const hasBg = !!expBgUrl
-                    const hasIcon = !!expIconUrl
+                    const expBg = exp?.bgImage as SanityImageSource | string | undefined
+                    const expIcon = exp?.icon as SanityImageSource | string | undefined
+                    const hasBg = typeof expBg === 'object' && expBg?.asset?._ref
+                    const hasIcon = typeof expIcon === 'object' && expIcon?.asset?._ref
                     const hasText = !!(
                       exp?.name ||
                       exp?.tagline ||
@@ -173,10 +182,12 @@ export default function ThreeColExpandingCards({ block }: ThreeColExpandingCards
                         >
                           {hasBg && (
                             <>
-                              {/* eslint-disable-next-line @next/next/no-img-element */}
-                              <img
-                                src={expBgUrl}
+                              <Image
+                                id={(expBg as { asset: { _ref: string } }).asset._ref}
                                 alt={exp?.name ?? ''}
+                                width={800}
+                                height={600}
+                                mode="cover"
                                 className="absolute inset-0 w-full h-full object-cover z-10"
                               />
                               <div className="absolute inset-0 bg-black/45 group-hover:bg-black/65 transition-all duration-300 z-20" />
@@ -210,31 +221,36 @@ export default function ThreeColExpandingCards({ block }: ThreeColExpandingCards
                                   </p>
                                 )}
                                 {exp?.cta?.href && (
-                                  <a
+                                  <Link
                                     href={exp.cta.href}
                                     className={`inline-block mt-5 px-6 py-2.5 rounded-md font-semibold text-sm lg:text-base ${ctaStyle}`}
                                   >
                                     {exp.cta.label}
-                                  </a>
+                                  </Link>
                                 )}
                               </div>
                             </div>
                           )}
 
-                          {hasIcon && expIconUrl && (
+                          {hasIcon && (
                             <>
-                              {/* eslint-disable-next-line @next/next/no-img-element */}
-                              <img
-                                src={expIconUrl}
+                              <Image
+                                id={(expIcon as { asset: { _ref: string } }).asset._ref}
                                 alt={exp?.name ?? ''}
+                                width={240}
+                                height={318}
+                                mode="contain"
                                 className="absolute right-4 top-1/2 -translate-y-1/2 w-[200px] lg:w-[240px] h-[280px] lg:h-[318px] object-contain z-40 hidden md:block"
                               />
                               {/* Mobile: icon below text */}
                               <div className="absolute inset-0 z-30 flex items-end justify-center pb-4 md:hidden">
                                 {!hasBg && (
-                                  <img
-                                    src={expIconUrl}
+                                  <Image
+                                    id={(expIcon as { asset: { _ref: string } }).asset._ref}
                                     alt={exp?.name ?? ''}
+                                    width={200}
+                                    height={200}
+                                    mode="contain"
                                     className="h-[150px] object-contain"
                                   />
                                 )}
@@ -279,14 +295,18 @@ export default function ThreeColExpandingCards({ block }: ThreeColExpandingCards
               aria-label="Previous"
               className="size-9 flex items-center justify-center cursor-pointer"
             >
-              <img src="/houses/arrow-right.svg" alt="" className="size-full rotate-180" />
+              <span className="relative block size-full">
+                <NextImage src="/houses/arrow-right.svg" alt="" fill className="object-contain rotate-180" />
+              </span>
             </button>
             <button
               onClick={next}
               aria-label="Next"
               className="size-9 flex items-center justify-center cursor-pointer"
             >
-              <img src="/houses/arrow-right.svg" alt="" className="size-full" />
+              <span className="relative block size-full">
+                <NextImage src="/houses/arrow-right.svg" alt="" fill className="object-contain" />
+              </span>
             </button>
           </div>
           {arrowLabel && (

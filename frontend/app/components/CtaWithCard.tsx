@@ -3,7 +3,6 @@ import Cta from './ui/Cta'
 import OrlsIcon from './icons/orls-icon'
 import { PortableText, type PortableTextBlock } from 'next-sanity'
 import type { ExtractPageBuilderType } from '@/sanity/lib/types'
-import { getImageUrl } from '@/sanity/lib/utils'
 
 type CtaWithCardProps = {
   block: ExtractPageBuilderType<'ctaWithCard'>
@@ -21,7 +20,7 @@ export default function CtaWithCard({ block }: CtaWithCardProps) {
   const bgImage = block?.bgImage
   const icon = block?.icon
   const hasSanityImage = (image as {asset?: {_ref?: string}} | undefined)?.asset?._ref
-  const bgImageStr = typeof bgImage === 'string' ? bgImage : (bgImage as {asset?: {_ref?: string}} | undefined)?.asset?._ref ? getImageUrl(bgImage as object) : ''
+  const hasBgImage = (bgImage as {asset?: {_ref?: string}} | undefined)?.asset?._ref
   return (
     <div className="bg-white py-4
     md:py-16">
@@ -34,8 +33,8 @@ export default function CtaWithCard({ block }: CtaWithCardProps) {
         {/* Content */}
         <div className=" border-2 border-dark-blue rounded-4xl w-full relative overflow-hidden
       md:my-12">
-          {bgImageStr && (
-            <img src={bgImageStr} alt="" className="absolute top-0 left-0 w-full h-full object-cover rounded-4xl opacity-10" />
+          {hasBgImage && (
+            <Image id={(bgImage as {asset: {_ref: string}}).asset._ref} alt="" width={1920} height={1080} mode="cover" className="absolute top-0 left-0 w-full h-full object-cover rounded-4xl opacity-10" />
           )}
           {/* Icon */}
           {icon && (

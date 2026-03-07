@@ -1,4 +1,5 @@
 import Image from '@/app/components/SanityImage'
+import NextImage from 'next/image'
 import Cta from './ui/Cta'
 import type { ExtractPageBuilderType } from '@/sanity/lib/types'
 
@@ -20,12 +21,13 @@ export default function IntroBlade({ block }: IntroBladeProps) {
       <div className="container">
         {bgImage && (
           <div className="absolute inset-0 left-0 right-0 w-full h-full overflow-hidden opacity-10">
+            <div className="relative size-full">
             {typeof bgImage === 'string' ? (
-              /* eslint-disable-next-line @next/next/no-img-element */
-              <img src={bgImage} alt="" className="w-full h-full object-cover opacity-75" />
+              <NextImage src={bgImage} alt="" fill className="object-cover opacity-75" />
             ) : (bgImage as { asset?: { _ref?: string } })?.asset?._ref ? (
               <Image id={(bgImage as { asset: { _ref: string } }).asset._ref} alt="" width={1920} height={1080} mode="cover" className="w-full h-full object-cover opacity-75" />
             ) : null}
+            </div>
           </div>
         )}
         <div className="relative flex flex-col md:flex-row px-6 py-8 gap-8 md:justify-between items-center z-10">

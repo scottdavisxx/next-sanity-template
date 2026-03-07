@@ -4,6 +4,8 @@ import { useRef, useCallback, useState } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import type { Swiper as SwiperType } from 'swiper'
 import Image from '@/app/components/SanityImage'
+import Link from 'next/link'
+import NextImage from 'next/image'
 import type { ExtractPageBuilderType } from '@/sanity/lib/types'
 
 import 'swiper/css'
@@ -56,14 +58,14 @@ function SliderCard({
             <p className="text-sm text-gray mt-2 leading-snug">{body}</p>
           )}
         </div>
-        {cta && (
+        {cta && cta.href && (
           <div className="mt-auto">
-            <a
+            <Link
               href={cta.href}
               className="block w-full bg-dark-blue text-white text-sm font-medium rounded py-2 text-center"
             >
               {cta.label}
-            </a>
+            </Link>
           </div>
         )}
       </div>
@@ -87,12 +89,15 @@ const SliderButton = ({
     disabled={disabled}
     className="shrink-0 size-9 flex items-center justify-center cursor-pointer transition-opacity disabled:opacity-40"
   >
-    <img
-      src="/houses/arrow-right.svg"
-      alt=""
-      aria-hidden
-      className={`size-full ${direction === 'prev' ? 'rotate-180' : ''}`}
-    />
+    <span className="relative block size-full">
+      <NextImage
+        src="/houses/arrow-right.svg"
+        alt=""
+        aria-hidden
+        fill
+        className={`object-contain ${direction === 'prev' ? 'rotate-180' : ''}`}
+      />
+    </span>
   </button>
 )
 
@@ -118,12 +123,15 @@ export default function ThreeColEventCards({ block }: ThreeColEventCardsProps) {
     <div className="relative overflow-hidden bg-white py-12 md:py-14 lg:py-9">
       {bgTexture && (
         <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-5">
-          <img
+          <div className="relative size-full">
+            <NextImage
             alt="background texture"
-            aria-hidden="true"
+            aria-hidden
             src="/beyond-classroom/section-bg.png"
-            className="absolute h-full w-full top-0 object-cover"
-          />
+            fill
+              className="object-cover"
+            />
+          </div>
         </div>
       )}
 
