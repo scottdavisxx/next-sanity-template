@@ -15,37 +15,25 @@ export default function ThreeColCardsTall({ block }: ThreeColCardsTallProps) {
   const cards = block?.cards ?? []
 
   return (
-    <div className="bg-white px-6 py-16 lg:px-8">
-      <div className="max-w-[85rem] mx-auto">
-        <div className="flex flex-col lg:flex-row items-start lg:items-center mb-12 gap-12">
-          <h2 className="text-[4.375rem] min-md:max-lg:text-[4rem] max-md:[3.5rem] max-sm:text-[3rem] font-bold text-black leading-tight ">
+    <div className="bg-white py-6 md:py-12 lg:py-16">
+      <div className="container">
+        <div className="flex flex-col mb-12 gap-4 md:gap-6 lg:gap-9 text-center">
+          <h2 className="text-4xl md:text-5xl lg:text-7xl font-bold text-black leading-tight text-center">
             {title}
           </h2>
-          <p className="text-[2rem] text-gray-700 max-w-3xl">
+          <p className="text-xl text-gray-700">
             {subtitle}
           </p>
         </div>
 
-        <div className="grid max-[769px]:grid-cols-1 max-[769px]:justify-items-center max-[1200px]:grid-cols-2 grid-cols-3 gap-6 ">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 justify-center gap-6 ">
           {cards.map((card, i) => (
-            <div key={i} className="relative w-[398px] max-sm:w-[300px] max-sm:h-[550px] max-[769px]:w-[400px] max-[1200px]:w-[95%] max-[1299px]:w-[340px] min-h-[508px] pb-8">
-              <div className="absolute border-2 shadow-lg w-[398px] max-sm:hidden max-[769px]:w-[400px] max-[1200px]:w-[95%] max-[1299px]:w-[340px] h-[508px] rounded-3xl top-[30px] left-[25px]" style={{ borderColor: '#242D65' }}></div>
+            <div key={i} className="relative border-2 border-dark-blue rounded-3xl h-96 pb-8">
+              <div className="absolute top-0 left-0 border-2 border-dark-blue rounded-3xl w-full h-full"></div>
 
-              <div className="relative rounded-3xl group w-[398px] max-sm:w-[300px] max-sm:h-[550px] max-[769px]:w-[400px] max-[1200px]:w-[95%] max-[1299px]:w-[340px] h-[508px] overflow-hidden">
-                {card.imageAndAltText?.image?.asset?._ref && (
-                  <Image
-                    id={card.imageAndAltText.image.asset._ref}
-                    alt={card.imageAndAltText.altText || card.title || ''}
-                    width={800}
-                    height={600}
-                    mode="cover"
-                    className="absolute inset-0 w-full h-full object-cover rounded-3xl"
-                  />
-                )}
-
-                <div className="absolute bottom-0 left-0 right-0 z-10 flex flex-col p-8 text-white">
-                  <h3 className="text-[2rem] font-semibold mb-2">{card.title}</h3>
-                  <p className="text-xl mb-6 leading-relaxed">{card.description}</p>
+              <div className="bg-white relative rounded-3xl group w-full h-full overflow-hidden">
+                <div className="flex flex-col p-8 text-center">
+                  <h3 className="text-2xl font-semibold mb-2">{card.title}</h3>
                   {card.cta?.href && (
                     <Cta
                       href={card.cta.href}
@@ -55,7 +43,20 @@ export default function ThreeColCardsTall({ block }: ThreeColCardsTallProps) {
                       font="small"
                     />
                   )}
+                  <p className="text-lg mb-6 leading-relaxed">{card.description}</p>
                 </div>
+                {card.imageAndAltText?.image?.asset?._ref && (
+                  <Image
+                    id={card.imageAndAltText.image.asset._ref}
+                    alt={card.imageAndAltText.altText || card.title || ''}
+                    width={800}
+                    height={600}
+                    mode="cover"
+                    className="w-full object-cover rounded-3xl"
+                  />
+                )}
+
+                
               </div>
             </div>
           ))}
