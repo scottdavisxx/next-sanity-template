@@ -326,6 +326,7 @@ export type StatisticsTwoCol = {
   _type: 'statisticsTwoCol'
   title: string
   stats?: Array<{
+    imageAndAltText?: ImageAndAltText
     number: string
     label: string
     _key: string
@@ -1485,6 +1486,7 @@ export type GetPageQueryResult = {
         _type: 'statisticsTwoCol'
         title: string
         stats?: Array<{
+          imageAndAltText?: ImageAndAltText
           number: string
           label: string
           _key: string
