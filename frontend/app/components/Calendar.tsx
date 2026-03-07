@@ -15,17 +15,40 @@ export default function Calendar({ block }: CalendarProps) {
   const iframeUrl = block?.iframeUrl || DEFAULT_CALENDAR_URL
 
   return (
-    <div className="flex justify-center bg-dark-blue py-6">
-      <div className="flex flex-col gap-8">
-        {title && <h2 className="text-6xl font-bold text-white leading-20 text-center">{title}</h2>}
-        <iframe
-          src={iframeUrl}
-          style={{ border: 0, borderRadius: '16px' }}
-          width="1400"
-          height="750"
-          scrolling="no"
-          title="Calendar"
-        />
+    <div className="bg-dark-blue py-8 md:py-12 lg:py-16">
+      <div className="container">
+        <div className="flex flex-col gap-8 md:gap-12 lg:gap-14">
+          {title && <h2 className="text-4xl md:text-6xl lg:text-8xl font-bold text-white text-center">{title}</h2>}
+          <div className="overflow-x-auto">
+            <div
+              className="mx-auto"
+              style={{
+                minWidth: 256,
+                width: '100%',
+                maxWidth: '1400px',
+                aspectRatio: '16/9',
+                position: 'relative',
+              }}
+            >
+              <iframe
+                src={iframeUrl}
+                style={{
+                  border: 0,
+                  borderRadius: '16px',
+                  width: '100%',
+                  height: '100%',
+                  position: 'absolute',
+                  top: 0,
+                  left: 0,
+                }}
+                width="100%"
+                height="100%"
+                scrolling="no"
+                title="Calendar"
+              />
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   )
