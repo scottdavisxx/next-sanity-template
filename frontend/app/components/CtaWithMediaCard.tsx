@@ -22,8 +22,8 @@ export default function CtaWithMediaCard({ block }: CtaWithMediaCardProps) {
   const image = block?.imageAndAltText?.image
   const altText = block?.imageAndAltText?.altText || ''
   const cta = block?.cta
-  console.log(block)
   const hasVideo = !!block?.video
+  
   return (
     <div className="bg-white py-4
     md:py-16">

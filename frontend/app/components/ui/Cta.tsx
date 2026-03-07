@@ -20,7 +20,7 @@ export default function Cta({ href, buttonText, newTab, className, dark, buttonC
 
   const color = (buttonColor?.replace(/[\u200B-\u200D\uFEFF]/g, "") || "brand-yellow") as keyof typeof colorConfig;
   const config = colorConfig[color];
-  console.log(buttonColor)
+  
   return (
     <Link
       target={newTab ? "_blank" : "_self"}
