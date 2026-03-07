@@ -20,7 +20,7 @@ export default function ThreeColToggle({ block }: ThreeColToggleProps) {
   const next = () => setActiveIndex((i) => (i + 1) % cards.length)
 
   return (
-    <section className={`relative px-6 py-12 md:px-16 md:py-16 lg:px-[86px] lg:py-[37px]
+    <section className={`relative px-6 pb-12 md:px-16 md:pb-16 lg:px-[86px] lg:pb-[37px]
     ${block?.removePaddingTop ? 'pt-0' : 'pt-12 md:pt-16'}`}>
       <div className=" relative max-w-[1400px] mx-auto max-[769px]:hidden min-[769px]:flex flex-row gap-4 lg:gap-6 items-stretch">
         {cards.map((card, index) => {
@@ -42,92 +42,90 @@ export default function ThreeColToggle({ block }: ThreeColToggleProps) {
               />
 
               <div
-                className={`relative overflow-hidden bg-white rounded-[20px] flex flex-col justify-end h-[500px] ${
-                  isActive
+                className={`relative overflow-hidden bg-white rounded-[20px] flex flex-col justify-end h-[500px] ${isActive
                     ? ' p-8 lg:p-10'
                     : 'border-0 p-6 lg:p-8 cursor-pointer group hover:scale-[1.02] transition-transform duration-300'
-                }`}
+                  }`}
                 onClick={() => !isActive && setActiveIndex(index)}
               >
-              {card.imageAndAltText?.image?.asset?._ref && (
-                <Image
-                  id={card.imageAndAltText.image.asset._ref}
-                  alt={card.imageAndAltText.altText || ''}
-                  width={800}
-                  height={500}
-                  mode="cover"
-                  className="absolute inset-0 w-full h-full object-cover"
-                />
-              )}
-              <div className={`absolute inset-0 ${
-                isActive
-                  ? 'bg-black/20'
-                  : 'bg-black/30 group-hover:bg-black/20 transition-colors'
-              }`} />
+                {card.imageAndAltText?.image?.asset?._ref && (
+                  <Image
+                    id={card.imageAndAltText.image.asset._ref}
+                    alt={card.imageAndAltText.altText || ''}
+                    width={800}
+                    height={500}
+                    mode="cover"
+                    className="absolute inset-0 w-full h-full object-cover"
+                  />
+                )}
+                <div className={`absolute inset-0 ${isActive
+                    ? 'bg-black/20'
+                    : 'bg-black/30 group-hover:bg-black/20 transition-colors'
+                  }`} />
 
-              {isActive ? (
-                <>
-                  <div className="relative z-10 max-w-[60%]">
-                    <h3 className="font-bold text-3xl lg:text-[48px] text-white leading-tight">
-                      {card.title}
-                    </h3>
-                    <p className="text-white text-base lg:text-[20px] mt-3 lg:mt-4 leading-snug">
-                      {card.description}
-                    </p>
-                  </div>
+                {isActive ? (
+                  <>
+                    <div className="relative z-10 max-w-[60%]">
+                      <h3 className="font-bold text-3xl lg:text-[48px] text-white leading-tight">
+                        {card.title}
+                      </h3>
+                      <p className="text-white text-base lg:text-[20px] mt-3 lg:mt-4 leading-snug">
+                        {card.description}
+                      </p>
+                    </div>
 
-                  <div className="relative z-10 mt-6 flex flex-row items-center gap-3">
-                    <button
-                      onClick={(e) => {
-                        e.stopPropagation()
-                        prev()
-                      }}
-                      aria-label="Previous"
-                      className="size-[44px] lg:size-[52px] flex items-center justify-center bg-white rounded-full cursor-pointer hover:bg-gray-100 transition-colors"
-                    >
-                      <svg
-                        className="size-6 text-[#242d65]"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
+                    <div className="relative z-10 mt-6 flex flex-row items-center gap-3">
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation()
+                          prev()
+                        }}
+                        aria-label="Previous"
+                        className="size-[44px] lg:size-[52px] flex items-center justify-center bg-white rounded-full cursor-pointer hover:bg-gray-100 transition-colors"
                       >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M15 19l-7-7 7-7"
-                        />
-                      </svg>
-                    </button>
-                    <button
-                      onClick={(e) => {
-                        e.stopPropagation()
-                        next()
-                      }}
-                      aria-label="Next"
-                      className="size-[44px] lg:size-[52px] flex items-center justify-center bg-white rounded-full cursor-pointer hover:bg-gray-100 transition-colors"
-                    >
-                      <svg
-                        className="size-6 text-[#242d65]"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
+                        <svg
+                          className="size-6 text-[#242d65]"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M15 19l-7-7 7-7"
+                          />
+                        </svg>
+                      </button>
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation()
+                          next()
+                        }}
+                        aria-label="Next"
+                        className="size-[44px] lg:size-[52px] flex items-center justify-center bg-white rounded-full cursor-pointer hover:bg-gray-100 transition-colors"
                       >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M9 5l7 7-7 7"
-                        />
-                      </svg>
-                    </button>
-                  </div>
-                </>
-              ) : (
-                <h4 className="relative z-10 font-bold text-2xl lg:text-[32px] text-white leading-tight">
-                  {card.title}
-                </h4>
-              )}
+                        <svg
+                          className="size-6 text-[#242d65]"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M9 5l7 7-7 7"
+                          />
+                        </svg>
+                      </button>
+                    </div>
+                  </>
+                ) : (
+                  <h4 className="relative z-10 font-bold text-2xl lg:text-[32px] text-white leading-tight">
+                    {card.title}
+                  </h4>
+                )}
               </div>
             </div>
           )
