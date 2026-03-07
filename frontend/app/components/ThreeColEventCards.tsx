@@ -18,21 +18,19 @@ type ThreeColEventCardsProps = {
 function SliderCard({
   title,
   imageAndAltText,
-  imageSrc,
   subtitle,
   body,
   cta,
 }: {
   title?: string
   imageAndAltText?: { image?: { asset?: { _ref: string } }; altText?: string }
-  imageSrc?: string
   subtitle?: string
   body?: string
   cta?: { label?: string; href?: string }
 }) {
   const image = imageAndAltText?.image
   const hasSanityImage = image?.asset?._ref
-  
+
   return (
     <div className="relative overflow-hidden rounded-xl h-48 md:h-64 lg:h-72">
       <div className="absolute inset-0 border-2 border-dark-blue rounded-xl overflow-hidden">
@@ -43,13 +41,6 @@ function SliderCard({
             width={400}
             height={274}
             mode="cover"
-            className="absolute inset-0 w-full h-full object-cover"
-          />
-        )}
-        {!hasSanityImage && imageSrc && (
-          <img
-            src={imageSrc}
-            alt={imageAndAltText?.altText || title || ''}
             className="absolute inset-0 w-full h-full object-cover"
           />
         )}
@@ -174,7 +165,6 @@ export default function ThreeColEventCards({ block }: ThreeColEventCardsProps) {
                   <SliderCard
                     title={card.title}
                     imageAndAltText={card.imageAndAltText}
-                    imageSrc={'imageSrc' in card ? card.imageSrc : undefined}
                     subtitle={card.subtitle}
                     body={card.body}
                     cta={card.cta}

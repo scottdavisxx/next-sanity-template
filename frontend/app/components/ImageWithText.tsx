@@ -14,7 +14,6 @@ export default function ImageWithText({ block }: ImageWithTextProps) {
   const altText = block?.imageAndAltText?.altText || ''
   const title = block?.title
   const blurb = block?.blurb
-  const imageSrc = (block as {imageSrc?: string})?.imageSrc
 
   return (
     <div className="flex flex-col items-center px-6 py-12 max-w-7xl mx-auto">
@@ -27,9 +26,6 @@ export default function ImageWithText({ block }: ImageWithTextProps) {
             height={556}
             className="w-full"
           />
-        ) : imageSrc ? (
-          /* eslint-disable-next-line @next/next/no-img-element */
-          <img src={imageSrc} alt={altText} width={1100} height={556} className="w-full" />
         ) : null}
       </div>
       <div className="text-center max-w-5xl">

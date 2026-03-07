@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import OrlsLogo, { LogoColor } from "./icons/orls-logo";
-import type { Navigation } from "@/sanity.types";
 import { Bars3Icon } from "@heroicons/react/24/outline";
 import { XMarkIcon } from "@heroicons/react/24/solid";
 
@@ -41,7 +40,7 @@ const navigationItems = [
 ]
 
 interface NavigationProps {
-  block: Navigation;
+  block: any;
   color?: LogoColor;
 }
 export default function Navigation({

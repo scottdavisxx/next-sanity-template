@@ -16,7 +16,6 @@ export default function TwoColInfoWithCard({ block }: TwoColInfoWithCardProps) {
   const subtitle = block?.subtitle
   const bio = block?.bio
   const image = block?.imageAndAltText?.image
-  const imageSrc = block?.imageSrc
   const altText = block?.imageAndAltText?.altText || ''
   const hasSanityImage = image?.asset?._ref
   const isDark = bg === 'dark-blue'
@@ -38,14 +37,10 @@ export default function TwoColInfoWithCard({ block }: TwoColInfoWithCardProps) {
         )}
 
         {/* Mobile photo */}
-        {(hasSanityImage || imageSrc) && (
+        {hasSanityImage && (
           <div className={`lg:hidden mt-6 rounded-[26px] border-2 ${borderColor} overflow-hidden`}>
             <div className="relative w-full" style={{ aspectRatio: '443 / 571' }}>
-              {hasSanityImage ? (
-                <Image id={image!.asset!._ref} alt={altText} width={443} height={571} mode="cover" className="w-full h-full object-cover object-top" />
-              ) : imageSrc ? (
-                <img src={imageSrc} alt={altText} className="w-full h-full object-cover object-top" />
-              ) : null}
+              <Image id={image!.asset!._ref} alt={altText} width={443} height={571} mode="cover" className="w-full h-full object-cover object-top" />
             </div>
           </div>
         )}
@@ -84,14 +79,10 @@ export default function TwoColInfoWithCard({ block }: TwoColInfoWithCardProps) {
             </div>
 
             {/* Photo */}
-            {(hasSanityImage || imageSrc) && (
+            {hasSanityImage && (
               <div className="absolute inset-0 z-20 rounded-[26px] overflow-hidden">
                 <div className="relative w-full h-full">
-                  {hasSanityImage ? (
-                    <Image id={image!.asset!._ref} alt={altText} width={443} height={571} mode="cover" className="w-full h-full object-cover object-top" />
-                  ) : imageSrc ? (
-                    <img src={imageSrc} alt={altText} className="w-full h-full object-cover object-top" />
-                  ) : null}
+                  <Image id={image!.asset!._ref} alt={altText} width={443} height={571} mode="cover" className="w-full h-full object-cover object-top" />
                 </div>
               </div>
             )}
