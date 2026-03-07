@@ -24,6 +24,35 @@ export type ImageAndAltText = {
   altText?: string
 }
 
+export type Card = {
+  cardTitle: string
+  cardSubtitle?: string
+  bio?: Array<{
+    children?: Array<{
+      marks?: Array<string>
+      text?: string
+      _type: 'span'
+      _key: string
+    }>
+    style?: 'normal' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'blockquote'
+    listItem?: 'bullet' | 'number'
+    markDefs?: Array<{
+      href?: string
+      _type: 'link'
+      _key: string
+    }>
+    level?: number
+    _type: 'block'
+    _key: string
+  }>
+}
+
+export type Cta2 = {
+  href: string
+  buttonText: string
+  newTab?: boolean
+}
+
 export type SanityImageAssetReference = {
   _ref: string
   _type: 'reference'
@@ -39,6 +68,490 @@ export type ImageAndAltTextImage = {
   _type: 'image'
 }
 
+export type CtaWithMediaCardImageAndAltText = {
+  image?: ImageAndAltTextImage
+  altText?: string
+}
+
+export type Expanded = {
+  name?: string
+  tagline?: string
+  description?: string
+  bgImage?: BgImage
+  icon?: Icon
+  cta?: ExpandedCta
+}
+
+export type BgImage = {
+  asset?: SanityImageAssetReference
+  media?: unknown // Unable to locate the referenced type "bgImage.media" in schema
+  hotspot?: SanityImageHotspot
+  crop?: SanityImageCrop
+  _type: 'image'
+}
+
+export type Icon = {
+  asset?: SanityImageAssetReference
+  media?: unknown // Unable to locate the referenced type "icon.media" in schema
+  hotspot?: SanityImageHotspot
+  crop?: SanityImageCrop
+  _type: 'image'
+}
+
+export type ExpandedCta = {
+  label?: string
+  href?: string
+}
+
+export type Collapsed = {
+  name?: string
+  bgImage?: CollapsedBgImage
+  icon?: CollapsedIcon
+  cta?: CollapsedCta
+}
+
+export type CollapsedBgImage = {
+  asset?: SanityImageAssetReference
+  media?: unknown // Unable to locate the referenced type "collapsed.bgImage.media" in schema
+  hotspot?: SanityImageHotspot
+  crop?: SanityImageCrop
+  _type: 'image'
+}
+
+export type CollapsedIcon = {
+  asset?: SanityImageAssetReference
+  media?: unknown // Unable to locate the referenced type "collapsed.icon.media" in schema
+  hotspot?: SanityImageHotspot
+  crop?: SanityImageCrop
+  _type: 'image'
+}
+
+export type CollapsedCta = {
+  label?: string
+  href?: string
+}
+
+export type ObjectCta = {
+  label?: string
+  href?: string
+}
+
+export type Calendar = {
+  _type: 'calendar'
+  title?: string
+  iframeUrl?: string
+}
+
+export type CardGrid = {
+  _type: 'cardGrid'
+  heading?: string
+  cards?: Array<{
+    title: string
+    description?: string
+    imageAndAltText?: ImageAndAltText
+    href: string
+    fullWidth?: boolean
+    _key: string
+  }>
+}
+
+export type CtaWithCard = {
+  _type: 'ctaWithCard'
+  title: string
+  blurb?: Array<{
+    children?: Array<{
+      marks?: Array<string>
+      text?: string
+      _type: 'span'
+      _key: string
+    }>
+    style?: 'normal' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'blockquote'
+    listItem?: 'bullet' | 'number'
+    markDefs?: Array<{
+      href?: string
+      _type: 'link'
+      _key: string
+    }>
+    level?: number
+    _type: 'block'
+    _key: string
+  }>
+  imageAndAltText?: ImageAndAltText
+  cta?: Cta
+  bgImage?: {
+    asset?: SanityImageAssetReference
+    media?: unknown
+    hotspot?: SanityImageHotspot
+    crop?: SanityImageCrop
+    _type: 'image'
+  }
+  icon?: boolean
+}
+
+export type CtaWithMediaCard = {
+  _type: 'ctaWithMediaCard'
+  title: string
+  blurb?: Array<{
+    children?: Array<{
+      marks?: Array<string>
+      text?: string
+      _type: 'span'
+      _key: string
+    }>
+    style?: 'normal' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'blockquote'
+    listItem?: 'bullet' | 'number'
+    markDefs?: Array<{
+      href?: string
+      _type: 'link'
+      _key: string
+    }>
+    level?: number
+    _type: 'block'
+    _key: string
+  }>
+  imageAndAltText?: CtaWithMediaCardImageAndAltText
+  cta?: Cta
+  video?: string
+}
+
+export type IntroBlade = {
+  _type: 'introBlade'
+  titles?: Array<{
+    title: string
+    _key: string
+  }>
+  blurb?: string
+  ctas?: Array<{
+    buttonText: string
+    link: string
+    _key: string
+  }>
+  bgImage?: {
+    asset?: SanityImageAssetReference
+    media?: unknown
+    hotspot?: SanityImageHotspot
+    crop?: SanityImageCrop
+    _type: 'image'
+  }
+}
+
+export type Leadership = {
+  _type: 'leadership'
+  title: string
+  people?: Array<{
+    imageAndAltText?: ImageAndAltText
+    name: string
+    role: string
+    _key: string
+  }>
+}
+
+export type NumberedList = {
+  _type: 'numberedList'
+  title: string
+  items?: Array<{
+    number?: number
+    heading: string
+    body?: Array<{
+      children?: Array<{
+        marks?: Array<string>
+        text?: string
+        _type: 'span'
+        _key: string
+      }>
+      style?: 'normal' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'blockquote'
+      listItem?: 'bullet' | 'number'
+      markDefs?: Array<{
+        href?: string
+        _type: 'link'
+        _key: string
+      }>
+      level?: number
+      _type: 'block'
+      _key: string
+    }>
+    _key: string
+  }>
+}
+
+export type OneColInfo = {
+  _type: 'oneColInfo'
+  variant: 'text' | 'image'
+  title: string
+  bodyContent?: Array<
+    | {
+        children?: Array<{
+          marks?: Array<string>
+          text?: string
+          _type: 'span'
+          _key: string
+        }>
+        style?: 'normal' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'blockquote'
+        listItem?: 'bullet' | 'number'
+        markDefs?: Array<{
+          href?: string
+          _type: 'link'
+          _key: string
+        }>
+        level?: number
+        _type: 'block'
+        _key: string
+      }
+    | {
+        asset?: SanityImageAssetReference
+        media?: unknown
+        hotspot?: SanityImageHotspot
+        crop?: SanityImageCrop
+        _type: 'image'
+        _key: string
+      }
+  >
+  imageAndAltText?: ImageAndAltText
+  imageBlurb?: string
+}
+
+export type FourColStatistics = {
+  _type: 'fourColStatistics'
+  sideTitle?: string
+  sideBlurb?: string
+  stats?: Array<{
+    number: string
+    label: string
+    _key: string
+  }>
+}
+
+export type StatisticsTwoCol = {
+  _type: 'statisticsTwoCol'
+  title: string
+  stats?: Array<{
+    number: string
+    label: string
+    _key: string
+  }>
+}
+
+export type ThreeColCardsTall = {
+  _type: 'threeColCardsTall'
+  title: string
+  subtitle?: string
+  cards?: Array<{
+    title: string
+    description?: string
+    imageAndAltText?: ImageAndAltText
+    cta?: Cta
+    _key: string
+  }>
+}
+
+export type ThreeColCards = {
+  _type: 'threeColCards'
+  cards?: Array<{
+    title: string
+    imageAndAltText?: ImageAndAltText
+    href: string
+    _key: string
+  }>
+}
+
+export type ThreeColCircleImage = {
+  _type: 'threeColCircleImage'
+  title: string
+  columns?: Array<{
+    name: string
+    blurb?: string
+    imageAndAltText?: ImageAndAltText
+    _key: string
+  }>
+}
+
+export type ThreeColCtas = {
+  _type: 'threeColCtas'
+  cards?: Array<{
+    title: string
+    description?: string
+    href: string
+    _key: string
+  }>
+}
+
+export type ThreeColEventCards = {
+  _type: 'threeColEventCards'
+  heading?: string
+  bgTexture?: boolean
+  cards?: Array<{
+    title: string
+    imageAndAltText?: ImageAndAltText
+    subtitle?: string
+    body?: string
+    cta?: ObjectCta
+    _key: string
+  }>
+}
+
+export type ThreeColExpandingCards = {
+  _type: 'threeColExpandingCards'
+  heading: string
+  subtitle?: string
+  footnote?: string
+  arrowLabel?: string
+  sectionBgImage?: {
+    asset?: SanityImageAssetReference
+    media?: unknown
+    hotspot?: SanityImageHotspot
+    crop?: SanityImageCrop
+    _type: 'image'
+  }
+  items?: Array<{
+    expanded?: Expanded
+    collapsed?: Collapsed
+    _key: string
+  }>
+}
+
+export type ThreeColToggle = {
+  _type: 'threeColToggle'
+  cards?: Array<{
+    title: string
+    description?: string
+    imageAndAltText?: ImageAndAltText
+    _key: string
+  }>
+}
+
+export type TwoColBulletsWithCTAs = {
+  _type: 'twoColBulletsWithCTAs'
+  title: string
+  leftBullets?: Array<{
+    text: string
+    _key: string
+  }>
+  rightBullets?: Array<{
+    text: string
+    _key: string
+  }>
+  cta?: Cta
+  cta2?: Cta2
+  showIcon?: boolean
+}
+
+export type TwoColInfoWithCard = {
+  _type: 'twoColInfoWithCard'
+  heading: string
+  subtitle?: string
+  bio?: Array<{
+    children?: Array<{
+      marks?: Array<string>
+      text?: string
+      _type: 'span'
+      _key: string
+    }>
+    style?: 'normal' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'blockquote'
+    listItem?: 'bullet' | 'number'
+    markDefs?: Array<{
+      href?: string
+      _type: 'link'
+      _key: string
+    }>
+    level?: number
+    _type: 'block'
+    _key: string
+  }>
+  imageAndAltText?: ImageAndAltText
+  bg?: 'white' | 'dark-blue'
+  photoSide?: 'left' | 'right'
+}
+
+export type TwoColInfoWithImage = {
+  _type: 'twoColInfoWithImage'
+  title: string
+  blurb?: Array<{
+    children?: Array<{
+      marks?: Array<string>
+      text?: string
+      _type: 'span'
+      _key: string
+    }>
+    style?: 'normal' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'blockquote'
+    listItem?: 'bullet' | 'number'
+    markDefs?: Array<{
+      href?: string
+      _type: 'link'
+      _key: string
+    }>
+    level?: number
+    _type: 'block'
+    _key: string
+  }>
+  imageAndAltText?: ImageAndAltText
+  card?: Card
+}
+
+export type TwoColInfo = {
+  _type: 'twoColInfo'
+  title: string
+  headerBlurb?: string
+  items?: Array<{
+    title: string
+    subtitle?: string
+    detail?: string
+    _key: string
+  }>
+}
+
+export type ImageWithText = {
+  _type: 'imageWithText'
+  title: string
+  blurb?: Array<{
+    children?: Array<{
+      marks?: Array<string>
+      text?: string
+      _type: 'span'
+      _key: string
+    }>
+    style?: 'normal' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'blockquote'
+    listItem?: 'bullet' | 'number'
+    markDefs?: Array<{
+      href?: string
+      _type: 'link'
+      _key: string
+    }>
+    level?: number
+    _type: 'block'
+    _key: string
+  }>
+  imageAndAltText?: ImageAndAltText
+}
+
+export type TextWithLogo = {
+  _type: 'textWithLogo'
+  title: string
+  blurb?: Array<{
+    children?: Array<{
+      marks?: Array<string>
+      text?: string
+      _type: 'span'
+      _key: string
+    }>
+    style?: 'normal' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'blockquote'
+    listItem?: 'bullet' | 'number'
+    markDefs?: Array<{
+      href?: string
+      _type: 'link'
+      _key: string
+    }>
+    level?: number
+    _type: 'block'
+    _key: string
+  }>
+}
+
+export type TitleAndSubtitle = {
+  _type: 'titleAndSubtitle'
+  titleOne: string
+  titleTwo?: string
+}
+
 export type Subnav = {
   _type: 'subnav'
   ctas?: Array<{
@@ -47,11 +560,6 @@ export type Subnav = {
     newTab?: boolean
     _key: string
   }>
-}
-
-export type Navigation = {
-  _type: 'navigation'
-  color?: 'white' | 'dark-blue'
 }
 
 export type PageReference = {
@@ -150,6 +658,59 @@ export type Button = {
   link?: Link
 }
 
+export type Person = {
+  _id: string
+  _type: 'person'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  firstName: string
+  lastName: string
+  title?: string
+  role?: string
+  picture: {
+    asset?: SanityImageAssetReference
+    media?: unknown
+    hotspot?: SanityImageHotspot
+    crop?: SanityImageCrop
+    _type: 'image'
+  }
+  blurb?: Array<{
+    children?: Array<{
+      marks?: Array<string>
+      text?: string
+      _type: 'span'
+      _key: string
+    }>
+    style?: 'normal' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'blockquote'
+    listItem?: 'bullet' | 'number'
+    markDefs?: Array<{
+      href?: string
+      _type: 'link'
+      _key: string
+    }>
+    level?: number
+    _type: 'block'
+    _key: string
+  }>
+}
+
+export type SanityImageCrop = {
+  _type: 'sanity.imageCrop'
+  top: number
+  bottom: number
+  left: number
+  right: number
+}
+
+export type SanityImageHotspot = {
+  _type: 'sanity.imageHotspot'
+  x: number
+  y: number
+  height: number
+  width: number
+}
+
 export type Settings = {
   _id: string
   _type: 'settings'
@@ -190,29 +751,6 @@ export type Settings = {
   }
 }
 
-export type SanityImageCrop = {
-  _type: 'sanity.imageCrop'
-  top: number
-  bottom: number
-  left: number
-  right: number
-}
-
-export type SanityImageHotspot = {
-  _type: 'sanity.imageHotspot'
-  x: number
-  y: number
-  height: number
-  width: number
-}
-
-export type PersonReference = {
-  _ref: string
-  _type: 'reference'
-  _weak?: boolean
-  [internalGroqTypeReferenceTo]?: 'person'
-}
-
 export type Event = {
   _id: string
   _type: 'event'
@@ -221,8 +759,12 @@ export type Event = {
   _rev: string
   title: string
   slug: Slug
-  content?: BlockContent
-  excerpt?: string
+  eventType?: 'athleticEvent' | 'academicEvent' | 'otherEvent'
+  dateText?: string
+  time?: string
+  place?: string
+  description?: BlockContent
+  featured?: boolean
   coverImage?: {
     asset?: SanityImageAssetReference
     media?: unknown
@@ -231,45 +773,6 @@ export type Event = {
     alt?: string
     _type: 'image'
   }
-  date?: string
-  author?: PersonReference
-}
-
-export type Person = {
-  _id: string
-  _type: 'person'
-  _createdAt: string
-  _updatedAt: string
-  _rev: string
-  firstName: string
-  lastName: string
-  title?: string
-  role?: string
-  picture: {
-    asset?: SanityImageAssetReference
-    media?: unknown
-    hotspot?: SanityImageHotspot
-    crop?: SanityImageCrop
-    _type: 'image'
-  }
-  blurb?: Array<{
-    children?: Array<{
-      marks?: Array<string>
-      text?: string
-      _type: 'span'
-      _key: string
-    }>
-    style?: 'normal' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'blockquote'
-    listItem?: 'bullet' | 'number'
-    markDefs?: Array<{
-      href?: string
-      _type: 'link'
-      _key: string
-    }>
-    level?: number
-    _type: 'block'
-    _key: string
-  }>
 }
 
 export type Slug = {
@@ -292,11 +795,91 @@ export type Page = {
       } & HeroBanner)
     | ({
         _key: string
-      } & Navigation)
+      } & Subnav)
     | ({
         _key: string
-      } & Subnav)
+      } & TitleAndSubtitle)
+    | ({
+        _key: string
+      } & TextWithLogo)
+    | ({
+        _key: string
+      } & ImageWithText)
+    | ({
+        _key: string
+      } & TwoColInfo)
+    | ({
+        _key: string
+      } & TwoColInfoWithImage)
+    | ({
+        _key: string
+      } & TwoColInfoWithCard)
+    | ({
+        _key: string
+      } & TwoColBulletsWithCTAs)
+    | ({
+        _key: string
+      } & ThreeColToggle)
+    | ({
+        _key: string
+      } & ThreeColExpandingCards)
+    | ({
+        _key: string
+      } & ThreeColEventCards)
+    | ({
+        _key: string
+      } & ThreeColCtas)
+    | ({
+        _key: string
+      } & ThreeColCircleImage)
+    | ({
+        _key: string
+      } & ThreeColCards)
+    | ({
+        _key: string
+      } & ThreeColCardsTall)
+    | ({
+        _key: string
+      } & StatisticsTwoCol)
+    | ({
+        _key: string
+      } & FourColStatistics)
+    | ({
+        _key: string
+      } & OneColInfo)
+    | ({
+        _key: string
+      } & NumberedList)
+    | ({
+        _key: string
+      } & Leadership)
+    | ({
+        _key: string
+      } & IntroBlade)
+    | ({
+        _key: string
+      } & CtaWithMediaCard)
+    | ({
+        _key: string
+      } & CtaWithCard)
+    | ({
+        _key: string
+      } & CardGrid)
+    | ({
+        _key: string
+      } & Calendar)
   >
+  metaTitle?: string
+  metaDescription: string
+  ogImage?: {
+    asset?: SanityImageAssetReference
+    media?: unknown
+    hotspot?: SanityImageHotspot
+    crop?: SanityImageCrop
+    _type: 'image'
+  }
+  ogDescription?: string
+  robots?: 'index, follow' | 'noindex, follow' | 'index, nofollow' | 'noindex, nofollow'
 }
 
 export type SanityAssistInstructionTask = {
@@ -535,10 +1118,45 @@ export type Geopoint = {
 export type AllSanitySchemaTypes =
   | Cta
   | ImageAndAltText
+  | Card
+  | Cta2
   | SanityImageAssetReference
   | ImageAndAltTextImage
+  | CtaWithMediaCardImageAndAltText
+  | Expanded
+  | BgImage
+  | Icon
+  | ExpandedCta
+  | Collapsed
+  | CollapsedBgImage
+  | CollapsedIcon
+  | CollapsedCta
+  | ObjectCta
+  | Calendar
+  | CardGrid
+  | CtaWithCard
+  | CtaWithMediaCard
+  | IntroBlade
+  | Leadership
+  | NumberedList
+  | OneColInfo
+  | FourColStatistics
+  | StatisticsTwoCol
+  | ThreeColCardsTall
+  | ThreeColCards
+  | ThreeColCircleImage
+  | ThreeColCtas
+  | ThreeColEventCards
+  | ThreeColExpandingCards
+  | ThreeColToggle
+  | TwoColBulletsWithCTAs
+  | TwoColInfoWithCard
+  | TwoColInfoWithImage
+  | TwoColInfo
+  | ImageWithText
+  | TextWithLogo
+  | TitleAndSubtitle
   | Subnav
-  | Navigation
   | PageReference
   | EventReference
   | Link
@@ -547,12 +1165,11 @@ export type AllSanitySchemaTypes =
   | BlockContent
   | BlockContentTextOnly
   | Button
-  | Settings
+  | Person
   | SanityImageCrop
   | SanityImageHotspot
-  | PersonReference
+  | Settings
   | Event
-  | Person
   | Slug
   | Page
   | SanityAssistInstructionTask
@@ -624,7 +1241,7 @@ export type SettingsQueryResult = {
 
 // Source: sanity\lib\queries.ts
 // Variable: getPageQuery
-// Query: *[_type == 'page' && slug.current == $slug][0]{    _id,    _type,    name,    slug,    heading,    subheading,    metaTitle,    metaDescription,    ogImage,    ogDescription,    robots,    "pageBuilder": pageBuilder[]{      ...,      _type == "callToAction" => {        ...,        button {          ...,            link {      ...,        _type == "link" => {    "page": page->slug.current,    "event": event->slug.current  }      }        }      },      _type == "infoSection" => {        content[]{          ...,          markDefs[]{            ...,              _type == "link" => {    "page": page->slug.current,    "event": event->slug.current  }          }        }      },      _type == "heroBanner" => {        titleOne,        titleTwo,        cta,        imageAndAltText      },    },  }
+// Query: *[_type == 'page' && slug.current == $slug][0]{    _id,    _type,    name,    slug,    heading,    subheading,    metaTitle,    metaDescription,    ogImage,    ogDescription,    robots,    "pageBuilder": pageBuilder[]{      ...,      _type == "callToAction" => {        ...,        button {          ...,            link {      ...,        _type == "link" => {    "page": page->slug.current,    "event": event->slug.current  }      }        }      },      _type == "infoSection" => {        content[]{          ...,          markDefs[]{            ...,              _type == "link" => {    "page": page->slug.current,    "event": event->slug.current  }          }        }      },      _type == "heroBanner" => {        titleOne,        titleTwo,        cta,        imageAndAltText      },      _type == "ctaWithMediaCard" => {        ...,        video      },    },  }
 export type GetPageQueryResult = {
   _id: string
   _type: 'page'
@@ -632,12 +1249,107 @@ export type GetPageQueryResult = {
   slug: Slug
   heading: null
   subheading: null
-  metaTitle: null
-  metaDescription: null
-  ogImage: null
-  ogDescription: null
-  robots: null
+  metaTitle: string | null
+  metaDescription: string
+  ogImage: {
+    asset?: SanityImageAssetReference
+    media?: unknown
+    hotspot?: SanityImageHotspot
+    crop?: SanityImageCrop
+    _type: 'image'
+  } | null
+  ogDescription: string | null
+  robots: 'index, follow' | 'index, nofollow' | 'noindex, follow' | 'noindex, nofollow' | null
   pageBuilder: Array<
+    | {
+        _key: string
+        _type: 'calendar'
+        title?: string
+        iframeUrl?: string
+      }
+    | {
+        _key: string
+        _type: 'cardGrid'
+        heading?: string
+        cards?: Array<{
+          title: string
+          description?: string
+          imageAndAltText?: ImageAndAltText
+          href: string
+          fullWidth?: boolean
+          _key: string
+        }>
+      }
+    | {
+        _key: string
+        _type: 'ctaWithCard'
+        title: string
+        blurb?: Array<{
+          children?: Array<{
+            marks?: Array<string>
+            text?: string
+            _type: 'span'
+            _key: string
+          }>
+          style?: 'blockquote' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'normal'
+          listItem?: 'bullet' | 'number'
+          markDefs?: Array<{
+            href?: string
+            _type: 'link'
+            _key: string
+          }>
+          level?: number
+          _type: 'block'
+          _key: string
+        }>
+        imageAndAltText?: ImageAndAltText
+        cta?: Cta
+        bgImage?: {
+          asset?: SanityImageAssetReference
+          media?: unknown
+          hotspot?: SanityImageHotspot
+          crop?: SanityImageCrop
+          _type: 'image'
+        }
+        icon?: boolean
+      }
+    | {
+        _key: string
+        _type: 'ctaWithMediaCard'
+        title: string
+        blurb?: Array<{
+          children?: Array<{
+            marks?: Array<string>
+            text?: string
+            _type: 'span'
+            _key: string
+          }>
+          style?: 'blockquote' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'normal'
+          listItem?: 'bullet' | 'number'
+          markDefs?: Array<{
+            href?: string
+            _type: 'link'
+            _key: string
+          }>
+          level?: number
+          _type: 'block'
+          _key: string
+        }>
+        imageAndAltText?: CtaWithMediaCardImageAndAltText
+        cta?: Cta
+        video: string | null
+      }
+    | {
+        _key: string
+        _type: 'fourColStatistics'
+        sideTitle?: string
+        sideBlurb?: string
+        stats?: Array<{
+          number: string
+          label: string
+          _key: string
+        }>
+      }
     | {
         _key: string
         _type: 'heroBanner'
@@ -648,8 +1360,133 @@ export type GetPageQueryResult = {
       }
     | {
         _key: string
-        _type: 'navigation'
-        color?: 'dark-blue' | 'white'
+        _type: 'imageWithText'
+        title: string
+        blurb?: Array<{
+          children?: Array<{
+            marks?: Array<string>
+            text?: string
+            _type: 'span'
+            _key: string
+          }>
+          style?: 'blockquote' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'normal'
+          listItem?: 'bullet' | 'number'
+          markDefs?: Array<{
+            href?: string
+            _type: 'link'
+            _key: string
+          }>
+          level?: number
+          _type: 'block'
+          _key: string
+        }>
+        imageAndAltText?: ImageAndAltText
+      }
+    | {
+        _key: string
+        _type: 'introBlade'
+        titles?: Array<{
+          title: string
+          _key: string
+        }>
+        blurb?: string
+        ctas?: Array<{
+          buttonText: string
+          link: string
+          _key: string
+        }>
+        bgImage?: {
+          asset?: SanityImageAssetReference
+          media?: unknown
+          hotspot?: SanityImageHotspot
+          crop?: SanityImageCrop
+          _type: 'image'
+        }
+      }
+    | {
+        _key: string
+        _type: 'leadership'
+        title: string
+        people?: Array<{
+          imageAndAltText?: ImageAndAltText
+          name: string
+          role: string
+          _key: string
+        }>
+      }
+    | {
+        _key: string
+        _type: 'numberedList'
+        title: string
+        items?: Array<{
+          number?: number
+          heading: string
+          body?: Array<{
+            children?: Array<{
+              marks?: Array<string>
+              text?: string
+              _type: 'span'
+              _key: string
+            }>
+            style?: 'blockquote' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'normal'
+            listItem?: 'bullet' | 'number'
+            markDefs?: Array<{
+              href?: string
+              _type: 'link'
+              _key: string
+            }>
+            level?: number
+            _type: 'block'
+            _key: string
+          }>
+          _key: string
+        }>
+      }
+    | {
+        _key: string
+        _type: 'oneColInfo'
+        variant: 'image' | 'text'
+        title: string
+        bodyContent?: Array<
+          | {
+              children?: Array<{
+                marks?: Array<string>
+                text?: string
+                _type: 'span'
+                _key: string
+              }>
+              style?: 'blockquote' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'normal'
+              listItem?: 'bullet' | 'number'
+              markDefs?: Array<{
+                href?: string
+                _type: 'link'
+                _key: string
+              }>
+              level?: number
+              _type: 'block'
+              _key: string
+            }
+          | {
+              asset?: SanityImageAssetReference
+              media?: unknown
+              hotspot?: SanityImageHotspot
+              crop?: SanityImageCrop
+              _type: 'image'
+              _key: string
+            }
+        >
+        imageAndAltText?: ImageAndAltText
+        imageBlurb?: string
+      }
+    | {
+        _key: string
+        _type: 'statisticsTwoCol'
+        title: string
+        stats?: Array<{
+          number: string
+          label: string
+          _key: string
+        }>
       }
     | {
         _key: string
@@ -660,6 +1497,203 @@ export type GetPageQueryResult = {
           newTab?: boolean
           _key: string
         }>
+      }
+    | {
+        _key: string
+        _type: 'textWithLogo'
+        title: string
+        blurb?: Array<{
+          children?: Array<{
+            marks?: Array<string>
+            text?: string
+            _type: 'span'
+            _key: string
+          }>
+          style?: 'blockquote' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'normal'
+          listItem?: 'bullet' | 'number'
+          markDefs?: Array<{
+            href?: string
+            _type: 'link'
+            _key: string
+          }>
+          level?: number
+          _type: 'block'
+          _key: string
+        }>
+      }
+    | {
+        _key: string
+        _type: 'threeColCards'
+        cards?: Array<{
+          title: string
+          imageAndAltText?: ImageAndAltText
+          href: string
+          _key: string
+        }>
+      }
+    | {
+        _key: string
+        _type: 'threeColCardsTall'
+        title: string
+        subtitle?: string
+        cards?: Array<{
+          title: string
+          description?: string
+          imageAndAltText?: ImageAndAltText
+          cta?: Cta
+          _key: string
+        }>
+      }
+    | {
+        _key: string
+        _type: 'threeColCircleImage'
+        title: string
+        columns?: Array<{
+          name: string
+          blurb?: string
+          imageAndAltText?: ImageAndAltText
+          _key: string
+        }>
+      }
+    | {
+        _key: string
+        _type: 'threeColCtas'
+        cards?: Array<{
+          title: string
+          description?: string
+          href: string
+          _key: string
+        }>
+      }
+    | {
+        _key: string
+        _type: 'threeColEventCards'
+        heading?: string
+        bgTexture?: boolean
+        cards?: Array<{
+          title: string
+          imageAndAltText?: ImageAndAltText
+          subtitle?: string
+          body?: string
+          cta?: ObjectCta
+          _key: string
+        }>
+      }
+    | {
+        _key: string
+        _type: 'threeColExpandingCards'
+        heading: string
+        subtitle?: string
+        footnote?: string
+        arrowLabel?: string
+        sectionBgImage?: {
+          asset?: SanityImageAssetReference
+          media?: unknown
+          hotspot?: SanityImageHotspot
+          crop?: SanityImageCrop
+          _type: 'image'
+        }
+        items?: Array<{
+          expanded?: Expanded
+          collapsed?: Collapsed
+          _key: string
+        }>
+      }
+    | {
+        _key: string
+        _type: 'threeColToggle'
+        cards?: Array<{
+          title: string
+          description?: string
+          imageAndAltText?: ImageAndAltText
+          _key: string
+        }>
+      }
+    | {
+        _key: string
+        _type: 'titleAndSubtitle'
+        titleOne: string
+        titleTwo?: string
+      }
+    | {
+        _key: string
+        _type: 'twoColBulletsWithCTAs'
+        title: string
+        leftBullets?: Array<{
+          text: string
+          _key: string
+        }>
+        rightBullets?: Array<{
+          text: string
+          _key: string
+        }>
+        cta?: Cta
+        cta2?: Cta2
+        showIcon?: boolean
+      }
+    | {
+        _key: string
+        _type: 'twoColInfo'
+        title: string
+        headerBlurb?: string
+        items?: Array<{
+          title: string
+          subtitle?: string
+          detail?: string
+          _key: string
+        }>
+      }
+    | {
+        _key: string
+        _type: 'twoColInfoWithCard'
+        heading: string
+        subtitle?: string
+        bio?: Array<{
+          children?: Array<{
+            marks?: Array<string>
+            text?: string
+            _type: 'span'
+            _key: string
+          }>
+          style?: 'blockquote' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'normal'
+          listItem?: 'bullet' | 'number'
+          markDefs?: Array<{
+            href?: string
+            _type: 'link'
+            _key: string
+          }>
+          level?: number
+          _type: 'block'
+          _key: string
+        }>
+        imageAndAltText?: ImageAndAltText
+        bg?: 'dark-blue' | 'white'
+        photoSide?: 'left' | 'right'
+      }
+    | {
+        _key: string
+        _type: 'twoColInfoWithImage'
+        title: string
+        blurb?: Array<{
+          children?: Array<{
+            marks?: Array<string>
+            text?: string
+            _type: 'span'
+            _key: string
+          }>
+          style?: 'blockquote' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'normal'
+          listItem?: 'bullet' | 'number'
+          markDefs?: Array<{
+            href?: string
+            _type: 'link'
+            _key: string
+          }>
+          level?: number
+          _type: 'block'
+          _key: string
+        }>
+        imageAndAltText?: ImageAndAltText
+        card?: Card
       }
   > | null
 } | null
@@ -688,7 +1722,7 @@ export type AllEventsQueryResult = Array<{
   status: 'draft' | 'published'
   title: string
   slug: string
-  excerpt: string | null
+  excerpt: null
   coverImage: {
     asset?: SanityImageAssetReference
     media?: unknown
@@ -698,17 +1732,7 @@ export type AllEventsQueryResult = Array<{
     _type: 'image'
   } | null
   date: string
-  author: {
-    firstName: string
-    lastName: string
-    picture: {
-      asset?: SanityImageAssetReference
-      media?: unknown
-      hotspot?: SanityImageHotspot
-      crop?: SanityImageCrop
-      _type: 'image'
-    }
-  } | null
+  author: null
 }>
 
 // Source: sanity\lib\queries.ts
@@ -719,7 +1743,7 @@ export type MoreEventsQueryResult = Array<{
   status: 'draft' | 'published'
   title: string
   slug: string
-  excerpt: string | null
+  excerpt: null
   coverImage: {
     asset?: SanityImageAssetReference
     media?: unknown
@@ -729,61 +1753,19 @@ export type MoreEventsQueryResult = Array<{
     _type: 'image'
   } | null
   date: string
-  author: {
-    firstName: string
-    lastName: string
-    picture: {
-      asset?: SanityImageAssetReference
-      media?: unknown
-      hotspot?: SanityImageHotspot
-      crop?: SanityImageCrop
-      _type: 'image'
-    }
-  } | null
+  author: null
 }>
 
 // Source: sanity\lib\queries.ts
 // Variable: eventQuery
 // Query: *[_type == "event" && slug.current == $slug] [0] {    content[]{    ...,    markDefs[]{      ...,        _type == "link" => {    "page": page->slug.current,    "event": event->slug.current  }    }  },      _id,  "status": select(_originalId in path("drafts.**") => "draft", "published"),  "title": coalesce(title, "Untitled"),  "slug": slug.current,  excerpt,  coverImage,  "date": coalesce(date, _updatedAt),  "author": author->{firstName, lastName, picture},  }
 export type EventQueryResult = {
-  content: Array<
-    | {
-        children?: Array<{
-          marks?: Array<string>
-          text?: string
-          _type: 'span'
-          _key: string
-        }>
-        style?: 'blockquote' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'normal'
-        listItem?: 'bullet' | 'number'
-        markDefs: Array<{
-          linkType?: 'event' | 'href' | 'page'
-          href?: string
-          page: string | null
-          event: string | null
-          openInNewTab?: boolean
-          _type: 'link'
-          _key: string
-        }> | null
-        level?: number
-        _type: 'block'
-        _key: string
-      }
-    | {
-        asset?: SanityImageAssetReference
-        media?: unknown
-        hotspot?: SanityImageHotspot
-        crop?: SanityImageCrop
-        _type: 'image'
-        _key: string
-        markDefs: null
-      }
-  > | null
+  content: null
   _id: string
   status: 'draft' | 'published'
   title: string
   slug: string
-  excerpt: string | null
+  excerpt: null
   coverImage: {
     asset?: SanityImageAssetReference
     media?: unknown
@@ -793,17 +1775,7 @@ export type EventQueryResult = {
     _type: 'image'
   } | null
   date: string
-  author: {
-    firstName: string
-    lastName: string
-    picture: {
-      asset?: SanityImageAssetReference
-      media?: unknown
-      hotspot?: SanityImageHotspot
-      crop?: SanityImageCrop
-      _type: 'image'
-    }
-  } | null
+  author: null
 } | null
 
 // Source: sanity\lib\queries.ts
@@ -825,7 +1797,7 @@ import '@sanity/client'
 declare module '@sanity/client' {
   interface SanityQueries {
     '*[_type == "settings"][0]': SettingsQueryResult
-    '\n  *[_type == \'page\' && slug.current == $slug][0]{\n    _id,\n    _type,\n    name,\n    slug,\n    heading,\n    subheading,\n    metaTitle,\n    metaDescription,\n    ogImage,\n    ogDescription,\n    robots,\n    "pageBuilder": pageBuilder[]{\n      ...,\n      _type == "callToAction" => {\n        ...,\n        button {\n          ...,\n          \n  link {\n      ...,\n      \n  _type == "link" => {\n    "page": page->slug.current,\n    "event": event->slug.current\n  }\n\n      }\n\n        }\n      },\n      _type == "infoSection" => {\n        content[]{\n          ...,\n          markDefs[]{\n            ...,\n            \n  _type == "link" => {\n    "page": page->slug.current,\n    "event": event->slug.current\n  }\n\n          }\n        }\n      },\n      _type == "heroBanner" => {\n        titleOne,\n        titleTwo,\n        cta,\n        imageAndAltText\n      },\n    },\n  }\n': GetPageQueryResult
+    '\n  *[_type == \'page\' && slug.current == $slug][0]{\n    _id,\n    _type,\n    name,\n    slug,\n    heading,\n    subheading,\n    metaTitle,\n    metaDescription,\n    ogImage,\n    ogDescription,\n    robots,\n    "pageBuilder": pageBuilder[]{\n      ...,\n      _type == "callToAction" => {\n        ...,\n        button {\n          ...,\n          \n  link {\n      ...,\n      \n  _type == "link" => {\n    "page": page->slug.current,\n    "event": event->slug.current\n  }\n\n      }\n\n        }\n      },\n      _type == "infoSection" => {\n        content[]{\n          ...,\n          markDefs[]{\n            ...,\n            \n  _type == "link" => {\n    "page": page->slug.current,\n    "event": event->slug.current\n  }\n\n          }\n        }\n      },\n      _type == "heroBanner" => {\n        titleOne,\n        titleTwo,\n        cta,\n        imageAndAltText\n      },\n      _type == "ctaWithMediaCard" => {\n        ...,\n        video\n      },\n    },\n  }\n': GetPageQueryResult
     '\n  *[_type == "page" || _type == "event" && defined(slug.current)] | order(_type asc) {\n    "slug": slug.current,\n    _type,\n    _updatedAt,\n  }\n': SitemapDataResult
     '\n  *[_type == "event" && defined(slug.current)] | order(date desc, _updatedAt desc) {\n    \n  _id,\n  "status": select(_originalId in path("drafts.**") => "draft", "published"),\n  "title": coalesce(title, "Untitled"),\n  "slug": slug.current,\n  excerpt,\n  coverImage,\n  "date": coalesce(date, _updatedAt),\n  "author": author->{firstName, lastName, picture},\n\n  }\n': AllEventsQueryResult
     '\n  *[_type == "event" && _id != $skip && defined(slug.current)] | order(date desc, _updatedAt desc) [0...$limit] {\n    \n  _id,\n  "status": select(_originalId in path("drafts.**") => "draft", "published"),\n  "title": coalesce(title, "Untitled"),\n  "slug": slug.current,\n  excerpt,\n  coverImage,\n  "date": coalesce(date, _updatedAt),\n  "author": author->{firstName, lastName, picture},\n\n  }\n': MoreEventsQueryResult
