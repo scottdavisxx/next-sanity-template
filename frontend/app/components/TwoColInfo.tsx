@@ -17,7 +17,7 @@ export default function TwoColInfo({ block }: TwoColInfoProps) {
 
   return (
     <section className="relative overflow-hidden bg-dark-blue py-10 md:py-14 lg:py-12">
-      <div className="max-w-7xl mx-auto px-6 md:px-16 lg:px-24">
+      <div className="container">
         {/* Background texture */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-5">
           <Image

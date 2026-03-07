@@ -25,7 +25,7 @@ export default function TwoColInfoWithCard({ block }: TwoColInfoWithCardProps) {
 
   return (
     <section className={`${isDark ? 'bg-dark-blue' : 'bg-white'} px-6 py-12 md:px-16 md:py-14 lg:px-[85px] lg:py-[57px]`}>
-      <div className="max-w-7xl mx-auto px-6 md:px-16 lg:px-24">
+      <div className="container">
 
         <h2 className={`font-bold text-3xl md:text-5xl lg:text-[64px] leading-tight ${isDark ? 'text-white' : 'text-dark-blue'} ${photoOnRight ? 'lg:max-w-[57%]' : 'lg:ml-[43%]'}`}>
           {heading}

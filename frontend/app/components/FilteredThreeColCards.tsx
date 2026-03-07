@@ -53,7 +53,7 @@ export default function FilteredThreeColCards() {
 
   return (
     <section className="bg-dark-blue px-6 py-10 md:px-16 md:py-14 lg:px-24 lg:py-12">
-      <div className="max-w-7xl mx-auto px-6 md:px-16 lg:px-24">
+      <div className="container">
         <h2 className="font-bold text-4xl md:text-5xl lg:text-6xl text-white text-center">
           Student Clubs
         </h2>

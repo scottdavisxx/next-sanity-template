@@ -14,7 +14,7 @@ export default function NumberedList({ block }: NumberedListProps) {
   const items = block?.items ?? []
   return (
     <section className="bg-white relative overflow-hidden px-6 py-12 md:px-16 md:py-16 lg:px-[94px] lg:py-[60px]">
-      <div className="max-w-7xl mx-auto px-6 md:px-16 lg:px-24">
+      <div className="container">
         <div className="absolute bottom-0 right-0 pointer-events-none select-none">
           <Image
             src="/church.png"
