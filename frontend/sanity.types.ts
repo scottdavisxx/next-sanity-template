@@ -145,6 +145,7 @@ export type Calendar = {
 export type CardGrid = {
   _type: 'cardGrid'
   heading?: string
+  subtitle?: string
   cards?: Array<{
     title: string
     description?: string
@@ -1287,6 +1288,7 @@ export type GetPageQueryResult = {
         _key: string
         _type: 'cardGrid'
         heading?: string
+        subtitle?: string
         cards?: Array<{
           title: string
           description?: string

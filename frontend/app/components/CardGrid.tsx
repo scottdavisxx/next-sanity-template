@@ -14,6 +14,7 @@ type CardGridProps = {
 
 export default function CardGrid({ block }: CardGridProps) {
   const heading = block?.heading ?? ''
+  const subtitle = block?.subtitle ?? ''
   const cards = block?.cards ?? []
   const [activeIndex, setActiveIndex] = useState(0)
 
@@ -23,12 +24,25 @@ export default function CardGrid({ block }: CardGridProps) {
   return (
     <div className={`${block?.removePaddingTop ? 'pt-0' : 'pt-12 md:pt-16'} pb-12 md:pb-16`}>
       <div className="max-w-7xl mx-auto px-6">
-        {heading && (
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-8 md:mb-12">
+        {/* If there's only a heading it's centered */}
+        {heading && !subtitle && (
+          <h2 className="text-3xl md:text-7xl font-bold text-center mb-8 md:mb-12">
             {heading}
           </h2>
         )}
-
+        {/* If there's a heading and a subtitle it's left aligned and flexed */}
+        {heading && subtitle && (
+          <div className='flex flex-col text-black
+          md:flex-row md:items-end'>
+            <h2 className="text-3xl md:text-7xl font-bold text-center mb-8 
+            md:mb-12 md:text-left">
+              {heading}
+            </h2>
+            <p className="text:xl md:text-3xl md:mb-12 w-7/12">
+              {subtitle}
+            </p>
+          </div>
+        )}
         <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {cards.map((card, i) => (
             <div

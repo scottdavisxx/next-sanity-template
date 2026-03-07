@@ -792,6 +792,13 @@
           },
           "optional": true
         },
+        "subtitle": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string"
+          },
+          "optional": true
+        },
         "cards": {
           "type": "objectAttribute",
           "value": {
