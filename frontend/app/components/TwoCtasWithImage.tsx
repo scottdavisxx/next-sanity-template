@@ -6,12 +6,13 @@ export default function TwoCtasWithImage() {
     <div className="bg-white py-16">
       <div className="container flex items-center justify-end border border-black rounded-2xl overflow-visible relative">
         {/* BG Image */}
-        <div className="absolute bottom-0 left-0 w-full opacity-10">
+        <div className="absolute bottom-0 top-0 left-0 w-full opacity-10">
           <Image
             src="/early-education/bg-pattern-academics.png"
             alt=""
             width={1305}
             height={551}
+            className="object-cover w-full h-full"
           />
         </div>
         <Image
