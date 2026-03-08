@@ -22,13 +22,11 @@ export default function TwoColInfoWithImage({ block }: TwoColInfoWithImageProps)
   return (
     <section className={`px-6 py-12 md:px-16 md:py-14 lg:px-[83px] lg:py-[43px] ${isDark ? 'bg-dark-blue' : 'bg-white'}`}>
       <div className="max-w-7xl mx-auto">
-
         {title && (
           <h2 className={`font-bold text-4xl md:text-6xl lg:text-[70px] leading-tight lg:max-w-[57%] ${isDark ? 'text-white' : 'text-black'}`}>
             {title}
           </h2>
         )}
-
         {Array.isArray(blurb) ? (
           <div className={`text-sm md:text-base lg:text-[20px] leading-relaxed prose max-w-none mt-4 lg:mt-6 lg:max-w-[57%] ${isDark ? 'text-white prose-invert' : 'text-black'}`}>
             <PortableText value={blurb as PortableTextBlock[]} />
@@ -36,7 +34,6 @@ export default function TwoColInfoWithImage({ block }: TwoColInfoWithImageProps)
         ) : blurb ? (
           <p className={`text-sm md:text-base lg:text-[20px] leading-relaxed mt-4 lg:mt-6 lg:max-w-[57%] ${isDark ? 'text-white' : 'text-black'}`}>{blurb}</p>
         ) : null}
-
         {hasImage && (
           <div className={`lg:hidden mt-6 rounded-[26px] overflow-hidden ${block?.variant === 'with-borders' ? `border-2 ${isDark ? 'border-white' : 'border-black'}` : 'border-none'}`}>
             <div className="relative w-full" style={{ aspectRatio: '443 / 527' }}>
@@ -51,11 +48,9 @@ export default function TwoColInfoWithImage({ block }: TwoColInfoWithImageProps)
             </div>
           </div>
         )}
-
         <div className="relative mt-6 lg:mt-8 lg:pb-10">
-
           {card && (
-            <div className={`rounded-2xl md:p-6 lg:p-8 ${block?.variant === 'with-borders' ? `border-2 ${isDark ? 'border-white' : 'border-black'}` : ''}`}>
+            <div className={`rounded-2xl lg:p-8 ${block?.variant === 'with-borders' ? `border-2 ${isDark ? 'border-white' : 'border-black'}` : ''}`}>
               <div className={hasImage ? 'lg:pr-[43%]' : ''}>
                 <h3 className={`font-bold text-3xl md:text-4xl lg:text-[48px] leading-tight ${isDark ? 'text-white' : 'text-dark-blue'}`}>
                   {card.cardTitle}
