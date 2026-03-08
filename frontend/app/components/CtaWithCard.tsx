@@ -42,18 +42,28 @@ export default function CtaWithCard({ block }: CtaWithCardProps) {
   const hasSanityImage = (image as { asset?: { _ref?: string } } | undefined)?.asset?._ref
   const hasBgImage = (bgImage as { asset?: { _ref?: string } } | undefined)?.asset?._ref
   const textColor = block?.textColor || 'black'
+  const overlapImage = block?.overlapImage || false
   return (
-    <div className="bg-white py-4
-    md:py-16">
-      <div className="container flex items-center justify-center py-8 px-2 relative">
+    <div className={`bg-white py-4
+    ${overlapImage ? 'md:py-6' : 'md:py-12'}`}>
+      <div className="container flex items-center justify-center px-2 relative">
         {/* Image Container */}
         {hasSanityImage && (
-          <div className="border-2 border-dark-blue rounded-4xl absolute left-0 bg-white z-10 hidden md:block">
-            <Image
-              id={(image as { asset: { _ref: string } }).asset._ref}
-              alt={altText}
-              width={415}
-              height={537} className="p-6 relative z-10" />
+          <div
+            className={`border-2 border-dark-blue rounded-4xl absolute left-0 bg-white z-20 hidden md:block ${overlapImage ? 'overflow-visible min-w-[415px] md:min-h-[390px]' : ''}`}
+          >
+            <div className={`relative w-full h-full ${overlapImage ? 'overflow-visible' : ''}`}>
+              <Image
+                id={(image as { asset: { _ref: string } }).asset._ref}
+                alt={altText}
+                width={415}
+                height={537}
+                className={`scott p-6 z-10 ${overlapImage
+                  ? 'absolute -top-16'
+                  : 'relative'
+                  }`}
+              />
+            </div>
           </div>
         )}
         {/* Content */}
@@ -69,13 +79,15 @@ export default function CtaWithCard({ block }: CtaWithCardProps) {
               <OrlsIcon color="whisper-blue" width={419} height={419} />
             </div>
           )}
-          <div className="flex flex-col gap-4 py-8 relative z-10 px-4 items-center
-        md:pl-120 md:pr-20 md:py-8 md:items-start">
-            <h2 className={`text-4xl font-bold leading-tight md:text-7xl ${textColor === 'dark-blue' ? 'text-dark-blue' : textColor === 'medium-blue' ? 'text-medium-blue' : 'text-black'}`}>
+          <div className={`flex flex-col gap-4 py-8 relative z-10 px-4 items-center
+        md:pl-120 md:pr-20 md:items-start ${overlapImage ? 'md:py-6' : 'md:py-8'}`}>
+            <h2 className={`text-4xl font-bold leading-16  
+              ${textColor === 'dark-blue' ? 'text-dark-blue' : textColor === 'medium-blue' ? 'text-medium-blue' : 'text-black'}
+              ${overlapImage ? 'md:text-6xl' : 'md:text-7xl'}`}>
               {renderTitleWithEmphasis(title, emphasizedText)}
             </h2>
             {Array.isArray(blurb) ? (
-              <div className="text-lg prose max-w-none leading-5">
+              <div className={`text-lg prose max-w-none leading-5 ${overlapImage ? 'md:w-3/4' : ''}`}>
                 <PortableText value={blurb as PortableTextBlock[]} />
               </div>
             ) : (
