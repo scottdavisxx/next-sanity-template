@@ -4,13 +4,13 @@ import { useState } from 'react'
 import Link from 'next/link'
 import Image from '@/app/components/SanityImage'
 import NextImage from 'next/image'
+import CustomPortableText from '@/app/components/PortableText'
 
 import type { Cta } from '@/sanity.types'
+import type { PortableTextBlock } from 'next-sanity'
 
 interface ExpandedCard {
-  name?: string
-  tagline?: string
-  description?: string
+  blurb?: PortableTextBlock[]
   bgImage?: string
   icon?: string
   cta?: Cta
@@ -106,9 +106,9 @@ export default function ThreeColExpandingCards({ block }: ThreeColExpandingCards
   const hasBg = typeof expBg === 'object' && (expBg as { asset?: { _ref?: string } })?.asset?._ref
   const hasIcon = typeof expIcon === 'object' && (expIcon as { asset?: { _ref?: string } })?.asset?._ref
   const expCta = exp?.cta && (exp.cta.buttonText || exp.cta.href) ? exp.cta : null
-  const hasText = !!(exp?.name || exp?.tagline || exp?.description || expCta)
+  const hasBlurb = (exp?.blurb?.length ?? 0) > 0
+  const hasText = hasBlurb || !!expCta
   const textColor = hasBg ? 'text-white' : 'text-black'
-  const accentColor = hasBg ? 'text-white/80' : 'text-medium-blue'
   const ctaStyle = hasBg ? 'bg-white text-dark-blue' : 'bg-dark-blue text-white'
 
   return (
@@ -144,7 +144,7 @@ export default function ThreeColExpandingCards({ block }: ThreeColExpandingCards
                 <>
                   <Image
                     id={(expBg as { asset: { _ref: string } }).asset._ref}
-                    alt={exp?.name ?? ''}
+                    alt=""
                     width={800}
                     height={600}
                     mode="cover"
@@ -157,16 +157,8 @@ export default function ThreeColExpandingCards({ block }: ThreeColExpandingCards
               {hasText && (
                 <div className={`absolute inset-0 z-30 flex flex-col p-8 min-h-0`}>
                   <div className={`flex flex-1 flex-col justify-between min-h-0 ${hasIcon ? 'max-w-[55%]' : ''}`}>
-                    <div>
-                      {exp?.name && (
-                        <p className={`font-bold text-xl lg:text-3xl ${textColor}`}>{exp.name}</p>
-                      )}
-                      {exp?.tagline && (
-                        <p className={`font-medium italic text-base lg:text-2xl mt-1 ${accentColor}`}>{exp.tagline}</p>
-                      )}
-                      {exp?.description && (
-                        <p className={`text-sm lg:text-2xl mt-4 leading-snug ${textColor}`}>{exp.description}</p>
-                      )}
+                    <div className={textColor}>
+                      {hasBlurb && exp?.blurb && <CustomPortableText value={exp.blurb as PortableTextBlock[]} className={`text-sm lg:text-2xl leading-snug ${textColor}`} />}
                     </div>
                     {expCta && (
                       <div className="mt-5">
@@ -193,7 +185,7 @@ export default function ThreeColExpandingCards({ block }: ThreeColExpandingCards
                 <>
                   <Image
                     id={(expIcon as { asset: { _ref: string } }).asset._ref}
-                    alt={exp?.name ?? ''}
+                    alt=""
                     width={240}
                     height={318}
                     mode="contain"
@@ -255,7 +247,7 @@ export default function ThreeColExpandingCards({ block }: ThreeColExpandingCards
                 <>
                   <Image
                     id={(expBg as { asset: { _ref: string } }).asset._ref}
-                    alt={exp?.name ?? ''}
+                    alt=""
                     width={800}
                     height={600}
                     mode="cover"
@@ -265,20 +257,16 @@ export default function ThreeColExpandingCards({ block }: ThreeColExpandingCards
                 </>
               )}
               <div className={`absolute inset-0 z-30 flex flex-col p-6 ${hasBg ? 'justify-end' : 'justify-start'}`}>
-                {exp?.name && (
-                  <p className={`font-bold text-2xl ${textColor}`}>{exp.name}</p>
-                )}
-                {exp?.tagline && (
-                  <p className={`font-medium italic text-base mt-1 ${accentColor}`}>{exp.tagline}</p>
-                )}
-                {exp?.description && (
-                  <p className={`text-sm mt-4 leading-snug ${textColor}`}>{exp.description}</p>
+                {hasBlurb && exp?.blurb && (
+                  <div className={textColor}>
+                    <CustomPortableText value={exp.blurb as PortableTextBlock[]} className={`text-sm leading-snug ${textColor}`} />
+                  </div>
                 )}
                 {!hasBg && hasIcon && (
                   <div className="mt-auto flex items-center justify-center">
                     <Image
                       id={(expIcon as { asset: { _ref: string } }).asset._ref}
-                      alt={exp?.name ?? ''}
+                      alt=""
                       width={200}
                       height={200}
                       mode="contain"
