@@ -76,12 +76,13 @@ export default function TwoColInfoWithImage({ block }: TwoColInfoWithImageProps)
 
           {hasImage && (
             <div
-              className="hidden lg:block absolute bottom-0 right-0 w-[40%] rounded-[26px] bg-white"
+              className={"hidden lg:block absolute bottom-0 right-0 w-[40%] rounded-[26px]"}
               style={{ aspectRatio: '443 / 527' }}
             >
               <div className={`absolute bottom-0 left-0 right-0 z-0 h-5/6 rounded-[26px] ${block?.variant === 'with-borders' ? `border-2 ${isDark ? 'border-white' : 'border-black'}` : ''}`} />
-              <div className="absolute -top-14 -right-14 w-[66%] aspect-square z-10 pointer-events-none">
-                <div className="relative w-full h-full">
+              <div className={`absolute  aspect-square z-10 pointer-events-none 
+                ${block?.variant !== 'with-borders' ? 'top-14 right-0 w-[58%]' : '-top-14 -right-14 w-[66%]'}`}>
+                <div className={`relative w-full h-full`}>
                   <NextImage
                     src="/staff/orls-L-circle.svg"
                     alt=""
@@ -92,14 +93,12 @@ export default function TwoColInfoWithImage({ block }: TwoColInfoWithImageProps)
                 </div>
               </div>
               <div className={`absolute inset-0 z-20 rounded-[26px] overflow-hidden ${block?.variant === 'with-borders' ? `border-2 ${isDark ? 'border-white' : 'border-black'}` : ''}`}>
-                <div className="relative w-full h-full">
+                <div className="relative w-full h-full flex flex-col items-center justify-center">
                   <Image
                     id={image!.asset!._ref}
                     alt={altText}
-                    width={443}
-                    height={527}
                     mode="cover"
-                    className="w-full h-full object-cover object-top"
+                    className={`${block?.variant !== 'with-borders' ? 'h-9/12 w-auto' : 'h-full object-cover object-top w-full '}`}
                   />
                 </div>
               </div>
