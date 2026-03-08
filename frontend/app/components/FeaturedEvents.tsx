@@ -1,5 +1,4 @@
 import Link from "next/link";
-import Cta from "./ui/Cta";
 import Image from "next/image";
 import FakeCta from "./ui/FakeCta";
 

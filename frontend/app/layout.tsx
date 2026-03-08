@@ -14,7 +14,7 @@ import { settingsQuery } from '@/sanity/lib/queries'
 import { resolveOpenGraphImage } from '@/sanity/lib/utils'
 import { handleError } from '@/app/client-utils'
 import Footer from './components/Footer'
-import DevRouteNav from './components/DevRouteNav'
+import DevRouteNav from './components/tbd/DevRouteNav'
 import Navigation from './components/Navigation'
 
 /**

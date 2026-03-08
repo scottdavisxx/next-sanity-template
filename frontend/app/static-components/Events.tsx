@@ -1,23 +1,23 @@
 import Link from 'next/link'
 
-import {sanityFetch} from '@/sanity/lib/live'
-import {moreEventsQuery, allEventsQuery} from '@/sanity/lib/queries'
-import {AllEventsQueryResult} from '@/sanity.types'
-import DateComponent from '@/app/components/Date'
-import OnBoarding from '@/app/components/Onboarding'
-import Avatar from '@/app/components/Avatar'
-import {dataAttr} from '@/sanity/lib/utils'
+import { sanityFetch } from '@/sanity/lib/live'
+import { moreEventsQuery, allEventsQuery } from '@/sanity/lib/queries'
+import { AllEventsQueryResult } from '@/sanity.types'
+import DateComponent from '@/app/components/tbd/Date'
+import OnBoarding from '@/app/components/tbd/Onboarding'
+import Avatar from '@/app/components/tbd/Avatar'
+import { dataAttr } from '@/sanity/lib/utils'
 
 /** Author shape when expanded from event query (person ref). */
 type EventAuthor = { firstName?: string; lastName?: string; picture?: unknown } | null
 
-const Event = ({event}: {event: AllEventsQueryResult[number]}) => {
-  const {_id, title, slug, excerpt, date, author} = event
+const Event = ({ event }: { event: AllEventsQueryResult[number] }) => {
+  const { _id, title, slug, excerpt, date, author } = event
   const authorPerson = author as EventAuthor
 
   return (
     <article
-      data-sanity={dataAttr({id: _id, type: 'event', path: 'title'}).toString()}
+      data-sanity={dataAttr({ id: _id, type: 'event', path: 'title' }).toString()}
       key={_id}
       className="border border-gray-200 rounded-sm p-6 bg-gray-50 flex flex-col justify-between transition-colors hover:bg-white relative"
     >
@@ -68,10 +68,10 @@ const Events = ({
   </div>
 )
 
-export const MoreEvents = async ({skip, limit}: {skip: string; limit: number}) => {
-  const {data} = await sanityFetch({
+export const MoreEvents = async ({ skip, limit }: { skip: string; limit: number }) => {
+  const { data } = await sanityFetch({
     query: moreEventsQuery,
-    params: {skip, limit},
+    params: { skip, limit },
   })
 
   if (!data || data.length === 0) {
@@ -88,7 +88,7 @@ export const MoreEvents = async ({skip, limit}: {skip: string; limit: number}) =
 }
 
 export const AllEvents = async () => {
-  const {data} = await sanityFetch({query: allEventsQuery})
+  const { data } = await sanityFetch({ query: allEventsQuery })
 
   if (!data || data.length === 0) {
     return <OnBoarding />

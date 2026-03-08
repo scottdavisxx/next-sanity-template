@@ -3,7 +3,7 @@ import { notFound } from 'next/navigation'
 import { type PortableTextBlock } from 'next-sanity'
 import { Suspense } from 'react'
 
-import Avatar from '@/app/components/Avatar'
+import Avatar from '@/app/components/tbd/Avatar'
 import { MoreEvents } from '@/app/components/Events'
 import PortableText from '@/app/components/PortableText'
 import Image from '@/app/components/SanityImage'

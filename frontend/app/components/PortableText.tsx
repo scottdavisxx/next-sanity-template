@@ -8,8 +8,8 @@
  *
  */
 
-import {PortableText, type PortableTextComponents, type PortableTextBlock} from 'next-sanity'
-import ResolvedLink from '@/app/components/ResolvedLink'
+import { PortableText, type PortableTextComponents, type PortableTextBlock } from 'next-sanity'
+import ResolvedLink from '@/app/components/tbd/ResolvedLink'
 import Image from '@/app/components/SanityImage'
 
 export default function CustomPortableText({
@@ -23,7 +23,7 @@ export default function CustomPortableText({
 }) {
   const components: PortableTextComponents = {
     types: {
-      image: ({value}) => {
+      image: ({ value }) => {
         if (!value?.asset?._ref) {
           return null
         }
@@ -43,7 +43,7 @@ export default function CustomPortableText({
       },
     },
     block: {
-      h1: ({children, value}) => (
+      h1: ({ children, value }) => (
         // Add an anchor to the h1
         <h1 className="group relative">
           {children}
@@ -68,7 +68,7 @@ export default function CustomPortableText({
           </a>
         </h1>
       ),
-      h2: ({children, value}) => {
+      h2: ({ children, value }) => {
         // Add an anchor to the h2
         return (
           <h2 className="group relative">
@@ -97,7 +97,7 @@ export default function CustomPortableText({
       },
     },
     marks: {
-      link: ({children, value: link}) => {
+      link: ({ children, value: link }) => {
         return <ResolvedLink link={link}>{children}</ResolvedLink>
       },
     },

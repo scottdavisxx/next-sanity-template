@@ -4,7 +4,7 @@ import PageBuilderPage from '@/app/components/PageBuilder'
 import { sanityFetch } from '@/sanity/lib/live'
 import { getPageQuery, pagesSlugs } from '@/sanity/lib/queries'
 import { GetPageQueryResult } from '@/sanity.types'
-import { PageOnboarding } from '@/app/components/Onboarding'
+import { PageOnboarding } from '@/app/components/tbd/Onboarding'
 import { resolveOpenGraphImage } from '@/sanity/lib/utils'
 
 export async function generateStaticParams() {

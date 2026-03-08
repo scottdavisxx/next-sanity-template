@@ -3,9 +3,9 @@ import Link from 'next/link'
 import { sanityFetch } from '@/sanity/lib/live'
 import { moreEventsQuery, allEventsQuery } from '@/sanity/lib/queries'
 import { AllEventsQueryResult } from '@/sanity.types'
-import DateComponent from '@/app/components/Date'
-import OnBoarding from '@/app/components/Onboarding'
-import Avatar from '@/app/components/Avatar'
+import DateComponent from '@/app/components/tbd/Date'
+import OnBoarding from '@/app/components/tbd/Onboarding'
+import Avatar from '@/app/components/tbd/Avatar'
 import { dataAttr } from '@/sanity/lib/utils'
 
 const Event = ({ event }: { event: AllEventsQueryResult[number] }) => {
