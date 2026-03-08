@@ -1,5 +1,13 @@
 import {defineField, defineType} from 'sanity'
-import {title, blurb, imageAndAltText, cta, textColor, emphasizedText} from '../sharedFields'
+import {
+  title,
+  blurb,
+  imageAndAltText,
+  cta,
+  textColor,
+  emphasizedText,
+  bgColor,
+} from '../sharedFields'
 import {DocumentIcon} from '@sanity/icons'
 
 export const ctaWithCard = defineType({
@@ -13,6 +21,7 @@ export const ctaWithCard = defineType({
     textColor,
     blurb,
     imageAndAltText,
+    bgColor,
     defineField({
       name: 'overlapImage',
       title: 'Overlap Image',

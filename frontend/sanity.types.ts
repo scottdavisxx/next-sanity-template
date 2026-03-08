@@ -271,6 +271,7 @@ export type CtaWithCard = {
     _key: string
   }>
   imageAndAltText?: ImageAndAltText
+  bgColor?: 'white' | 'dark-blue'
   overlapImage?: boolean
   ctas?: Array<{
     href: string
@@ -1448,6 +1449,7 @@ export type GetPageQueryResult = {
           _key: string
         }>
         imageAndAltText?: ImageAndAltText
+        bgColor?: 'dark-blue' | 'white'
         overlapImage?: boolean
         ctas?: Array<{
           href: string

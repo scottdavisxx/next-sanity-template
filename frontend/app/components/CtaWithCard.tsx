@@ -43,9 +43,10 @@ export default function CtaWithCard({ block }: CtaWithCardProps) {
   const hasBgImage = (bgImage as { asset?: { _ref?: string } } | undefined)?.asset?._ref
   const textColor = block?.textColor || 'black'
   const overlapImage = block?.overlapImage || false
+  const bgColor = block?.bgColor || 'white'
   return (
-    <div className={`bg-white py-4
-    ${overlapImage ? 'md:py-6' : 'md:py-12'}`}>
+    <div className={`py-4 ${bgColor === 'dark-blue' ? 'bg-dark-blue' : 'bg-white'} 
+    ${overlapImage ? 'md:py-10' : 'md:py-12'}`}>
       <div className="container flex items-center justify-center px-2 relative">
         {/* Image Container */}
         {hasSanityImage && (
@@ -67,7 +68,7 @@ export default function CtaWithCard({ block }: CtaWithCardProps) {
           </div>
         )}
         {/* Content */}
-        <div className=" border-2 border-dark-blue rounded-4xl w-full relative overflow-hidden
+        <div className="border-2 bg-white border-dark-blue rounded-4xl w-full relative overflow-hidden
       md:my-12">
           {hasBgImage && (
             <Image id={(bgImage as { asset: { _ref: string } }).asset._ref} alt="" width={1920} height={1080} mode="cover" className="absolute top-0 left-0 w-full h-full object-cover rounded-4xl opacity-10" />
@@ -79,9 +80,9 @@ export default function CtaWithCard({ block }: CtaWithCardProps) {
               <OrlsIcon color="whisper-blue" width={overlapImage ? 314 : 419} height={overlapImage ? 314 : 419} />
             </div>
           )}
-          <div className={`flex flex-col gap-4 py-8 relative z-10 px-4 items-center
+          <div className={`flex flex-col gap-6 py-8 relative z-10 px-4 items-center
         md:pl-120 md:pr-20 md:items-start ${overlapImage ? 'md:py-6' : 'md:py-8'}`}>
-            <h2 className={`text-4xl font-bold leading-16  
+            <h2 className={`text-4xl font-bold md:leading-16 
               ${textColor === 'dark-blue' ? 'text-dark-blue' : textColor === 'medium-blue' ? 'text-medium-blue' : 'text-black'}
               ${overlapImage ? 'md:text-6xl' : 'md:text-7xl'}`}>
               {renderTitleWithEmphasis(title, emphasizedText)}
@@ -93,10 +94,10 @@ export default function CtaWithCard({ block }: CtaWithCardProps) {
             ) : (
               <p className="text-lg whitespace-pre-line">{blurb}</p>
             )}
-            <div className="flex flex-col gap-4
+            <div className="flex flex-col gap-4 w-full
             md:flex-row">
               {ctas?.map((cta) => (
-                <Cta key={cta._key} className="md:mb-6 md:mt-4" dark href={cta.href} buttonText={cta.buttonText} buttonColor={cta.buttonColor} newTab={cta.newTab} />
+                <Cta key={cta._key} className="w-full justify-center md:w-auto md:mb-6 md:mt-4" dark href={cta.href} buttonText={cta.buttonText} buttonColor={cta.buttonColor} newTab={cta.newTab} />
               ))}
             </div>
           </div>

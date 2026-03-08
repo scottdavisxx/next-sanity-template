@@ -1953,6 +1953,23 @@
           },
           "optional": true
         },
+        "bgColor": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "union",
+            "of": [
+              {
+                "type": "string",
+                "value": "white"
+              },
+              {
+                "type": "string",
+                "value": "dark-blue"
+              }
+            ]
+          },
+          "optional": true
+        },
         "overlapImage": {
           "type": "objectAttribute",
           "value": {
