@@ -5,7 +5,7 @@ export interface CtaProps {
   buttonText: string;
   newTab?: boolean;
   className?: string;
-  buttonColor?: "brand-blue" | "brand-white" | "brand-black";
+  buttonColor?: "brand-blue" | "brand-white" | "brand-black" | "brand-medium-blue";
   dark?: boolean;
   font?: string;
 }
@@ -14,13 +14,13 @@ const colorConfig = {
   "brand-blue": { bg: "bg-dark-blue", hover: "hover:bg-white hover:text-dark-blue", text: "text-white" },
   "brand-white": { bg: "bg-white", hover: "hover:bg-dark-blue hover:text-white", text: "text-dark-blue" },
   "brand-black": { bg: "bg-black", hover: "hover:bg-white hover:text-black", text: "text-white" },
+  "brand-medium-blue": { bg: "bg-medium-blue", hover: "hover:bg-white hover:text-medium-blue", text: "text-white" },
 } as const;
 
 export default function Cta({ href, buttonText, newTab, className, dark, buttonColor, font = "default" }: CtaProps) {
 
   const color = (buttonColor?.replace(/[\u200B-\u200D\uFEFF]/g, "") || "brand-yellow") as keyof typeof colorConfig;
   const config = colorConfig[color];
-  console.log(buttonColor)
   return (
     <Link
       target={newTab ? "_blank" : "_self"}

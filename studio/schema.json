@@ -25,6 +25,31 @@
             "type": "boolean"
           },
           "optional": true
+        },
+        "buttonColor": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "union",
+            "of": [
+              {
+                "type": "string",
+                "value": "brand-blue"
+              },
+              {
+                "type": "string",
+                "value": "brand-white"
+              },
+              {
+                "type": "string",
+                "value": "brand-black"
+              },
+              {
+                "type": "string",
+                "value": "brand-medium-blue"
+              }
+            ]
+          },
+          "optional": true
         }
       }
     }
@@ -1266,6 +1291,31 @@
                   },
                   "optional": true
                 },
+                "buttonColor": {
+                  "type": "objectAttribute",
+                  "value": {
+                    "type": "union",
+                    "of": [
+                      {
+                        "type": "string",
+                        "value": "brand-blue"
+                      },
+                      {
+                        "type": "string",
+                        "value": "brand-white"
+                      },
+                      {
+                        "type": "string",
+                        "value": "brand-black"
+                      },
+                      {
+                        "type": "string",
+                        "value": "brand-medium-blue"
+                      }
+                    ]
+                  },
+                  "optional": true
+                },
                 "_type": {
                   "type": "objectAttribute",
                   "value": {
@@ -1567,6 +1617,31 @@
                   "type": "objectAttribute",
                   "value": {
                     "type": "boolean"
+                  },
+                  "optional": true
+                },
+                "buttonColor": {
+                  "type": "objectAttribute",
+                  "value": {
+                    "type": "union",
+                    "of": [
+                      {
+                        "type": "string",
+                        "value": "brand-blue"
+                      },
+                      {
+                        "type": "string",
+                        "value": "brand-white"
+                      },
+                      {
+                        "type": "string",
+                        "value": "brand-black"
+                      },
+                      {
+                        "type": "string",
+                        "value": "brand-medium-blue"
+                      }
+                    ]
                   },
                   "optional": true
                 },
@@ -1910,6 +1985,31 @@
                   "type": "objectAttribute",
                   "value": {
                     "type": "boolean"
+                  },
+                  "optional": true
+                },
+                "buttonColor": {
+                  "type": "objectAttribute",
+                  "value": {
+                    "type": "union",
+                    "of": [
+                      {
+                        "type": "string",
+                        "value": "brand-blue"
+                      },
+                      {
+                        "type": "string",
+                        "value": "brand-white"
+                      },
+                      {
+                        "type": "string",
+                        "value": "brand-black"
+                      },
+                      {
+                        "type": "string",
+                        "value": "brand-medium-blue"
+                      }
+                    ]
                   },
                   "optional": true
                 },
@@ -2275,6 +2375,13 @@
             "of": {
               "type": "object",
               "attributes": {
+                "href": {
+                  "type": "objectAttribute",
+                  "value": {
+                    "type": "string"
+                  },
+                  "optional": false
+                },
                 "buttonText": {
                   "type": "objectAttribute",
                   "value": {
@@ -2282,12 +2389,44 @@
                   },
                   "optional": false
                 },
-                "link": {
+                "newTab": {
                   "type": "objectAttribute",
                   "value": {
-                    "type": "string"
+                    "type": "boolean"
                   },
-                  "optional": false
+                  "optional": true
+                },
+                "buttonColor": {
+                  "type": "objectAttribute",
+                  "value": {
+                    "type": "union",
+                    "of": [
+                      {
+                        "type": "string",
+                        "value": "brand-blue"
+                      },
+                      {
+                        "type": "string",
+                        "value": "brand-white"
+                      },
+                      {
+                        "type": "string",
+                        "value": "brand-black"
+                      },
+                      {
+                        "type": "string",
+                        "value": "brand-medium-blue"
+                      }
+                    ]
+                  },
+                  "optional": true
+                },
+                "_type": {
+                  "type": "objectAttribute",
+                  "value": {
+                    "type": "string",
+                    "value": "cta"
+                  }
                 }
               },
               "rest": {
@@ -4813,6 +4952,31 @@
                   "type": "objectAttribute",
                   "value": {
                     "type": "boolean"
+                  },
+                  "optional": true
+                },
+                "buttonColor": {
+                  "type": "objectAttribute",
+                  "value": {
+                    "type": "union",
+                    "of": [
+                      {
+                        "type": "string",
+                        "value": "brand-blue"
+                      },
+                      {
+                        "type": "string",
+                        "value": "brand-white"
+                      },
+                      {
+                        "type": "string",
+                        "value": "brand-black"
+                      },
+                      {
+                        "type": "string",
+                        "value": "brand-medium-blue"
+                      }
+                    ]
                   },
                   "optional": true
                 }

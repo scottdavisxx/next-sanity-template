@@ -17,6 +17,7 @@ export type Cta = {
   href: string
   buttonText: string
   newTab?: boolean
+  buttonColor?: 'brand-blue' | 'brand-white' | 'brand-black' | 'brand-medium-blue'
 }
 
 export type ImageAndAltText = {
@@ -197,6 +198,7 @@ export type TallTwoColTextWithCard = {
     href: string
     buttonText: string
     newTab?: boolean
+    buttonColor?: 'brand-blue' | 'brand-white' | 'brand-black' | 'brand-medium-blue'
     _type: 'cta'
     _key: string
   }>
@@ -232,6 +234,7 @@ export type TwoCtasWithImage = {
     href: string
     buttonText: string
     newTab?: boolean
+    buttonColor?: 'brand-blue' | 'brand-white' | 'brand-black' | 'brand-medium-blue'
     _type: 'ctaWithDescription'
     _key: string
   }>
@@ -273,6 +276,7 @@ export type CtaWithCard = {
     href: string
     buttonText: string
     newTab?: boolean
+    buttonColor?: 'brand-blue' | 'brand-white' | 'brand-black' | 'brand-medium-blue'
     _type: 'cta'
     _key: string
   }>
@@ -320,8 +324,11 @@ export type IntroBlade = {
   }>
   blurb?: string
   ctas?: Array<{
+    href: string
     buttonText: string
-    link: string
+    newTab?: boolean
+    buttonColor?: 'brand-blue' | 'brand-white' | 'brand-black' | 'brand-medium-blue'
+    _type: 'cta'
     _key: string
   }>
   bgImage?: {
@@ -660,6 +667,7 @@ export type Subnav = {
     href: string
     buttonText: string
     newTab?: boolean
+    buttonColor?: 'brand-blue' | 'brand-white' | 'brand-black' | 'brand-medium-blue'
     _key: string
   }>
 }
@@ -1445,6 +1453,7 @@ export type GetPageQueryResult = {
           href: string
           buttonText: string
           newTab?: boolean
+          buttonColor?: 'brand-black' | 'brand-blue' | 'brand-medium-blue' | 'brand-white'
           _type: 'cta'
           _key: string
         }>
@@ -1535,8 +1544,11 @@ export type GetPageQueryResult = {
         }>
         blurb?: string
         ctas?: Array<{
+          href: string
           buttonText: string
-          link: string
+          newTab?: boolean
+          buttonColor?: 'brand-black' | 'brand-blue' | 'brand-medium-blue' | 'brand-white'
+          _type: 'cta'
           _key: string
         }>
         bgImage?: {
@@ -1640,6 +1652,7 @@ export type GetPageQueryResult = {
           href: string
           buttonText: string
           newTab?: boolean
+          buttonColor?: 'brand-black' | 'brand-blue' | 'brand-medium-blue' | 'brand-white'
           _key: string
         }>
       }
@@ -1675,6 +1688,7 @@ export type GetPageQueryResult = {
           href: string
           buttonText: string
           newTab?: boolean
+          buttonColor?: 'brand-black' | 'brand-blue' | 'brand-medium-blue' | 'brand-white'
           _type: 'cta'
           _key: string
         }>
@@ -1897,6 +1911,7 @@ export type GetPageQueryResult = {
           href: string
           buttonText: string
           newTab?: boolean
+          buttonColor?: 'brand-black' | 'brand-blue' | 'brand-medium-blue' | 'brand-white'
           _type: 'ctaWithDescription'
           _key: string
         }>

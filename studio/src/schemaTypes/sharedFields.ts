@@ -145,9 +145,10 @@ export const ctaFields = [
     type: 'string',
     options: {
       list: [
-        { title: 'Brand Blue', value: 'brand-blue' },
-        { title: 'Brand White', value: 'brand-white' },
-        { title: 'Brand Black', value: 'brand-black' },
+        {title: 'Brand Blue', value: 'brand-blue'},
+        {title: 'Brand White', value: 'brand-white'},
+        {title: 'Brand Black', value: 'brand-black'},
+        {title: 'Brand Medium Blue', value: 'brand-medium-blue'},
       ],
       layout: 'dropdown',
     },

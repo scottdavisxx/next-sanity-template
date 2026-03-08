@@ -77,7 +77,7 @@ export default function TallTwoColTextWithCard({ block }: TallTwoColTextWithCard
                     key={cta._key}
                     href={cta.href}
                     buttonText={cta.buttonText}
-                    buttonColor="brand-blue"
+                    buttonColor={cta.buttonColor}
                     font="small"
                     newTab={cta.newTab}
                     className="w-full justify-center"

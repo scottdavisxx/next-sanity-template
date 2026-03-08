@@ -47,7 +47,7 @@ export default function IntroBlade({ block }: IntroBladeProps) {
               link?: string
               buttonText: string
               newTab?: boolean
-              buttonColor?: 'brand-blue' | 'brand-white' | 'brand-black'
+              buttonColor?: 'brand-blue' | 'brand-white' | 'brand-black' | 'brand-medium-blue'
             }
             return (
               <Cta

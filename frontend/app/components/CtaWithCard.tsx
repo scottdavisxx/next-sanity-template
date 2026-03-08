@@ -96,7 +96,7 @@ export default function CtaWithCard({ block }: CtaWithCardProps) {
             <div className="flex flex-col gap-4
             md:flex-row">
               {ctas?.map((cta) => (
-                <Cta key={cta._key} className="md:mb-6 md:mt-4" dark href={cta.href} buttonText={cta.buttonText} newTab={cta.newTab} />
+                <Cta key={cta._key} className="md:mb-6 md:mt-4" dark href={cta.href} buttonText={cta.buttonText} buttonColor={cta.buttonColor} newTab={cta.newTab} />
               ))}
             </div>
           </div>
