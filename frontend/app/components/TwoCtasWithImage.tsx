@@ -38,7 +38,7 @@ export default function TwoCtasWithImage() {
                 buttonText="Request Information"
                 buttonColor="brand-blue"
                 font="small"
-                className="w-full md:w-auto"
+                className="w-full justify-center md:w-auto "
               />
             </div>
             <div className="flex flex-col gap-2 items-center">
@@ -48,7 +48,7 @@ export default function TwoCtasWithImage() {
                 buttonText="Schedule Visit"
                 buttonColor="brand-blue"
                 font="small"
-                className="w-full md:w-auto"
+                className="w-full justify-center md:w-auto"
               />
             </div>
           </div>
