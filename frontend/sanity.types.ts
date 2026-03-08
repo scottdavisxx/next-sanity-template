@@ -73,6 +73,11 @@ export type CtaWithMediaCardImageAndAltText = {
   altText?: string
 }
 
+export type CtaCardImage = {
+  image?: ImageAndAltTextImage
+  altText?: string
+}
+
 export type Expanded = {
   blurb?: Array<{
     children?: Array<{
@@ -161,6 +166,43 @@ export type CardGrid = {
   removePaddingTop?: boolean
 }
 
+export type TallTwoColTextWithCard = {
+  _type: 'tallTwoColTextWithCard'
+  title: string
+  subtitle?: string
+  leftColumnTitle: string
+  leftColumnSubtitle?: string
+  rightColumnTitle: string
+  rightColumnSubtitle?: string
+  ctaCardTitle: string
+  ctaCardBlurb?: Array<{
+    children?: Array<{
+      marks?: Array<string>
+      text?: string
+      _type: 'span'
+      _key: string
+    }>
+    style?: 'normal' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'blockquote'
+    listItem?: 'bullet' | 'number'
+    markDefs?: Array<{
+      href?: string
+      _type: 'link'
+      _key: string
+    }>
+    level?: number
+    _type: 'block'
+    _key: string
+  }>
+  ctaCardCtas?: Array<{
+    href: string
+    buttonText: string
+    newTab?: boolean
+    _type: 'cta'
+    _key: string
+  }>
+  ctaCardImage?: CtaCardImage
+}
+
 export type TwoCtasWithImage = {
   _type: 'twoCtasWithImage'
   title: string
@@ -242,44 +284,6 @@ export type CtaWithCard = {
     _type: 'image'
   }
   icon?: boolean
-}
-
-/** Manually added for tallTwoColTextWithCard block; regenerate with typegen after running extract-types in studio */
-export type TallTwoColTextWithCard = {
-  _type: 'tallTwoColTextWithCard'
-  title?: string
-  subtitle?: string
-  leftColumnTitle?: string
-  leftColumnSubtitle?: string
-  rightColumnTitle?: string
-  rightColumnSubtitle?: string
-  ctaCardTitle?: string
-  ctaCardBlurb?: Array<{
-    children?: Array<{
-      marks?: Array<string>
-      text?: string
-      _type: 'span'
-      _key: string
-    }>
-    style?: 'normal' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'blockquote'
-    listItem?: 'bullet' | 'number'
-    markDefs?: Array<{
-      href?: string
-      _type: 'link'
-      _key: string
-    }>
-    level?: number
-    _type: 'block'
-    _key: string
-  }>
-  ctaCardCtas?: Array<{
-    href: string
-    buttonText: string
-    newTab?: boolean
-    _type: 'cta'
-    _key: string
-  }>
-  ctaCardImage?: ImageAndAltText
 }
 
 export type CtaWithMediaCard = {
@@ -1181,14 +1185,14 @@ export type SanityFileAsset = {
   title?: string
   description?: string
   altText?: string
-  sha1hash?: string
-  extension?: string
-  mimeType?: string
-  size?: number
-  assetId?: string
+  sha1hash: string
+  extension: string
+  mimeType: string
+  size: number
+  assetId: string
   uploadId?: string
-  path?: string
-  url?: string
+  path: string
+  url: string
   source?: SanityAssetSourceData
 }
 
@@ -1210,14 +1214,14 @@ export type SanityImageAsset = {
   title?: string
   description?: string
   altText?: string
-  sha1hash?: string
-  extension?: string
-  mimeType?: string
-  size?: number
-  assetId?: string
+  sha1hash: string
+  extension: string
+  mimeType: string
+  size: number
+  assetId: string
   uploadId?: string
-  path?: string
-  url?: string
+  path: string
+  url: string
   metadata?: SanityImageMetadata
   source?: SanityAssetSourceData
 }
@@ -1237,6 +1241,7 @@ export type AllSanitySchemaTypes =
   | SanityImageAssetReference
   | ImageAndAltTextImage
   | CtaWithMediaCardImageAndAltText
+  | CtaCardImage
   | Expanded
   | BgImage
   | Icon
@@ -1246,9 +1251,9 @@ export type AllSanitySchemaTypes =
   | ObjectCta
   | Calendar
   | CardGrid
+  | TallTwoColTextWithCard
   | TwoCtasWithImage
   | CtaWithCard
-  | TallTwoColTextWithCard
   | CtaWithMediaCard
   | IntroBlade
   | Leadership
@@ -1637,6 +1642,43 @@ export type GetPageQueryResult = {
           newTab?: boolean
           _key: string
         }>
+      }
+    | {
+        _key: string
+        _type: 'tallTwoColTextWithCard'
+        title: string
+        subtitle?: string
+        leftColumnTitle: string
+        leftColumnSubtitle?: string
+        rightColumnTitle: string
+        rightColumnSubtitle?: string
+        ctaCardTitle: string
+        ctaCardBlurb?: Array<{
+          children?: Array<{
+            marks?: Array<string>
+            text?: string
+            _type: 'span'
+            _key: string
+          }>
+          style?: 'blockquote' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'normal'
+          listItem?: 'bullet' | 'number'
+          markDefs?: Array<{
+            href?: string
+            _type: 'link'
+            _key: string
+          }>
+          level?: number
+          _type: 'block'
+          _key: string
+        }>
+        ctaCardCtas?: Array<{
+          href: string
+          buttonText: string
+          newTab?: boolean
+          _type: 'cta'
+          _key: string
+        }>
+        ctaCardImage?: CtaCardImage
       }
     | {
         _key: string

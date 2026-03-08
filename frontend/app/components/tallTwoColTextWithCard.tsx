@@ -1,4 +1,3 @@
-import React from 'react'
 import Image from '@/app/components/SanityImage'
 import Cta from './ui/Cta'
 import OrlsIcon from './icons/orls-icon'
