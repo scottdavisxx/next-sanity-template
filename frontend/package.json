@@ -11,7 +11,8 @@
     "start": "next start",
     "type-check": "tsc --noEmit",
     "typegen": "sanity typegen generate",
-    "sanity:typegen": "npm run extract-types --prefix ../studio && npm run typegen"
+    "sanity:typegen": "npm run sanity:typegen:extract && npm run typegen",
+    "sanity:typegen:extract": "node -e \"process.exit(process.env.NETLIFY ? 0 : 1)\" && true || npm run extract-types --prefix ../studio"
   },
   "dependencies": {
     "@heroicons/react": "^2.2.0",
