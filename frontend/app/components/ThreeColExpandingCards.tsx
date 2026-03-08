@@ -155,27 +155,34 @@ export default function ThreeColExpandingCards({ block }: ThreeColExpandingCards
               )}
 
               {hasText && (
-                <div className={`absolute inset-0 z-30 flex flex-col p-8 ${hasBg ? 'justify-end' : 'justify-start'}`}>
-                  <div className={hasIcon ? 'max-w-[55%]' : ''}>
-                    {exp?.name && (
-                      <p className={`font-bold text-xl lg:text-3xl ${textColor}`}>{exp.name}</p>
-                    )}
-                    {exp?.tagline && (
-                      <p className={`font-medium italic text-base lg:text-2xl mt-1 ${accentColor}`}>{exp.tagline}</p>
-                    )}
-                    {exp?.description && (
-                      <p className={`text-sm lg:text-2xl mt-4 leading-snug ${textColor}`}>{exp.description}</p>
-                    )}
+                <div className={`absolute inset-0 z-30 flex flex-col p-8 min-h-0`}>
+                  <div className={`flex flex-1 flex-col justify-between min-h-0 ${hasIcon ? 'max-w-[55%]' : ''}`}>
+                    <div>
+                      {exp?.name && (
+                        <p className={`font-bold text-xl lg:text-3xl ${textColor}`}>{exp.name}</p>
+                      )}
+                      {exp?.tagline && (
+                        <p className={`font-medium italic text-base lg:text-2xl mt-1 ${accentColor}`}>{exp.tagline}</p>
+                      )}
+                      {exp?.description && (
+                        <p className={`text-sm lg:text-2xl mt-4 leading-snug ${textColor}`}>{exp.description}</p>
+                      )}
+                    </div>
                     {expCta && (
-                      expCta.href ? (
-                        <Link href={expCta.href} target={expCta.newTab ? '_blank' : undefined} rel={expCta.newTab ? 'noopener noreferrer' : undefined} className={`inline-block mt-5 px-6 py-2.5 rounded-md font-semibold text-sm lg:text-base ${ctaStyle}`}>
-                          {expCta.buttonText || 'Learn more'}
-                        </Link>
-                      ) : (
-                        <span className={`inline-block mt-5 px-6 py-2.5 rounded-md font-semibold text-sm lg:text-base ${ctaStyle}`}>
-                          {expCta.buttonText}
-                        </span>
-                      )
+                      <div className="mt-5">
+                        {expCta.href ? (
+                          <Link href={expCta.href}
+                            target={expCta.newTab ? '_blank' : undefined}
+                            rel={expCta.newTab ? 'noopener noreferrer' : undefined}
+                            className={`inline-block  py-2.5 rounded-md font-semibold text-sm md:px-20 lg:text-base ${ctaStyle}`}>
+                            {expCta.buttonText || 'Learn more'}
+                          </Link>
+                        ) : (
+                          <span className={`inline-block px-6 py-2.5 rounded-md font-semibold text-sm lg:text-base ${ctaStyle}`}>
+                            {expCta.buttonText}
+                          </span>
+                        )}
+                      </div>
                     )}
                   </div>
                 </div>
