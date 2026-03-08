@@ -63,12 +63,12 @@ export default function TallTwoColTextWithCard({ block }: TallTwoColTextWithCard
               <h2 className="text-4xl font-bold lg:text-6xl">{block.ctaCardTitle}</h2>
             )}
             {Array.isArray(block.ctaCardBlurb) ? (
-              <div className="text-lg lg:w-[62%] prose max-w-none">
+              <div className="text-lg text-balance prose max-w-none">
                 <PortableText value={block.ctaCardBlurb as PortableTextBlock[]} />
               </div>
             ) : (
               block.ctaCardBlurb && (
-                <p className="text-lg lg:w-[62%]">{String(block.ctaCardBlurb)}</p>
+                <p className="text-lg text-balance">{String(block.ctaCardBlurb)}</p>
               )
             )}
             {block.ctaCardCtas && block.ctaCardCtas.length > 0 && (
