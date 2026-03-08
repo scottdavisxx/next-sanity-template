@@ -37,6 +37,7 @@
   --text-4xl: 1.875rem; /* 30px */
   --text-6xl: 4rem; /* 64px */
   --text-7xl: 4.375rem; /* 70px */
+  --text-4.5xl: 2.8125rem; /* 45px */
 }
 
 .crossSize svg,
