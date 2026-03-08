@@ -44,8 +44,7 @@ export default function StatisticsTwoCol({ block }: StatisticsTwoColProps) {
   const [stat1, stat2, stat3, stat4] = stats
 
   return (
-    <div className="bg-dark-blue py-4
-    md:py-16">
+    <div className="bg-dark-blue py-4">
       <div className="container flex flex-col items-center justify-between gap-4 bg-dark-blue text-white py-8 px-6 font-bold
     md:flex-row md:px-20 md:py-16">
         <h2 className="text-4xl font-bold mb-8 md:w-1/3 md:mb-0 md:text-7xl">{title}</h2>
