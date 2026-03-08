@@ -472,24 +472,23 @@ export type ThreeColCircleImage = {
   }>
 }
 
+export type ThreeColWithIcons = {
+  _type: 'threeColWithIcons'
+  title: string
+  subtitle?: string
+  items?: Array<{
+    imageAndAltText?: ImageAndAltText
+    title: string
+    _key: string
+  }>
+}
+
 export type ThreeColCtas = {
   _type: 'threeColCtas'
   cards?: Array<{
     title: string
     description?: string
     href: string
-    _key: string
-  }>
-}
-
-/** Manually added for threeColWithIcons block; regenerate with typegen after running extract-types in studio */
-export type ThreeColWithIcons = {
-  _type: 'threeColWithIcons'
-  title?: string
-  subtitle?: string
-  items?: Array<{
-    imageAndAltText?: ImageAndAltText
-    title: string
     _key: string
   }>
 }
@@ -1288,8 +1287,8 @@ export type AllSanitySchemaTypes =
   | ClubCards
   | ThreeColCards
   | ThreeColCircleImage
-  | ThreeColCtas
   | ThreeColWithIcons
+  | ThreeColCtas
   | ThreeColEventCards
   | ThreeColExpandingCards
   | ThreeColToggle
@@ -1810,6 +1809,17 @@ export type GetPageQueryResult = {
           _key: string
         }>
         removePaddingTop?: boolean
+      }
+    | {
+        _key: string
+        _type: 'threeColWithIcons'
+        title: string
+        subtitle?: string
+        items?: Array<{
+          imageAndAltText?: ImageAndAltText
+          title: string
+          _key: string
+        }>
       }
     | {
         _key: string
