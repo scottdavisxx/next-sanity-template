@@ -1,12 +1,9 @@
 'use client'
 
-import { useRef, useCallback } from 'react'
-import { Swiper, SwiperSlide } from 'swiper/react'
-import type { Swiper as SwiperType } from 'swiper'
+import { useState } from 'react'
 import Link from 'next/link'
 import Image from '@/app/components/SanityImage'
 import NextImage from 'next/image'
-import 'swiper/css'
 
 interface Cta {
   label: string
@@ -54,9 +51,7 @@ function CollapsedCardInner({ card }: { card: CollapsedCard }) {
   const textColor = hasBg ? 'text-white' : 'text-dark-blue'
 
   return (
-    <div
-      className={`absolute inset-0 rounded-2xl overflow-hidden isolate border-2 border-dark-blue ${!hasBg ? 'bg-white' : ''}`}
-    >
+    <div className={`absolute inset-0 rounded-2xl overflow-hidden isolate border-2 border-dark-blue ${!hasBg ? 'bg-white' : ''}`}>
       {hasBg && (
         <>
           <Image
@@ -108,14 +103,28 @@ export default function ThreeColExpandingCards({ block }: ThreeColExpandingCards
   const arrowLabel = block?.arrowLabel
   const sectionBgImage = block?.sectionBgImage
   const items = block?.items ?? []
-  const swiperRef = useRef<SwiperType | null>(null)
+  const [activeIndex, setActiveIndex] = useState(0)
 
-  const prev = useCallback(() => swiperRef.current?.slidePrev(), [])
-  const next = useCallback(() => swiperRef.current?.slideNext(), [])
+  const prev = () => setActiveIndex((i) => (i - 1 + items.length) % items.length)
+  const next = () => setActiveIndex((i) => (i + 1) % items.length)
+
+  const active = items[activeIndex]
+  const collapsed1 = items[(activeIndex + 1) % items.length]
+  const collapsed2 = items[(activeIndex + 2) % items.length]
+
+  const exp = active?.expanded
+  const expBg = exp?.bgImage as SanityImageSource | string | undefined
+  const expIcon = exp?.icon as SanityImageSource | string | undefined
+  const hasBg = typeof expBg === 'object' && (expBg as { asset?: { _ref?: string } })?.asset?._ref
+  const hasIcon = typeof expIcon === 'object' && (expIcon as { asset?: { _ref?: string } })?.asset?._ref
+  const hasText = !!(exp?.name || exp?.tagline || exp?.description || exp?.cta)
+  const textColor = hasBg ? 'text-white' : 'text-black'
+  const accentColor = hasBg ? 'text-white/80' : 'text-medium-blue'
+  const ctaStyle = hasBg ? 'bg-white text-dark-blue' : 'bg-dark-blue text-white'
 
   return (
     <section className="relative overflow-hidden bg-white py-12 md:py-16 lg:py-9">
-      <div className="container">
+      <div className="max-w-7xl mx-auto px-6 md:px-16 lg:px-24">
         {typeof sectionBgImage === 'object' && sectionBgImage?.asset?._ref ? (
           <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-5">
             <Image
@@ -131,179 +140,101 @@ export default function ThreeColExpandingCards({ block }: ThreeColExpandingCards
           </div>
         ) : null}
 
-        <h2 className="relative font-bold text-4xl md:text-5xl lg:text-7xl text-black">
-          {heading}
-        </h2>
+        <h2 className="relative font-bold text-4xl md:text-5xl lg:text-7xl text-black">{heading}</h2>
         {subtitle && (
           <p className="relative text-base md:text-lg lg:text-2xl text-black mt-3">{subtitle}</p>
         )}
 
-        <div className="three-col-expanding-swiper relative mt-8 h-[420px] md:h-[500px]">
-          <Swiper
-            onSwiper={(swiper) => {
-              swiperRef.current = swiper
-            }}
-            slidesPerView="auto"
-            spaceBetween={16}
-            centeredSlides={false}
-            breakpoints={{
-              768: {
-                spaceBetween: 24,
-              },
-              1024: {
-                spaceBetween: 32,
-              },
-            }}
-            className="!overflow-visible h-full"
+        {/* Desktop layout */}
+        <div className="relative hidden md:flex gap-14 mt-8 h-[500px]">
+
+          {/* Expanded card */}
+          <div style={{ flex: '3 3 0%' }} className="relative h-full overflow-visible group isolate">
+            <div className={`absolute inset-0 rounded-2xl overflow-hidden isolate border-2 border-dark-blue ${!hasBg ? 'bg-white' : ''}`}>
+              {hasBg && (
+                <>
+                  <Image
+                    id={(expBg as { asset: { _ref: string } }).asset._ref}
+                    alt={exp?.name ?? ''}
+                    width={800}
+                    height={600}
+                    mode="cover"
+                    className="absolute inset-0 w-full h-full object-cover z-10"
+                  />
+                  <div className="absolute inset-0 bg-black/45 group-hover:bg-black/65 transition-all duration-300 z-20" />
+                </>
+              )}
+
+              {hasText && (
+                <div className={`absolute inset-0 z-30 flex flex-col p-8 ${hasBg ? 'justify-end' : 'justify-start'}`}>
+                  <div className={hasIcon ? 'max-w-[55%]' : ''}>
+                    {exp?.name && (
+                      <p className={`font-bold text-xl lg:text-3xl ${textColor}`}>{exp.name}</p>
+                    )}
+                    {exp?.tagline && (
+                      <p className={`font-medium italic text-base lg:text-2xl mt-1 ${accentColor}`}>{exp.tagline}</p>
+                    )}
+                    {exp?.description && (
+                      <p className={`text-sm lg:text-2xl mt-4 leading-snug ${textColor}`}>{exp.description}</p>
+                    )}
+                    {exp?.cta?.href && (
+                      <Link href={exp.cta.href} className={`inline-block mt-5 px-6 py-2.5 rounded-md font-semibold text-sm lg:text-base ${ctaStyle}`}>
+                        {exp.cta.label}
+                      </Link>
+                    )}
+                  </div>
+                </div>
+              )}
+
+              {/* Icon — always shown at z-40 (above overlay + text) when present */}
+              {hasIcon && (
+                <>
+                  <Image
+                    id={(expIcon as { asset: { _ref: string } }).asset._ref}
+                    alt={exp?.name ?? ''}
+                    width={240}
+                    height={318}
+                    mode="contain"
+                    className="absolute right-4 top-1/2 -translate-y-1/2 w-[200px] lg:w-[240px] h-[280px] lg:h-[318px] object-contain z-40"
+                  />
+                </>
+              )}
+            </div>
+
+            {/* Hover offset border — behind card via -z-10 in isolated stacking context */}
+            <div className="absolute top-0 left-0 w-full h-full border-2 border-dark-blue rounded-2xl group-hover:translate-x-4 group-hover:translate-y-4 transition-all duration-300 pointer-events-none -z-10" />
+          </div>
+
+          {/* Collapsed card — offset +1 */}
+          <div
+            style={{ flex: '1 1 0%' }}
+            className="relative h-full overflow-visible group cursor-pointer isolate"
+            onClick={() => setActiveIndex((activeIndex + 1) % items.length)}
           >
-            {items.map((item, index) => (
-              <SwiperSlide key={index} className="!h-full">
-                {({ isActive }) => {
-                  if (isActive && item.expanded) {
-                    const exp = item.expanded
-                    const expBg = exp?.bgImage as SanityImageSource | string | undefined
-                    const expIcon = exp?.icon as SanityImageSource | string | undefined
-                    const hasBg = typeof expBg === 'object' && (expBg as { asset?: { _ref?: string } })?.asset?._ref
-                    const hasIcon = typeof expIcon === 'object' && (expIcon as { asset?: { _ref?: string } })?.asset?._ref
-                    const hasText = !!(
-                      exp?.name ||
-                      exp?.tagline ||
-                      exp?.description ||
-                      exp?.cta
-                    )
-                    const textColor = hasBg ? 'text-white' : 'text-black'
-                    const accentColor = hasBg ? 'text-white/80' : 'text-medium-blue'
-                    const ctaStyle = hasBg ? 'bg-white text-dark-blue' : 'bg-dark-blue text-white'
+            {collapsed1?.collapsed && <CollapsedCardInner card={collapsed1.collapsed as CollapsedCard} />}
+            <div className="absolute top-0 left-0 w-full h-full border-2 border-dark-blue rounded-2xl group-hover:translate-x-4 group-hover:translate-y-4 transition-all duration-300 pointer-events-none -z-10" />
+          </div>
 
-                    return (
-                      <div className="relative h-full w-full min-w-[280px] md:min-w-[360px] md:max-w-[520px] md:w-[55%] overflow-visible group isolate shrink-0">
-                        <div
-                          className={`absolute inset-0 rounded-2xl overflow-hidden isolate border-2 border-dark-blue ${!hasBg ? 'bg-white' : ''}`}
-                        >
-                          {hasBg && (
-                            <>
-                              <Image
-                                id={(expBg as { asset: { _ref: string } }).asset._ref}
-                                alt={exp?.name ?? ''}
-                                width={800}
-                                height={600}
-                                mode="cover"
-                                className="absolute inset-0 w-full h-full object-cover z-10"
-                              />
-                              <div className="absolute inset-0 bg-black/45 group-hover:bg-black/65 transition-all duration-300 z-20" />
-                            </>
-                          )}
-
-                          {hasText && (
-                            <div
-                              className={`absolute inset-0 z-30 flex flex-col p-6 md:p-8 ${hasBg ? 'justify-end' : 'justify-start'}`}
-                            >
-                              <div className={hasIcon ? 'max-w-[55%]' : ''}>
-                                {exp?.name && (
-                                  <p
-                                    className={`font-bold text-2xl md:text-xl lg:text-3xl ${textColor}`}
-                                  >
-                                    {exp.name}
-                                  </p>
-                                )}
-                                {exp?.tagline && (
-                                  <p
-                                    className={`font-medium italic text-base lg:text-2xl mt-1 ${accentColor}`}
-                                  >
-                                    {exp.tagline}
-                                  </p>
-                                )}
-                                {exp?.description && (
-                                  <p
-                                    className={`text-sm lg:text-2xl mt-4 leading-snug ${textColor}`}
-                                  >
-                                    {exp.description}
-                                  </p>
-                                )}
-                                {exp?.cta?.href && (
-                                  <Link
-                                    href={exp.cta.href}
-                                    className={`inline-block mt-5 px-6 py-2.5 rounded-md font-semibold text-sm lg:text-base ${ctaStyle}`}
-                                  >
-                                    {exp.cta.label}
-                                  </Link>
-                                )}
-                              </div>
-                            </div>
-                          )}
-
-                          {hasIcon && (
-                            <>
-                              <Image
-                                id={(expIcon as { asset: { _ref: string } }).asset._ref}
-                                alt={exp?.name ?? ''}
-                                width={240}
-                                height={318}
-                                mode="contain"
-                                className="absolute right-4 top-1/2 -translate-y-1/2 w-[200px] lg:w-[240px] h-[280px] lg:h-[318px] object-contain z-40 hidden md:block"
-                              />
-                              {/* Mobile: icon below text */}
-                              <div className="absolute inset-0 z-30 flex items-end justify-center pb-4 md:hidden">
-                                {!hasBg && (
-                                  <Image
-                                    id={(expIcon as { asset: { _ref: string } }).asset._ref}
-                                    alt={exp?.name ?? ''}
-                                    width={200}
-                                    height={200}
-                                    mode="contain"
-                                    className="h-[150px] object-contain"
-                                  />
-                                )}
-                              </div>
-                            </>
-                          )}
-                        </div>
-                        <div className="absolute top-0 left-0 w-full h-full border-2 border-dark-blue rounded-2xl group-hover:translate-x-4 group-hover:translate-y-4 transition-all duration-300 pointer-events-none -z-10" />
-                      </div>
-                    )
-                  }
-
-                  return (
-                    <div
-                      role="button"
-                      tabIndex={0}
-                      onClick={() => swiperRef.current?.slideTo(index)}
-                      onKeyDown={(e) => {
-                        if (e.key === 'Enter' || e.key === ' ') {
-                          e.preventDefault()
-                          swiperRef.current?.slideTo(index)
-                        }
-                      }}
-                      className="relative h-full w-[160px] md:w-[200px] lg:w-[220px] shrink-0 overflow-visible group cursor-pointer isolate"
-                    >
-                      {item.collapsed && (
-                        <CollapsedCardInner card={item.collapsed as CollapsedCard} />
-                      )}
-                      <div className="absolute top-0 left-0 w-full h-full border-2 border-dark-blue rounded-2xl group-hover:translate-x-4 group-hover:translate-y-4 transition-all duration-300 pointer-events-none -z-10" />
-                    </div>
-                  )
-                }}
-              </SwiperSlide>
-            ))}
-          </Swiper>
+          {/* Collapsed card — offset +2 */}
+          <div
+            style={{ flex: '1 1 0%' }}
+            className="relative h-full overflow-visible group cursor-pointer isolate"
+            onClick={() => setActiveIndex((activeIndex + 2) % items.length)}
+          >
+            {collapsed2?.collapsed && <CollapsedCardInner card={collapsed2.collapsed as CollapsedCard} />}
+            <div className="absolute top-0 left-0 w-full h-full border-2 border-dark-blue rounded-2xl group-hover:translate-x-4 group-hover:translate-y-4 transition-all duration-300 pointer-events-none -z-10" />
+          </div>
         </div>
 
-        <div className="relative flex flex-col gap-1 mt-8">
+        {/* Desktop arrows */}
+        <div className="relative hidden md:flex flex-col gap-1 mt-8">
           <div className="flex items-center gap-2">
-            <button
-              onClick={prev}
-              aria-label="Previous"
-              className="size-9 flex items-center justify-center cursor-pointer"
-            >
+            <button onClick={prev} aria-label="Previous" className="size-9 flex items-center justify-center cursor-pointer">
               <span className="relative block size-full">
                 <NextImage src="/houses/arrow-right.svg" alt="" fill className="object-contain rotate-180" />
               </span>
             </button>
-            <button
-              onClick={next}
-              aria-label="Next"
-              className="size-9 flex items-center justify-center cursor-pointer"
-            >
+            <button onClick={next} aria-label="Next" className="size-9 flex items-center justify-center cursor-pointer">
               <span className="relative block size-full">
                 <NextImage src="/houses/arrow-right.svg" alt="" fill className="object-contain" />
               </span>
@@ -314,10 +245,77 @@ export default function ThreeColExpandingCards({ block }: ThreeColExpandingCards
           )}
         </div>
 
+        {/* Mobile layout — single full-width card, icon below text in flow */}
+        <div className="relative flex md:hidden mt-8">
+          <div className="relative w-full h-[420px] overflow-visible group isolate">
+            <div className={`absolute inset-0 rounded-2xl overflow-hidden isolate border-2 border-dark-blue ${!hasBg ? 'bg-white' : ''}`}>
+              {hasBg && (
+                <>
+                  <Image
+                    id={(expBg as { asset: { _ref: string } }).asset._ref}
+                    alt={exp?.name ?? ''}
+                    width={800}
+                    height={600}
+                    mode="cover"
+                    className="absolute inset-0 w-full h-full object-cover z-10"
+                  />
+                  <div className="absolute inset-0 bg-black/45 z-20" />
+                </>
+              )}
+              <div className={`absolute inset-0 z-30 flex flex-col p-6 ${hasBg ? 'justify-end' : 'justify-start'}`}>
+                {exp?.name && (
+                  <p className={`font-bold text-2xl ${textColor}`}>{exp.name}</p>
+                )}
+                {exp?.tagline && (
+                  <p className={`font-medium italic text-base mt-1 ${accentColor}`}>{exp.tagline}</p>
+                )}
+                {exp?.description && (
+                  <p className={`text-sm mt-4 leading-snug ${textColor}`}>{exp.description}</p>
+                )}
+                {!hasBg && hasIcon && (
+                  <div className="mt-auto flex items-center justify-center">
+                    <Image
+                      id={(expIcon as { asset: { _ref: string } }).asset._ref}
+                      alt={exp?.name ?? ''}
+                      width={200}
+                      height={200}
+                      mode="contain"
+                      className="h-[150px] object-contain"
+                    />
+                  </div>
+                )}
+                {exp?.cta?.href && (
+                  <Link href={exp.cta.href} className={`inline-block mt-4 px-6 py-2.5 rounded-md font-semibold text-sm ${ctaStyle}`}>
+                    {exp.cta.label}
+                  </Link>
+                )}
+              </div>
+            </div>
+            <div className="absolute top-0 left-0 w-full h-full border-2 border-dark-blue rounded-2xl group-hover:translate-x-4 group-hover:translate-y-4 transition-all duration-300 pointer-events-none -z-10" />
+          </div>
+        </div>
+
+        {/* Mobile arrows */}
+        <div className="relative flex md:hidden flex-col gap-1 mt-8">
+          <div className="flex items-center gap-2">
+            <button onClick={prev} className="size-9 flex items-center justify-center cursor-pointer">
+              <span className="relative block size-full">
+                <NextImage src="/houses/arrow-right.svg" alt="Previous" fill className="object-contain rotate-180" />
+              </span>
+            </button>
+            <button onClick={next} className="size-9 flex items-center justify-center cursor-pointer">
+              <span className="relative block size-full">
+                <NextImage src="/houses/arrow-right.svg" alt="Next" fill className="object-contain" />
+              </span>
+            </button>
+          </div>
+          {arrowLabel && (
+            <p className="font-semibold text-medium-blue text-xs">{arrowLabel}</p>
+          )}
+        </div>
+
         {footnote && (
-          <p className="relative font-semibold italic text-dark-blue text-sm lg:text-2xl mt-6">
-            {footnote}
-          </p>
+          <p className="relative font-semibold italic text-dark-blue text-sm lg:text-2xl mt-6">{footnote}</p>
         )}
       </div>
     </section>
