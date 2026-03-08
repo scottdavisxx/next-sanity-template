@@ -76,6 +76,7 @@ export const page = defineType({
         { type: 'ctaWithMediaCard' },
         { type: 'ctaWithCard' },
         { type: 'twoCtasWithImage' },
+        { type: 'tallTwoColTextWithCard' },
         { type: 'cardGrid' },
         { type: 'calendar' },
       ],

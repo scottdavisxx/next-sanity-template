@@ -32,6 +32,7 @@ import {introBlade} from './objects/introBlade'
 import {ctaWithMediaCard} from './objects/ctaWithMediaCard'
 import {ctaWithCard} from './objects/ctaWithCard'
 import {twoCtasWithImage} from './objects/twoCtasWithImage'
+import {tallTwoColTextWithCard} from './objects/tallTwoColTextWithCard'
 import {cardGrid} from './objects/cardGrid'
 import {calendar} from './objects/calendar'
 
@@ -70,6 +71,7 @@ export const schemaTypes = [
   ctaWithMediaCard,
   ctaWithCard,
   twoCtasWithImage,
+  tallTwoColTextWithCard,
   cardGrid,
   calendar,
 ]

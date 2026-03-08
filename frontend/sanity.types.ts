@@ -244,6 +244,44 @@ export type CtaWithCard = {
   icon?: boolean
 }
 
+/** Manually added for tallTwoColTextWithCard block; regenerate with typegen after running extract-types in studio */
+export type TallTwoColTextWithCard = {
+  _type: 'tallTwoColTextWithCard'
+  title?: string
+  subtitle?: string
+  leftColumnTitle?: string
+  leftColumnSubtitle?: string
+  rightColumnTitle?: string
+  rightColumnSubtitle?: string
+  ctaCardTitle?: string
+  ctaCardBlurb?: Array<{
+    children?: Array<{
+      marks?: Array<string>
+      text?: string
+      _type: 'span'
+      _key: string
+    }>
+    style?: 'normal' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'blockquote'
+    listItem?: 'bullet' | 'number'
+    markDefs?: Array<{
+      href?: string
+      _type: 'link'
+      _key: string
+    }>
+    level?: number
+    _type: 'block'
+    _key: string
+  }>
+  ctaCardCtas?: Array<{
+    href: string
+    buttonText: string
+    newTab?: boolean
+    _type: 'cta'
+    _key: string
+  }>
+  ctaCardImage?: ImageAndAltText
+}
+
 export type CtaWithMediaCard = {
   _type: 'ctaWithMediaCard'
   title: string
@@ -936,6 +974,9 @@ export type Page = {
       } & TwoCtasWithImage)
     | ({
         _key: string
+      } & TallTwoColTextWithCard)
+    | ({
+        _key: string
       } & CardGrid)
     | ({
         _key: string
@@ -1207,6 +1248,7 @@ export type AllSanitySchemaTypes =
   | CardGrid
   | TwoCtasWithImage
   | CtaWithCard
+  | TallTwoColTextWithCard
   | CtaWithMediaCard
   | IntroBlade
   | Leadership
