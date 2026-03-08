@@ -17,7 +17,8 @@ export default function IntroBlade({ block }: IntroBladeProps) {
   const bgImage = block?.bgImage
 
   return (
-    <div className="relative flex flex-col px-24 py-8 gap-2  justify-between min-h-[478px] max-md:px-8">
+    <div className="relative flex flex-col py-8 gap-2  justify-between min-h-[478px]
+    md:px-24">
       <div className="container">
         {bgImage && (
           <div className="absolute inset-0 left-0 right-0 w-full h-full overflow-hidden opacity-10">
@@ -30,17 +31,20 @@ export default function IntroBlade({ block }: IntroBladeProps) {
             </div>
           </div>
         )}
-        <div className="relative flex flex-col md:flex-row px-6 py-8 gap-8 md:justify-between items-center z-10">
+        <div className="relative flex flex-col md:flex-row px-0 py-2 gap-8 md:justify-between items-center z-10
+        md:px-6 md:py-8">
           {titles.map((obj, i) => (
             <h2 key={i} className="text-4xl max-md:text-3xl max-md:w-full font-bold w-full md:w-1/3 text-center">
               {obj.title}
             </h2>
           ))}
         </div>
-        <div className="relative flex px-6 max-sm:px-0 py-8 gap-2 justify-between items-center z-10">
+        <div className="relative flex px-6 max-sm:px-0 py-2 gap-2 justify-between items-center z-10
+        md:py-8">
           <p className="text-2xl text-center">{blurb}</p>
         </div>
-        <div className="relative flex flex-col md:flex-row px-6 py-8 gap-8 justify-center items-center z-10">
+        <div className="relative flex flex-col md:flex-row px-6 py-4 gap-8 justify-center items-center z-10
+        md:py-8">
           {ctas.map((cta, i) => {
             const item = cta as {
               href?: string
