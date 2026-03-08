@@ -25,7 +25,12 @@ export const ctaWithCard = defineType({
       type: 'boolean',
       initialValue: false,
     }),
-    cta,
+    defineField({
+      name: 'ctas',
+      title: 'CTA',
+      type: 'array',
+      of: [cta],
+    }),
     defineField({
       name: 'bgImage',
       title: 'Background Image',

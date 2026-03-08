@@ -34,7 +34,7 @@ export default function CtaWithCard({ block }: CtaWithCardProps) {
   const title = block?.title
   const emphasizedText = block?.emphasizedText
   const blurb = block?.blurb
-  const cta = block?.cta
+  const ctas = block?.ctas
   const image = block?.imageAndAltText?.image
   const altText = block?.imageAndAltText?.altText || ''
   const bgImage = block?.bgImage
@@ -93,9 +93,12 @@ export default function CtaWithCard({ block }: CtaWithCardProps) {
             ) : (
               <p className="text-lg whitespace-pre-line">{blurb}</p>
             )}
-            {cta?.href && cta?.buttonText && (
-              <Cta className="md:mb-6 md:mt-4" dark href={cta.href} buttonText={cta.buttonText} newTab={cta.newTab} />
-            )}
+            <div className="flex flex-col gap-4
+            md:flex-row">
+              {ctas?.map((cta) => (
+                <Cta key={cta._key} className="md:mb-6 md:mt-4" dark href={cta.href} buttonText={cta.buttonText} newTab={cta.newTab} />
+              ))}
+            </div>
           </div>
         </div>
       </div>

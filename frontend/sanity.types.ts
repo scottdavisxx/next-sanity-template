@@ -182,7 +182,13 @@ export type CtaWithCard = {
   }>
   imageAndAltText?: ImageAndAltText
   overlapImage?: boolean
-  cta?: Cta
+  ctas?: Array<{
+    href: string
+    buttonText: string
+    newTab?: boolean
+    _type: 'cta'
+    _key: string
+  }>
   bgImage?: {
     asset?: SanityImageAssetReference
     media?: unknown
@@ -1339,7 +1345,13 @@ export type GetPageQueryResult = {
         }>
         imageAndAltText?: ImageAndAltText
         overlapImage?: boolean
-        cta?: Cta
+        ctas?: Array<{
+          href: string
+          buttonText: string
+          newTab?: boolean
+          _type: 'cta'
+          _key: string
+        }>
         bgImage?: {
           asset?: SanityImageAssetReference
           media?: unknown
