@@ -1,5 +1,5 @@
 import {defineField, defineType} from 'sanity'
-import {title, subtitle} from '../sharedFields'
+import {title, subtitle, cta} from '../sharedFields'
 import {ComponentIcon} from '@sanity/icons'
 
 export const threeColExpandingCards = defineType({
@@ -58,15 +58,7 @@ export const threeColExpandingCards = defineType({
                   type: 'image',
                   description: 'Optional icon/illustration',
                 }),
-                defineField({
-                  name: 'cta',
-                  title: 'CTA',
-                  type: 'object',
-                  fields: [
-                    {name: 'label', title: 'Label', type: 'string'},
-                    {name: 'href', title: 'URL', type: 'string'},
-                  ],
-                }),
+                cta,
               ],
             }),
             defineField({
@@ -84,15 +76,6 @@ export const threeColExpandingCards = defineType({
                   name: 'icon',
                   title: 'Icon Image',
                   type: 'image',
-                }),
-                defineField({
-                  name: 'cta',
-                  title: 'CTA',
-                  type: 'object',
-                  fields: [
-                    {name: 'label', title: 'Label', type: 'string'},
-                    {name: 'href', title: 'URL', type: 'string'},
-                  ],
                 }),
               ],
             }),

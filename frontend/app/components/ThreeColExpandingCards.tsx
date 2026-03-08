@@ -5,10 +5,7 @@ import Link from 'next/link'
 import Image from '@/app/components/SanityImage'
 import NextImage from 'next/image'
 
-interface Cta {
-  label: string
-  href: string
-}
+import type { Cta } from '@/sanity.types'
 
 interface ExpandedCard {
   name?: string
@@ -23,7 +20,6 @@ interface CollapsedCard {
   name?: string
   bgImage?: string | { asset?: { _ref: string } }
   icon?: string | { asset?: { _ref: string } }
-  cta?: Cta
 }
 
 export interface CardItem {
@@ -83,14 +79,6 @@ function CollapsedCardInner({ card }: { card: CollapsedCard }) {
         {card.name && (
           <p className={`font-bold text-sm lg:text-xl ${textColor}`}>{card.name}</p>
         )}
-        {card.cta && (
-          <Link
-            href={card.cta.href}
-            className={`inline-block mt-2 px-4 py-1.5 rounded-md font-semibold text-sm ${hasBg ? 'bg-white text-dark-blue' : 'bg-dark-blue text-white'}`}
-          >
-            {card.cta.label}
-          </Link>
-        )}
       </div>
     </div>
   )
@@ -117,7 +105,8 @@ export default function ThreeColExpandingCards({ block }: ThreeColExpandingCards
   const expIcon = exp?.icon as SanityImageSource | string | undefined
   const hasBg = typeof expBg === 'object' && (expBg as { asset?: { _ref?: string } })?.asset?._ref
   const hasIcon = typeof expIcon === 'object' && (expIcon as { asset?: { _ref?: string } })?.asset?._ref
-  const hasText = !!(exp?.name || exp?.tagline || exp?.description || exp?.cta)
+  const expCta = exp?.cta && (exp.cta.buttonText || exp.cta.href) ? exp.cta : null
+  const hasText = !!(exp?.name || exp?.tagline || exp?.description || expCta)
   const textColor = hasBg ? 'text-white' : 'text-black'
   const accentColor = hasBg ? 'text-white/80' : 'text-medium-blue'
   const ctaStyle = hasBg ? 'bg-white text-dark-blue' : 'bg-dark-blue text-white'
@@ -177,10 +166,16 @@ export default function ThreeColExpandingCards({ block }: ThreeColExpandingCards
                     {exp?.description && (
                       <p className={`text-sm lg:text-2xl mt-4 leading-snug ${textColor}`}>{exp.description}</p>
                     )}
-                    {exp?.cta?.href && (
-                      <Link href={exp.cta.href} className={`inline-block mt-5 px-6 py-2.5 rounded-md font-semibold text-sm lg:text-base ${ctaStyle}`}>
-                        {exp.cta.label}
-                      </Link>
+                    {expCta && (
+                      expCta.href ? (
+                        <Link href={expCta.href} target={expCta.newTab ? '_blank' : undefined} rel={expCta.newTab ? 'noopener noreferrer' : undefined} className={`inline-block mt-5 px-6 py-2.5 rounded-md font-semibold text-sm lg:text-base ${ctaStyle}`}>
+                          {expCta.buttonText || 'Learn more'}
+                        </Link>
+                      ) : (
+                        <span className={`inline-block mt-5 px-6 py-2.5 rounded-md font-semibold text-sm lg:text-base ${ctaStyle}`}>
+                          {expCta.buttonText}
+                        </span>
+                      )
                     )}
                   </div>
                 </div>
@@ -284,10 +279,16 @@ export default function ThreeColExpandingCards({ block }: ThreeColExpandingCards
                     />
                   </div>
                 )}
-                {exp?.cta?.href && (
-                  <Link href={exp.cta.href} className={`inline-block mt-4 px-6 py-2.5 rounded-md font-semibold text-sm ${ctaStyle}`}>
-                    {exp.cta.label}
-                  </Link>
+                {expCta && (
+                  expCta.href ? (
+                    <Link href={expCta.href} target={expCta.newTab ? '_blank' : undefined} rel={expCta.newTab ? 'noopener noreferrer' : undefined} className={`inline-block mt-4 px-6 py-2.5 rounded-md font-semibold text-sm ${ctaStyle}`}>
+                      {expCta.buttonText || 'Learn more'}
+                    </Link>
+                  ) : (
+                    <span className={`inline-block mt-4 px-6 py-2.5 rounded-md font-semibold text-sm ${ctaStyle}`}>
+                      {expCta.buttonText}
+                    </span>
+                  )
                 )}
               </div>
             </div>

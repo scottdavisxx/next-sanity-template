@@ -434,7 +434,7 @@
           "type": "objectAttribute",
           "value": {
             "type": "inline",
-            "name": "expanded.cta"
+            "name": "cta"
           },
           "optional": true
         }
@@ -539,29 +539,6 @@
   },
   {
     "type": "type",
-    "name": "expanded.cta",
-    "value": {
-      "type": "object",
-      "attributes": {
-        "label": {
-          "type": "objectAttribute",
-          "value": {
-            "type": "string"
-          },
-          "optional": true
-        },
-        "href": {
-          "type": "objectAttribute",
-          "value": {
-            "type": "string"
-          },
-          "optional": true
-        }
-      }
-    }
-  },
-  {
-    "type": "type",
     "name": "collapsed",
     "value": {
       "type": "object",
@@ -586,14 +563,6 @@
           "value": {
             "type": "inline",
             "name": "collapsed.icon"
-          },
-          "optional": true
-        },
-        "cta": {
-          "type": "objectAttribute",
-          "value": {
-            "type": "inline",
-            "name": "collapsed.cta"
           },
           "optional": true
         }
@@ -692,29 +661,6 @@
             "type": "string",
             "value": "image"
           }
-        }
-      }
-    }
-  },
-  {
-    "type": "type",
-    "name": "collapsed.cta",
-    "value": {
-      "type": "object",
-      "attributes": {
-        "label": {
-          "type": "objectAttribute",
-          "value": {
-            "type": "string"
-          },
-          "optional": true
-        },
-        "href": {
-          "type": "objectAttribute",
-          "value": {
-            "type": "string"
-          },
-          "optional": true
         }
       }
     }

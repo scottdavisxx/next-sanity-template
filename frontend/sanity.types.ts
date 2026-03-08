@@ -79,7 +79,7 @@ export type Expanded = {
   description?: string
   bgImage?: BgImage
   icon?: Icon
-  cta?: ExpandedCta
+  cta?: Cta
 }
 
 export type BgImage = {
@@ -98,16 +98,10 @@ export type Icon = {
   _type: 'image'
 }
 
-export type ExpandedCta = {
-  label?: string
-  href?: string
-}
-
 export type Collapsed = {
   name?: string
   bgImage?: CollapsedBgImage
   icon?: CollapsedIcon
-  cta?: CollapsedCta
 }
 
 export type CollapsedBgImage = {
@@ -124,11 +118,6 @@ export type CollapsedIcon = {
   hotspot?: SanityImageHotspot
   crop?: SanityImageCrop
   _type: 'image'
-}
-
-export type CollapsedCta = {
-  label?: string
-  href?: string
 }
 
 export type ObjectCta = {
@@ -1151,11 +1140,9 @@ export type AllSanitySchemaTypes =
   | Expanded
   | BgImage
   | Icon
-  | ExpandedCta
   | Collapsed
   | CollapsedBgImage
   | CollapsedIcon
-  | CollapsedCta
   | ObjectCta
   | Calendar
   | CardGrid
