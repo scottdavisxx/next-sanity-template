@@ -17,12 +17,12 @@ function IconRow({ item }: { item: Item }) {
   return (
     <div className="flex items-center gap-4">
       {imageRef ? (
-        <div className="shrink-0 w-[100px] h-[100px]">
+        <div className="shrink-0 w-[88px] h-[88px]">
           <Image
             id={imageRef}
             alt={altText}
-            width={100}
-            height={100}
+            width={88}
+            height={88}
             mode="contain"
             className="w-full h-full object-contain"
           />
@@ -56,17 +56,17 @@ export default function ThreeColWithIcons({ block }: ThreeColWithIconsProps) {
           <p className="text-xl text-center lg:text-left lg:text-2xl">{subtitle}</p>
         ) : null}
         <div className="flex flex-col h-full justify-between mt-4 lg:flex-row">
-          <div className="flex flex-col justify-between gap-8 py-6 lg:border-r-2 lg:border-white lg:max-w-1/3 lg:px-4">
+          <div className="flex flex-col justify-between gap-8 py-6 lg:border-r-2 lg:border-white lg:px-6">
             {col1.map((item) => (
               <IconRow key={item._key} item={item} />
             ))}
           </div>
-          <div className="flex flex-col justify-between gap-8 py-6 lg:border-r-2 lg:border-white lg:max-w-1/3 lg:px-4">
+          <div className="flex flex-col justify-between gap-8 py-6 lg:border-r-2 lg:border-white lg:px-6">
             {col2.map((item) => (
               <IconRow key={item._key} item={item} />
             ))}
           </div>
-          <div className="flex flex-col justify-between gap-8 py-6 lg:max-w-1/3 lg:px-4">
+          <div className="flex flex-col justify-between gap-8 py-6 lg:px-6">
             {col3.map((item) => (
               <IconRow key={item._key} item={item} />
             ))}
