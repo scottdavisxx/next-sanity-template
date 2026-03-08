@@ -51,7 +51,7 @@ export default function TwoColInfoWithImage({ block }: TwoColInfoWithImageProps)
         <div className="relative mt-6 lg:mt-8 lg:pb-10">
           {card && (
             <div className={`rounded-2xl lg:py-8 ${block?.variant === 'with-borders' ? `border-2 ${isDark ? 'border-white' : 'border-black'}` : ''}`}>
-              <div className={hasImage ? 'lg:pr-[43%] md:px-16' : ''}>
+              <div className={`p-4 ${hasImage ? 'lg:pr-[43%] md:px-16' : ''} md:p-0`}>
                 <h3 className={`font-bold text-3xl md:text-4xl lg:text-[48px] leading-tight ${isDark ? 'text-white' : 'text-dark-blue'}`}>
                   {card.cardTitle}
                 </h3>
