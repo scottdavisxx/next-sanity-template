@@ -23,7 +23,7 @@ export default function TwoColInfoWithImage({ block }: TwoColInfoWithImageProps)
     <section className={`px-6 py-12 md:px-16 md:py-14 lg:px-[83px] lg:py-[43px] ${isDark ? 'bg-dark-blue' : 'bg-white'}`}>
       <div className="max-w-7xl mx-auto">
         {title && (
-          <h2 className={`font-bold text-4xl md:text-6xl lg:text-[70px] leading-tight ${isDark ? 'text-white' : 'text-black'}`}>
+          <h2 className={`font-bold text-4xl md:text-6xl lg:text-[70px] leading-tight md:w-9/12 ${isDark ? 'text-white' : 'text-black'}`}>
             {title}
           </h2>
         )}
