@@ -21,8 +21,14 @@ import {assist} from '@sanity/assist'
 const projectId = process.env.SANITY_STUDIO_PROJECT_ID || 'your-projectID'
 const dataset = process.env.SANITY_STUDIO_DATASET || 'production'
 
-// URL for preview functionality, defaults to localhost:3000 if not set
-const SANITY_STUDIO_PREVIEW_URL = process.env.SANITY_STUDIO_PREVIEW_URL || 'http://localhost:3000'
+// URL for preview functionality: use localhost when running Studio locally (sanity dev),
+// otherwise use the deployed frontend URL (set SANITY_STUDIO_PREVIEW_URL when deploying).
+const isDev =
+  process.env.NODE_ENV === 'development' ||
+  (typeof import.meta !== 'undefined' && (import.meta as {env?: {DEV?: boolean}}).env?.DEV)
+const SANITY_STUDIO_PREVIEW_URL = isDev
+  ? 'http://localhost:3000'
+  : process.env.SANITY_STUDIO_PREVIEW_URL || 'https://orls.netlify.app/'
 
 // Define the home location for the presentation tool
 const homeLocation = {
@@ -61,6 +67,10 @@ export default defineConfig({
           enable: '/api/draft-mode/enable',
         },
       },
+      // Required for Visual Editing when Studio and frontend are on different origins (e.g. Studio
+      // at neural-pathway-integration.sanity.studio, frontend at your deployment URL). The frontend
+      // iframe must be in this list to send postMessage events to the Studio.
+      allowOrigins: ['http://localhost:*', 'https://orls.netlify.app/'],
       resolve: {
         // The Main Document Resolver API provides a method of resolving a main document from a given route or route pattern. https://www.sanity.io/docs/visual-editing/presentation-resolver-api#57720a5678d9
         mainDocuments: defineDocuments([
