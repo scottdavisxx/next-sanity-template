@@ -1,3 +1,4 @@
+import {bgColor} from './../sharedFields'
 import {defineField, defineType} from 'sanity'
 import {
   title,
@@ -7,6 +8,8 @@ import {
   textColor,
   emphasizedText,
   bgColor,
+  imageWidth,
+  imageHeight,
 } from '../sharedFields'
 import {DocumentIcon} from '@sanity/icons'
 
@@ -14,19 +17,55 @@ export const ctaWithCard = defineType({
   name: 'ctaWithCard',
   title: 'CTA with Card',
   type: 'object',
+  fieldsets: [
+    {
+      name: 'imageOptions',
+      title: 'Image Options',
+      options: {
+        collapsible: true,
+        collapsed: true,
+      },
+    },
+    {
+      name: 'sectionOptions',
+      title: 'Section Options',
+      options: {
+        collapsible: true,
+        collapsed: true,
+      },
+    },
+  ],
   icon: DocumentIcon,
   fields: [
     title,
-    emphasizedText,
-    textColor,
+    defineField({
+      ...emphasizedText,
+      fieldset: 'sectionOptions',
+    }),
+    defineField({
+      ...textColor,
+      fieldset: 'sectionOptions',
+    }),
+    defineField({
+      ...bgColor,
+      fieldset: 'sectionOptions',
+    }),
     blurb,
     imageAndAltText,
-    bgColor,
+    defineField({
+      ...imageWidth,
+      fieldset: 'imageOptions',
+    }),
+    defineField({
+      ...imageHeight,
+      fieldset: 'imageOptions',
+    }),
     defineField({
       name: 'overlapImage',
       title: 'Overlap Image',
       type: 'boolean',
       initialValue: false,
+      fieldset: 'imageOptions',
     }),
     defineField({
       name: 'ctas',
@@ -39,12 +78,14 @@ export const ctaWithCard = defineType({
       title: 'Background Image',
       type: 'image',
       description: 'Decorative background image (optional)',
+      fieldset: 'sectionOptions',
     }),
     defineField({
       name: 'icon',
       title: 'Show Logo',
       type: 'boolean',
       initialValue: false,
+      fieldset: 'sectionOptions',
     }),
   ],
   preview: {

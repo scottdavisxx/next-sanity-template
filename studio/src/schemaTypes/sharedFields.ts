@@ -220,3 +220,15 @@ export const emphasizedText = defineField({
   description:
     'Text from the title to highlight in dark blue (e.g. "1961"). Leave empty for no emphasis.',
 })
+
+export const imageWidth = defineField({
+  name: 'imageWidth',
+  title: 'Image Width',
+  type: 'number',
+})
+
+export const imageHeight = defineField({
+  name: 'imageHeight',
+  title: 'Image Height',
+  type: 'number',
+})

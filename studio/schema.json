@@ -1953,6 +1953,20 @@
           },
           "optional": true
         },
+        "imageWidth": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "number"
+          },
+          "optional": true
+        },
+        "imageHeight": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "number"
+          },
+          "optional": true
+        },
         "bgColor": {
           "type": "objectAttribute",
           "value": {

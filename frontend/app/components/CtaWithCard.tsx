@@ -44,6 +44,10 @@ export default function CtaWithCard({ block }: CtaWithCardProps) {
   const textColor = block?.textColor || 'black'
   const overlapImage = block?.overlapImage || false
   const bgColor = block?.bgColor || 'white'
+  const imageWidth = block?.imageWidth || 415
+  const imageHeight = block?.imageHeight || 665
+
+
   return (
     <div className={`py-4 ${bgColor === 'dark-blue' ? 'bg-dark-blue' : 'bg-white'} 
     ${overlapImage ? 'md:py-10' : 'md:py-12'}`}>
@@ -57,8 +61,8 @@ export default function CtaWithCard({ block }: CtaWithCardProps) {
               <Image
                 id={(image as { asset: { _ref: string } }).asset._ref}
                 alt={altText}
-                width={415}
-                height={665}
+                width={imageWidth}
+                height={imageHeight}
                 className={`scott p-6 z-10 ${overlapImage
                   ? 'absolute -top-16'
                   : 'relative'
