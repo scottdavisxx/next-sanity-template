@@ -57,9 +57,9 @@ export default function CtaWithCard({ block }: CtaWithCardProps) {
               <Image
                 id={(image as { asset: { _ref: string } }).asset._ref}
                 alt={altText}
-                width={415}
-                height={537}
-                className={`scott p-6 z-10 ${overlapImage
+                width={333}
+                height={665}
+                className={`p-6 z-10 ${overlapImage
                   ? 'absolute -top-16'
                   : 'relative'
                   }`}
