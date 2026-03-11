@@ -783,6 +783,28 @@ export type Button = {
   link?: Link
 }
 
+export type SkosConceptReference = {
+  _ref: string
+  _type: 'reference'
+  _weak?: boolean
+  [internalGroqTypeReferenceTo]?: 'skosConcept'
+}
+
+export type Club = {
+  _id: string
+  _type: 'club'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  name: string
+  desc?: string
+  clubType?: Array<
+    {
+      _key: string
+    } & SkosConceptReference
+  >
+}
+
 export type Settings = {
   _id: string
   _type: 'settings'
@@ -1023,6 +1045,58 @@ export type Page = {
   }
   ogDescription?: string
   robots?: 'index, follow' | 'noindex, follow' | 'index, nofollow' | 'noindex, nofollow'
+}
+
+export type SkosConceptScheme = {
+  _id: string
+  _type: 'skosConceptScheme'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  title?: string
+  description?: string
+  controls?: boolean
+  baseIri: string
+  schemeId?: string
+  topConcepts?: Array<
+    {
+      _key: string
+    } & SkosConceptReference
+  >
+  concepts?: Array<
+    {
+      _key: string
+    } & SkosConceptReference
+  >
+}
+
+export type SkosConcept = {
+  _id: string
+  _type: 'skosConcept'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  prefLabel: string
+  definition?: string
+  example?: string
+  scopeNote?: string
+  altLabel?: Array<string>
+  hiddenLabel?: Array<string>
+  baseIri: string
+  conceptId?: string
+  broader?: Array<
+    {
+      _key: string
+    } & SkosConceptReference
+  >
+  related?: Array<
+    {
+      _key: string
+    } & SkosConceptReference
+  >
+  historyNote?: string
+  editorialNote?: string
+  changeNote?: string
 }
 
 export type SanityAssistInstructionTask = {
@@ -1311,6 +1385,8 @@ export type AllSanitySchemaTypes =
   | BlockContent
   | BlockContentTextOnly
   | Button
+  | SkosConceptReference
+  | Club
   | Settings
   | SanityImageCrop
   | SanityImageHotspot
@@ -1319,6 +1395,8 @@ export type AllSanitySchemaTypes =
   | Person
   | Slug
   | Page
+  | SkosConceptScheme
+  | SkosConcept
   | SanityAssistInstructionTask
   | SanityAssistTaskStatus
   | SanityAssistSchemaTypeAnnotations

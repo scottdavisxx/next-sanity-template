@@ -16,6 +16,7 @@ import {
   type DocumentLocation,
 } from 'sanity/presentation'
 import {assist} from '@sanity/assist'
+import {taxonomyManager} from 'sanity-plugin-taxonomy-manager'
 
 // Environment variables for project configuration
 const projectId = process.env.SANITY_STUDIO_PROJECT_ID || 'your-projectID'
@@ -136,6 +137,10 @@ export default defineConfig({
     unsplashImageAsset(),
     assist(),
     visionTool(),
+    taxonomyManager(({
+      // Optional: Set a Base URI to use for new concepts & concept schemes
+      baseUri: 'https://localhost:3333/',
+    })),
   ],
 
   // Schema configuration, imported from ./src/schemaTypes/index.ts

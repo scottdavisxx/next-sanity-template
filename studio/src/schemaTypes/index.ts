@@ -1,6 +1,7 @@
 import {person} from './documents/person'
 import {page} from './documents/page'
 import {event} from './documents/event'
+import {club} from './documents/clubs'
 import {infoSection} from './objects/infoSection'
 import {settings} from './singletons/settings'
 import {link} from './objects/link'
@@ -41,6 +42,7 @@ export const schemaTypes = [
   settings,
   page,
   event,
+  club,
   person,
   button,
   blockContent,
