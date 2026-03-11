@@ -43,8 +43,8 @@ export default function ThreeColToggle({ block }: ThreeColToggleProps) {
 
               <div
                 className={`relative overflow-hidden bg-white rounded-[20px] flex flex-col justify-end h-[500px] ${isActive
-                    ? ' p-8 lg:p-10'
-                    : 'border-0 p-6 lg:p-8 cursor-pointer group hover:scale-[1.02] transition-transform duration-300'
+                  ? ' p-8 lg:p-10'
+                  : 'border-0 p-6 lg:p-8 cursor-pointer group hover:scale-[1.02] transition-transform duration-300'
                   }`}
                 onClick={() => !isActive && setActiveIndex(index)}
               >
@@ -59,8 +59,8 @@ export default function ThreeColToggle({ block }: ThreeColToggleProps) {
                   />
                 )}
                 <div className={`absolute inset-0 ${isActive
-                    ? 'bg-black/20'
-                    : 'bg-black/30 group-hover:bg-black/20 transition-colors'
+                  ? 'hover:bg-black/20'
+                  : 'bg-black/30 group-hover:bg-black/20 transition-colors'
                   }`} />
 
                 {isActive ? (
