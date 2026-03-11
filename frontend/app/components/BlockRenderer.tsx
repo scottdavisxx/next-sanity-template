@@ -28,7 +28,7 @@ import TwoCtasWithImage from '@/app/components/TwoCtasWithImage'
 import TallTwoColTextWithCard from '@/app/components/TallTwoColTextWithCard'
 import CardGrid from '@/app/components/CardGrid'
 import Calendar from '@/app/components/Calendar'
-import FeaturedEvents from '@/app/components/FeaturedEvents'
+import FeaturedEventsBlock from '@/app/components/FeaturedEventsBlock'
 import { dataAttr } from '@/sanity/lib/utils'
 import { PageBuilderSection } from '@/sanity/lib/types'
 
@@ -73,7 +73,7 @@ const Blocks = {
   tallTwoColTextWithCard: TallTwoColTextWithCard,
   cardGrid: CardGrid,
   calendar: Calendar,
-  featuredEvents: FeaturedEvents,
+  featuredEvents: FeaturedEventsBlock,
 } as BlocksType
 
 /**

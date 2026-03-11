@@ -64,6 +64,24 @@ export const getPageQuery = defineQuery(`
         cta,
         imageAndAltText
       },
+      _type == "featuredEvents" => {
+        ...,
+        "events": *[_type == "event" && defined(slug.current) && date >= now()]
+          | order(featured desc, date asc)[0...3]{
+            _id,
+            "title": coalesce(title, "Untitled"),
+            "slug": slug.current,
+            cardText,
+            coverImage,
+            cta{
+              href,
+              buttonText,
+              newTab,
+              buttonColor
+            },
+            date
+          }
+      },
     },
   }
 `)
