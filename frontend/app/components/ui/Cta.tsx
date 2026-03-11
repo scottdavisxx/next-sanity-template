@@ -17,7 +17,7 @@ const colorConfig = {
   "brand-medium-blue": { bg: "bg-medium-blue", hover: "hover:bg-white hover:text-medium-blue", text: "text-white" },
 } as const;
 
-export default function Cta({ href, buttonText, newTab, className, dark, buttonColor, font = "default" }: CtaProps) {
+export default function Cta({ href, buttonText, newTab, className, dark, buttonColor = "brand-blue", font = "default" }: CtaProps) {
 
   const color = (buttonColor?.replace(/[\u200B-\u200D\uFEFF]/g, "") || "brand-yellow") as keyof typeof colorConfig;
   const config = colorConfig[color];

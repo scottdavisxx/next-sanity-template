@@ -66,7 +66,7 @@ export default function CtaWithCard({ block }: CtaWithCardProps) {
                 alt={altText}
                 width={imageWidth}
                 height={imageHeight}
-                className={`scott p-6 z-10 ${overlapImage
+                className={`p-6 z-10 ${overlapImage
                   ? 'absolute -top-16'
                   : 'relative'
                   }`}
@@ -90,7 +90,7 @@ export default function CtaWithCard({ block }: CtaWithCardProps) {
           <div className={`flex flex-col gap-6 py-8 relative z-10 px-4 items-center
         md:items-start ${overlapImage ? 'md:py-6' : 'md:py-8'}
         ${photoSide === 'right' ? 'md:pl-20 md:pr-120' : 'md:pl-120 md:pr-20'}`}>
-            <h2 className={`text-4xl font-bold md:leading-16 
+            <h2 className={`text-4xl font-bold 
               ${textColor === 'dark-blue' ? 'text-dark-blue' : textColor === 'medium-blue' ? 'text-medium-blue' : 'text-black'}
               ${overlapImage ? 'md:text-6xl' : 'md:text-7xl'}`}>
               {renderTitleWithEmphasis(title, emphasizedText)}
