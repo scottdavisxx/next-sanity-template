@@ -1,7 +1,7 @@
 import {CalendarIcon} from '@sanity/icons'
 import {format, parseISO} from 'date-fns'
 import {defineField, defineType} from 'sanity'
-import {dateText, time, place} from '../sharedFields'
+import {dateText, time, place, cta} from '../sharedFields'
 
 /**
  * Event schema. Define and edit the fields for the 'event' content type.
@@ -13,6 +13,16 @@ export const event = defineType({
   title: 'Event',
   icon: CalendarIcon,
   type: 'document',
+  fieldsets: [
+    {
+      name: 'eventCardInfo',
+      title: 'Event Card Info',
+      options: {
+        collapsible: true,
+        collapsed: true,
+      },
+    },
+  ],
   fields: [
     defineField({
       name: 'title',
@@ -28,7 +38,7 @@ export const event = defineType({
       options: {
         source: 'title',
         maxLength: 96,
-        isUnique: (value, context) => context.defaultIsUnique(value, context),
+        isUnique: (value: string, context: any) => context.defaultIsUnique(value, context),
       },
       validation: (rule) => rule.required(),
     }),
@@ -49,10 +59,21 @@ export const event = defineType({
     time,
     place,
     defineField({
+      name: 'cardText',
+      title: 'Card Text',
+      type: 'string',
+      fieldset: 'eventCardInfo',
+    }),
+    defineField({
+      ...cta,
+      fieldset: 'eventCardInfo',
+    }),
+    defineField({
       name: 'description',
       title: 'Description',
       type: 'blockContent',
     }),
+
     defineField({
       name: 'featured',
       title: 'Featured',

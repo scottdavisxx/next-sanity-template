@@ -1,6 +1,6 @@
 import CtaWithCard from "@/app/static-components/CtaWithCard";
 import CtaWithMediaCard from "@/app/static-components/CtaWithMediaCard";
-import FeaturedEvents from "@/app/static-components/FeaturedEvents";
+import FeaturedEvents from "@/app/components/FeaturedEvents";
 import FourColStatistics from "@/app/static-components/FourColStatistics";
 import HeroBanner from "@/app/static-components/HeroBanner";
 import Leadership from "@/app/static-components/Leadership";
