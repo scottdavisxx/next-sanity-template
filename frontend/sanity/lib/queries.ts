@@ -158,3 +158,38 @@ export const pagesSlugs = defineQuery(`
   *[_type == "page" && defined(slug.current)]
   {"slug": slug.current}
 `)
+
+const clubFields = /* groq */ `
+  _id,
+  name,
+  "slug": slug.current,
+  eyebrow,
+  desc,
+  blurb,
+  bannerImage,
+  imageAndAltText,
+  clubType[]->{
+    _id,
+    prefLabel
+  },
+  enrichmentType[]->{
+    _id,
+    prefLabel
+  },
+  metaTitle,
+  metaDescription,
+  ogImage,
+  ogDescription,
+  robots
+`
+
+export const clubQuery = defineQuery(`
+  *[_type == "club" && slug.current == $slug][0] {
+    ${clubFields}
+  }
+`)
+
+export const clubPagesSlugs = defineQuery(`
+  *[_type == "club" && defined(slug.current)]
+  {"slug": slug.current}
+`)

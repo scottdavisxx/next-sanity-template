@@ -1,7 +1,7 @@
 import { ALL_FIELDS_GROUP, defineField, defineType } from 'sanity'
 import { DocumentIcon } from '@sanity/icons'
-import { schemeFilter,branchFilter,ArrayHierarchyInput , ReferenceHierarchyInput } from 'sanity-plugin-taxonomy-manager'
-import {imageAndAltText} from '../sharedFields'
+import { schemeFilter, branchFilter, ArrayHierarchyInput, ReferenceHierarchyInput } from 'sanity-plugin-taxonomy-manager'
+import { imageAndAltText, image, altText } from '../sharedFields'
 
 /**
  * Page schema.  Define and edit the fields for the 'page' content type.
@@ -43,6 +43,17 @@ export const club = defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
+      name: 'slug',
+      title: 'Slug',
+      type: 'slug',
+      group: 'details',
+      validation: (Rule) => Rule.required(),
+      options: {
+        source: 'name',
+        maxLength: 96,
+      },
+    }),
+    defineField({
       name: 'eyebrow',
       title: 'Eyebrow',
       type: 'string',
@@ -53,6 +64,24 @@ export const club = defineType({
       title: 'Description',
       type: 'string',
       group: 'details',
+    }),
+    defineField({
+      name: 'blurb',
+      title: 'Blurb',
+      group: 'details',
+      type: 'array',
+      of: [
+        {
+          type: 'block',
+        },
+      ],
+    }),
+    defineField({
+      name: 'bannerImage',
+      title: 'Banner Image and Alt Text',
+      type: 'object',
+      group: 'details',
+      fields: [image, altText],
     }),
     {
       ...imageAndAltText,
@@ -66,15 +95,15 @@ export const club = defineType({
       fieldset: 'categories',
       of: [
         {
-            type: 'reference',
-            to: {type: 'skosConcept'},
-            options: {
-                filter: schemeFilter({schemeId: 'DQhM7Q'}),
-                disableNew: true,
-            }
+          type: 'reference',
+          to: { type: 'skosConcept' },
+          options: {
+            filter: schemeFilter({ schemeId: 'DQhM7Q' }),
+            disableNew: true,
+          }
         }
       ],
-      components: {field: ArrayHierarchyInput},
+      components: { field: ArrayHierarchyInput },
     }),
     defineField({
       name: 'enrichmentType',
@@ -84,68 +113,57 @@ export const club = defineType({
       fieldset: 'categories',
       of: [
         {
-            type: 'reference',
-            to: {type: 'skosConcept'},
-            options: {
-                filter: schemeFilter({schemeId: 'tntDws'}),
-                disableNew: true,
-            }
+          type: 'reference',
+          to: { type: 'skosConcept' },
+          options: {
+            filter: schemeFilter({ schemeId: 'tntDws' }),
+            disableNew: true,
+          }
         }
       ],
-      components: {field: ArrayHierarchyInput},
+      components: { field: ArrayHierarchyInput },
     }),
-    // defineField({
-    //   name: 'slug',
-    //   title: 'Slug',
-    //   type: 'slug',
-    //   group: 'details',
-    //   validation: (Rule) => Rule.required(),
-    //   options: {
-    //     source: 'name',
-    //     maxLength: 96,
-    //   },
-    // }),
-    // defineField({
-    //   name: 'metaTitle',
-    //   title: 'Meta Title',
-    //   type: 'string',
-    //   group: 'seo',
-    // }),
-    // defineField({
-    //   name: 'metaDescription',
-    //   title: 'Meta Description',
-    //   type: 'string',
-    //   group: 'seo',
-    //   validation: (Rule) => Rule.required(),
-    // }),
-    // defineField({
-    //   name: 'ogImage',
-    //   title: 'OG Image',
-    //   type: 'image',
-    //   group: 'seo',
-    // }),
-    // defineField({
-    //   name: 'ogDescription',
-    //   title: 'OG Description',
-    //   type: 'string',
-    //   group: 'seo',
-    // }),
-    // defineField({
-    //   name: 'robots',
-    //   title: 'Robots Meta Tag',
-    //   type: 'string',
-    //   group: 'seo',
-    //   description: 'Control search engine crawling and indexing (e.g., "index, follow", "noindex, nofollow")',
-    //   initialValue: 'index, follow',
-    //   options: {
-    //     list: [
-    //       { title: 'Index, Follow (Default)', value: 'index, follow' },
-    //       { title: 'No Index, Follow', value: 'noindex, follow' },
-    //       { title: 'Index, No Follow', value: 'index, nofollow' },
-    //       { title: 'No Index, No Follow', value: 'noindex, nofollow' },
-    //     ],
-    //   },
-    // }),
+    defineField({
+      name: 'metaTitle',
+      title: 'Meta Title',
+      type: 'string',
+      group: 'seo',
+    }),
+    defineField({
+      name: 'metaDescription',
+      title: 'Meta Description',
+      type: 'string',
+      group: 'seo',
+      validation: (Rule) => Rule.required(),
+    }),
+    defineField({
+      name: 'ogImage',
+      title: 'OG Image',
+      type: 'image',
+      group: 'seo',
+    }),
+    defineField({
+      name: 'ogDescription',
+      title: 'OG Description',
+      type: 'string',
+      group: 'seo',
+    }),
+    defineField({
+      name: 'robots',
+      title: 'Robots Meta Tag',
+      type: 'string',
+      group: 'seo',
+      description: 'Control search engine crawling and indexing (e.g., "index, follow", "noindex, nofollow")',
+      initialValue: 'index, follow',
+      options: {
+        list: [
+          { title: 'Index, Follow (Default)', value: 'index, follow' },
+          { title: 'No Index, Follow', value: 'noindex, follow' },
+          { title: 'Index, No Follow', value: 'index, nofollow' },
+          { title: 'No Index, No Follow', value: 'noindex, nofollow' },
+        ],
+      },
+    }),
 
 
   ],
