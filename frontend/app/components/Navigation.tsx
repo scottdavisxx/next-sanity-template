@@ -73,7 +73,7 @@ export default function Navigation({ navigationItems }: NavigationProps) {
                     <Link
                       key={`${subitem.href}-${subitem.label}`}
                       href={subitem.href}
-                      className="text-white whitespace-nowrap py-1 lg:py-2"
+                      className="text-white whitespace-nowrap py-1 lg:py-2 hover:bg-white hover:text-dark-blue"
                       onClick={() => setIsOpen(false)}
                     >
                       {subitem.label}
