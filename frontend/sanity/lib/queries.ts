@@ -108,6 +108,16 @@ export const moreEventsQuery = defineQuery(`
 
 export const eventQuery = defineQuery(`
   *[_type == "event" && slug.current == $slug] [0] {
+    _id,
+    "title": coalesce(title, "Untitled"),
+    "slug": slug.current,
+    cardText,
+    coverImage,
+    buttonText,
+    href,
+    dateText,
+    time,
+    place,
     description[]{
     ...,
     markDefs[]{
