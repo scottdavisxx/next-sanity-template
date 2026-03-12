@@ -28,15 +28,49 @@ const navigationItems = [
   },
   {
     href: "/student-life",
-    label: "Student Life"
+    label: "Student Life",
+    subnav: [
+      {
+        href: "/student-life",
+        label: "Student Life"
+      },
+      {
+        href: "/student-life",
+        label: "Student Life"
+      },
+      {
+        href: "/student-life",
+        label: "Student Life"
+      }
+    ]
   },
   {
     href: "/support-orls",
-    label: "Support ORLS"
+    label: "Support ORLS",
+    subnav: [
+      {
+        href: "/support-orls",
+        label: "Support ORLS"
+      },
+      {
+        href: "/support-orls",
+        label: "Support ORLS"
+      }
+    ]
   },
   {
     href: "/alumni",
-    label: "Alumni"
+    label: "Alumni",
+    subnav: [
+      {
+        href: "/alumni",
+        label: "Alumni"
+      },
+      {
+        href: "/alumni",
+        label: "Alumni"
+      }
+    ]
   }
 ]
 
@@ -72,16 +106,34 @@ export default function Navigation() {
         lg:flex-row lg:items-center lg:pl-0 lg:text-center
         ${isOpen ? "h-full" : "h-0 overflow-hidden hidden lg:flex lg:h-auto lg:overflow-visible"}`}>
           {navigationItems.map((item) => (
-            <Link
+            <div
               key={item.href}
-              href={item.href}
-              className={`${item.href === "/" ? "lg:hidden" : ""} hover:text-white ${pathname === item.href ? "text-yellow lg:text-white underline" : ""}`}
-              onClick={() => setIsOpen(false)}
+              className={`relative group ${item.href === "/" ? "lg:hidden" : ""}`}
             >
-              {item.label}
-            </Link>
+              <Link
+                href={item.href}
+                className={`hover:text-white ${pathname === item.href ? "text-yellow lg:text-white underline" : ""}`}
+                onClick={() => setIsOpen(false)}
+              >
+                {item.label}
+              </Link>
+              {item.subnav && item.subnav.length > 0 && (
+                <div className="flex flex-col pl-4 pt-1 lg:pl-0 lg:pt-1 lg:absolute lg:left-0 lg:top-full lg:hidden lg:group-hover:flex lg:min-w-[180px] lg:bg-dark-blue">
+                  {item.subnav.map((subitem) => (
+                    <Link
+                      key={`${subitem.href}-${subitem.label}`}
+                      href={subitem.href}
+                      className="text-white whitespace-nowrap py-1 lg:py-2"
+                      onClick={() => setIsOpen(false)}
+                    >
+                      {subitem.label}
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </div>
           ))}
-        </div>
+        </div >
       </div >
       {isOpen && <XMarkIcon onClick={handleToggle} className="w-8 h-8 absolute right-5 top-5 lg:hidden" />}
       {!isOpen && <Bars3Icon onClick={handleToggle} className="w-8 h-8 absolute right-5 top-5 lg:hidden" />}
