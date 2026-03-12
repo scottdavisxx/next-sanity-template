@@ -15,7 +15,7 @@ export default function IntroBlade({ block }: IntroBladeProps) {
   const blurb = block?.blurb
   const ctas = block?.ctas ?? []
   const bgImage = block?.bgImage
-
+  const title = block?.singleTitle
   return (
     <div className="relative flex flex-col py-8 gap-2  justify-between min-h-[478px]
     md:px-24">
@@ -33,6 +33,8 @@ export default function IntroBlade({ block }: IntroBladeProps) {
         )}
         <div className="relative flex flex-col md:flex-row px-0 py-2 gap-8 md:justify-between items-center z-10
         md:px-6 md:py-8">
+          {title && <h2 className="text-4xl font-bold w-full text-center 
+          md:text-7xl md:-mb-10">{title}</h2>}
           {titles.map((obj, i) => (
             <h2 key={i} className="text-4xl max-md:text-3xl max-md:w-full font-bold w-full md:w-1/3 text-center">
               {obj.title}

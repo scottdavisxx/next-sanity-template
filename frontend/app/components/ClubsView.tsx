@@ -87,9 +87,9 @@ export default function ClubsView({ clubs, taxonomyType, heading, subheading }: 
 
         <div className="mt-10 flex flex-wrap justify-center gap-6 lg:gap-8">
           {filteredClubs.length > 0 ? (
-            filteredClubs.map((club) => (
+            filteredClubs.map((club,index) => (
               <div
-                key={club._id}
+                key={club._id + "_" + index}
                 className="w-full md:w-[calc(50%-12px)] lg:w-[calc(33.333%-22px)] bg-white rounded-3xl overflow-hidden flex flex-col justify-between"
               >
                 <div className="flex flex-col items-center text-center gap-3 px-6 pt-7 pb-6">

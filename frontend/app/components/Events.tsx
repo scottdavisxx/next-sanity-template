@@ -55,25 +55,6 @@ const Events = ({
   </div>
 )
 
-export const MoreEvents = async ({ skip, limit }: { skip: string; limit: number }) => {
-  const { data } = await sanityFetch({
-    query: moreEventsQuery,
-    params: { skip, limit },
-  })
-
-  if (!data || data.length === 0) {
-    return null
-  }
-
-  return (
-    <Events heading={`Recent Events (${data?.length})`}>
-      {data?.map((event: AllEventsQueryResult[number]) => (
-        <Event key={event._id} event={event} />
-      ))}
-    </Events>
-  )
-}
-
 export const AllEvents = async () => {
   const { data } = await sanityFetch({ query: allEventsQuery })
 

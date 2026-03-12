@@ -1,7 +1,6 @@
 import Image from "@/app/components/SanityImage";
 import type { HeroBanner } from '@/sanity.types'
 import HeroCtaWithIcon from "./ui/HeroCtaWithIcon";
-import Subnav from "./Subnav";
 
 type HeroBannerProps = {
   block: HeroBanner
@@ -46,7 +45,6 @@ export default function HeroBanner({ block }: HeroBannerProps) {
           </div>
         </div>
       </div>
-      <Subnav />
     </>
   )
 }

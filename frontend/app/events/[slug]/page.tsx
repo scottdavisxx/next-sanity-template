@@ -4,7 +4,7 @@ import { type PortableTextBlock } from 'next-sanity'
 import { Suspense } from 'react'
 
 import Avatar from '@/app/components/tbd/Avatar'
-import { MoreEvents } from '@/app/components/Events'
+// import { MoreEvents } from '@/app/components/Events'
 import PortableText from '@/app/components/PortableText'
 import Image from '@/app/components/SanityImage'
 import { sanityFetch } from '@/sanity/lib/live'
@@ -44,12 +44,7 @@ export async function generateMetadata(props: Props, parent: ResolvingMetadata):
   const previousImages = (await parent).openGraph?.images || []
   const ogImage = resolveOpenGraphImage(event?.coverImage)
 
-  const author = event?.author as { firstName?: string; lastName?: string } | null | undefined
   return {
-    authors:
-      author?.firstName && author?.lastName
-        ? [{ name: `${author.firstName} ${author.lastName}` }]
-        : [],
     title: event?.title,
     description: event?.excerpt,
     openGraph: {
@@ -66,63 +61,34 @@ export default async function EventPage(props: Props) {
     return notFound()
   }
 
-  const author = event.author as { firstName?: string; lastName?: string; picture?: unknown } | null | undefined
-
   return (
     <>
-      <div className="">
-        <div className="container my-12 lg:my-24 grid gap-12">
-          <div>
-            <div className="pb-6 grid gap-6 mb-6 border-b border-gray-100">
-              <div className="max-w-3xl flex flex-col gap-6">
-                <h1 className="text-4xl text-gray-900 sm:text-5xl lg:text-7xl">{event.title}</h1>
-              </div>
-              <div className="max-w-3xl flex gap-4 items-center">
-                {author && author.firstName && author.lastName && (
-                  <Avatar
-                    person={
-                      author as {
-                        firstName: string | null
-                        lastName: string | null
-                        picture?: { asset?: { _ref: string }; hotspot?: { x: number; y: number }; crop?: { top: number; bottom: number; left: number; right: number }; alt?: string }
-                      }
-                    }
-                    date={event.date}
-                  />
-                )}
-              </div>
-            </div>
-            <article className="gap-6 grid max-w-4xl">
-              <div className="">
-                {event?.coverImage && (
-                  <Image
-                    id={event.coverImage.asset?._ref || ''}
-                    alt={event.coverImage.alt || ''}
-                    className="rounded-sm w-full"
-                    width={1024}
-                    height={538}
-                    mode="cover"
-                    hotspot={event.coverImage.hotspot}
-                    crop={event.coverImage.crop}
-                  />
-                )}
-              </div>
-              {event.description?.length && (
-                <PortableText
-                  className="max-w-2xl prose-headings:font-medium prose-headings:tracking-tight"
-                  value={event.description as PortableTextBlock[]}
-                />
-              )}
-            </article>
-          </div>
+      <div className="flex flex-col relative z-0 justify-end h-[650px]">
+        <div className="absolute h-full w-full bg-black/30"></div>
+        {event?.coverImage && (
+          <Image
+            id={event.coverImage.asset?._ref || ''}
+            alt={event.coverImage.alt || ''}
+            className="absolute w-full h-full object-cover object-center top-0 -z-10"
+            width={1024}
+            height={538}
+            mode="cover"
+            hotspot={event.coverImage.hotspot}
+            crop={event.coverImage.crop}
+          />
+        )}
+        <div className="container mb-24 flex flex-col gap-4 z-10">
+          <h1 className="text-4xl text-white 4xl md:text-7xl">{event.title}</h1>
+          <p className="text-white text-2xl">{event.dateText}</p>
+          <p className="text-white text-2xl">{event.time}</p>
+          <p className="text-white text-2xl">{event.place}</p>
         </div>
+
+
       </div>
-      <div className="border-t border-gray-100 bg-gray-50">
-        <div className="container py-12 lg:py-24 grid gap-12">
-          <aside>
-            <Suspense>{await MoreEvents({ skip: event._id, limit: 2 })}</Suspense>
-          </aside>
-        </div>
+      <div className="container py-2 px-4
+      md:py-12">
+        <PortableText className="w-full max-w-none text-xl" value={event.description as PortableTextBlock[]} />
       </div>
     </>
   )

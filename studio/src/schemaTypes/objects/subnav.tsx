@@ -13,7 +13,7 @@ export const subnav = defineType({
       of: [
         {
           type: 'object',
-          fields: cta.fields, 
+          fields: (cta.fields as { name: string }[]).filter((f) => f.name !== 'buttonColor'),
         }
       ],
     }),
@@ -27,7 +27,7 @@ export const subnav = defineType({
           <img
             src="/static/subnav.png"
             alt="Subnav"
-            style={{width: '100%', height: 'auto', objectFit: 'cover'}}
+            style={{ width: '100%', height: 'auto', objectFit: 'cover' }}
           />
         ),
       }

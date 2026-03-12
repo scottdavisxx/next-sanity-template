@@ -17,6 +17,7 @@ export default function CardGrid({ block }: CardGridProps) {
   const subtitle = block?.subtitle ?? ''
   const cards = block?.cards ?? []
   const [activeIndex, setActiveIndex] = useState(0)
+  const darkOverlay = block?.darkOverlay ?? false
 
   const prev = () => setActiveIndex((i) => (i - 1 + cards.length) % cards.length)
   const next = () => setActiveIndex((i) => (i + 1) % cards.length)
@@ -61,7 +62,8 @@ export default function CardGrid({ block }: CardGridProps) {
                 />
               )}
 
-              <div className="absolute inset-0 bg-black/30 group-hover:bg-black/64 transition-all duration-300 rounded-3xl z-20" />
+              <div className={`absolute inset-0 transition-all duration-300 rounded-3xl z-20
+                ${darkOverlay ? 'bg-black/30 group-hover:bg-black/64' : ''}`} />
 
               <div className="absolute bottom-0 left-0 right-0 z-30 flex flex-col p-8 text-white">
                 <h3 className="text-2xl font-semibold mb-2">{card.title}</h3>
@@ -98,7 +100,7 @@ export default function CardGrid({ block }: CardGridProps) {
               />
             )}
 
-            <div className="absolute inset-0 bg-black/44 rounded-3xl z-20" />
+            <div className={`absolute inset-0 rounded-3xl z-20 ${darkOverlay ? 'bg-black/44' : ''}`} />
 
             <div className="absolute bottom-0 left-0 right-0 z-30 flex flex-col p-8 text-white">
               <h3 className="text-2xl font-semibold mb-2">{cards[activeIndex]?.title}</h3>

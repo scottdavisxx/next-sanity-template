@@ -29,6 +29,7 @@ import TallTwoColTextWithCard from '@/app/components/TallTwoColTextWithCard'
 import CardGrid from '@/app/components/CardGrid'
 import Calendar from '@/app/components/Calendar'
 import ClubsViewBlock from '@/app/components/ClubsViewBlock'
+import FeaturedEventsBlock from '@/app/components/FeaturedEventsBlock'
 import { dataAttr } from '@/sanity/lib/utils'
 import { PageBuilderSection } from '@/sanity/lib/types'
 
@@ -74,6 +75,7 @@ const Blocks = {
   cardGrid: CardGrid,
   calendar: Calendar,
   clubsView: ClubsViewBlock,
+  featuredEvents: FeaturedEventsBlock,
 } as BlocksType
 
 /**

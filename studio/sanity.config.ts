@@ -24,9 +24,7 @@ const dataset = process.env.SANITY_STUDIO_DATASET || 'production'
 
 // URL for preview functionality: use localhost when running Studio locally (sanity dev),
 // otherwise use the deployed frontend URL (set SANITY_STUDIO_PREVIEW_URL when deploying).
-const isDev =
-  process.env.NODE_ENV === 'development' ||
-  (typeof import.meta !== 'undefined' && (import.meta as {env?: {DEV?: boolean}}).env?.DEV)
+const isDev = process.env.NODE_ENV === 'development'
 const SANITY_STUDIO_PREVIEW_URL = isDev
   ? 'http://localhost:3000'
   : process.env.SANITY_STUDIO_PREVIEW_URL || 'https://orls.netlify.app'

@@ -38,7 +38,7 @@ import {tallTwoColTextWithCard} from './objects/tallTwoColTextWithCard'
 import {cardGrid} from './objects/cardGrid'
 import {calendar} from './objects/calendar'
 import { clubsView } from './objects/clubsView'
-
+import {featuredEvents} from './objects/featuredEvents'
 
 export const schemaTypes = [
   settings,
@@ -81,4 +81,5 @@ export const schemaTypes = [
   cardGrid,
   calendar,
   clubsView,
+  featuredEvents,
 ]

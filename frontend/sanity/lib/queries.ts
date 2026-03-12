@@ -64,6 +64,24 @@ export const getPageQuery = defineQuery(`
         cta,
         imageAndAltText
       },
+      _type == "featuredEvents" => {
+        ...,
+        "events": *[_type == "event" && defined(slug.current) && date >= now()]
+          | order(featured desc, date asc)[0...3]{
+            _id,
+            "title": coalesce(title, "Untitled"),
+            "slug": slug.current,
+            cardText,
+            coverImage,
+            cta{
+              href,
+              buttonText,
+              newTab,
+              buttonColor
+            },
+            date
+          }
+      },
     },
   }
 `)
@@ -90,6 +108,16 @@ export const moreEventsQuery = defineQuery(`
 
 export const eventQuery = defineQuery(`
   *[_type == "event" && slug.current == $slug] [0] {
+    _id,
+    "title": coalesce(title, "Untitled"),
+    "slug": slug.current,
+    cardText,
+    coverImage,
+    buttonText,
+    href,
+    dateText,
+    time,
+    place,
     description[]{
     ...,
     markDefs[]{
@@ -104,6 +132,26 @@ export const eventQuery = defineQuery(`
 export const eventPagesSlugs = defineQuery(`
   *[_type == "event" && defined(slug.current)]
   {"slug": slug.current}
+`)
+
+/** Upcoming + featured events for the FeaturedEvents block: 3 events, featured first, then soonest. Excludes past (date < start of today). */
+export const featuredEventsQuery = defineQuery(`
+  *[_type == "event" && defined(slug.current) && date >= $now]
+  | order(featured desc, date asc)
+  [0...3] {
+    _id,
+    "title": coalesce(title, "Untitled"),
+    "slug": slug.current,
+    cardText,
+    coverImage,
+    cta {
+      href,
+      buttonText,
+      newTab,
+      buttonColor
+    },
+    date
+  }
 `)
 
 export const pagesSlugs = defineQuery(`

@@ -1,12 +1,14 @@
 import CtaWithCard from "@/app/static-components/CtaWithCard";
 import CtaWithMediaCard from "@/app/static-components/CtaWithMediaCard";
-import FeaturedEvents from "@/app/static-components/FeaturedEvents";
+import FeaturedEvents, { FeaturedEvent } from "@/app/components/FeaturedEvents";
 import FourColStatistics from "@/app/static-components/FourColStatistics";
 import HeroBanner from "@/app/static-components/HeroBanner";
 import Leadership from "@/app/static-components/Leadership";
 import Navigation from "@/app/static-components/Navigation";
 import Subnav from "@/app/static-components/Subnav";
 import ThreeColCtas from "@/app/static-components/ThreeColCtas";
+import { sanityFetch } from "@/sanity/lib/live";
+import { featuredEventsQuery } from "@/sanity/lib/queries";
 
 const tempNavigationContent = {
   "_key": "9cb3816cfaf4",
@@ -70,16 +72,25 @@ const ctaWithCardContentTwo = {
   }
 }
 
-export default function AboutPage() {
+export default async function AboutPage() {
+  const startOfToday = new Date();
+  startOfToday.setUTCHours(0, 0, 0, 0);
+  const { data: events } = await sanityFetch({
+    query: featuredEventsQuery,
+    params: { now: startOfToday.toISOString() },
+  });
+
+  const featuredEvents = (events ?? []) as FeaturedEvent[];
+
   return (
     <>
-      {/* @ts-ignore */}
+      {/* @ts-expect-error Navigation expects Sanity-shaped block props */}
       <Navigation block={tempNavigationContent} />
-      {/* @ts-ignore */}
+      {/* @ts-expect-error HeroBanner expects Sanity-shaped block props */}
       <HeroBanner block={tempHeroContent} />
       <Subnav />
       <CtaWithCard {...ctaWithCardContent} />
-      <FeaturedEvents />
+      <FeaturedEvents events={featuredEvents} />
       <FourColStatistics />
       <ThreeColCtas />
       <CtaWithMediaCard {...ctaWithMediaCardContent} />
