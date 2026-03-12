@@ -10,20 +10,44 @@ import pluralize from 'pluralize-esm'
 
 const DISABLED_TYPES = ['settings', 'assist.instruction.context']
 
-export const structure: StructureResolver = (S: StructureBuilder) =>
-  S.list()
+// Custom order for main document types in the desk structure
+const ORDERED_DOC_TYPES = [
+  'page',
+  'event',
+  'club',
+  'person',
+  // Types provided by the taxonomy manager plugin
+  'skosConcept',
+  'skosConceptScheme',
+]
+
+export const structure: StructureResolver = (S: StructureBuilder) => {
+  // Start from all document type items except the disabled ones
+  const allDocTypeItems = S.documentTypeListItems()
+    .filter((listItem: any) => !DISABLED_TYPES.includes(listItem.getId()))
+    .map((listItem) => listItem.title(pluralize(listItem.getTitle() as string)))
+
+  // Pick out the ones we want in a specific order
+  const orderedItems = ORDERED_DOC_TYPES.map((typeId) =>
+    allDocTypeItems.find((listItem) => listItem.getId() === typeId),
+  ).filter(Boolean)
+
+  // Any remaining document types will follow after the ordered ones
+  const remainingItems = allDocTypeItems.filter(
+    (listItem) => !ORDERED_DOC_TYPES.includes(listItem.getId() as string),
+  )
+
+  return S.list()
     .title('Website Content')
     .items([
-      ...S.documentTypeListItems()
-        // Remove the "assist.instruction.context" and "settings" content  from the list of content types
-        .filter((listItem: any) => !DISABLED_TYPES.includes(listItem.getId()))
-        // Pluralize the title of each document type.  This is not required but just an option to consider.
-        .map((listItem) => {
-          return listItem.title(pluralize(listItem.getTitle() as string))
-        }),
-      // Settings Singleton in order to view/edit the one particular document for Settings.  Learn more about Singletons: https://www.sanity.io/docs/create-a-link-to-a-single-edit-page-in-your-main-document-type-list
+      // Site Settings first
       S.listItem()
         .title('Site Settings')
         .child(S.document().schemaType('settings').documentId('siteSettings'))
         .icon(CogIcon),
+      // Then the main document types in the requested order
+      ...orderedItems,
+      // Then any other document types
+      ...remainingItems,
     ])
+}

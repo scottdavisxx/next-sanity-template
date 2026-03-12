@@ -85,6 +85,10 @@ const alegreya = Alegreya({
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   const { isEnabled: isDraftMode } = await draftMode()
+  const { data: settings } = await sanityFetch({
+    query: settingsQuery,
+  })
+  const navigationItems = (settings as any)?.navigationItems ?? []
 
   return (
     <html lang="en">
@@ -102,7 +106,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
           )}
           {/* The <SanityLive> component is responsible for making all sanityFetch calls in your application live, so should always be rendered. */}
           <SanityLive onError={handleError} />
-          <Navigation />
+          <Navigation navigationItems={navigationItems} />
           <main className="">{children}</main>
           <Footer />
         </section>
