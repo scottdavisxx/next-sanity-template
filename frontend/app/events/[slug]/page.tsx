@@ -64,6 +64,7 @@ export default async function EventPage(props: Props) {
   return (
     <>
       <div className="flex flex-col relative z-0 justify-end h-[650px]">
+        <div className="absolute h-full w-full bg-black/30"></div>
         {event?.coverImage && (
           <Image
             id={event.coverImage.asset?._ref || ''}
@@ -76,7 +77,7 @@ export default async function EventPage(props: Props) {
             crop={event.coverImage.crop}
           />
         )}
-        <div className="container mb-24 flex flex-col gap-4">
+        <div className="container mb-24 flex flex-col gap-4 z-10">
           <h1 className="text-4xl text-white 4xl md:text-7xl">{event.title}</h1>
           <p className="text-white text-2xl">{event.dateText}</p>
           <p className="text-white text-2xl">{event.time}</p>
@@ -85,8 +86,9 @@ export default async function EventPage(props: Props) {
 
 
       </div>
-      <div className="container w-full">
-        <PortableText className="w-full" value={event.description as PortableTextBlock[]} />
+      <div className="container py-2 px-4
+      md:py-12">
+        <PortableText className="w-full max-w-none text-xl" value={event.description as PortableTextBlock[]} />
       </div>
     </>
   )
