@@ -9,72 +9,22 @@ import { usePathname } from "next/navigation";
 
 const SCROLL_THRESHOLD = 250;
 
-const navigationItems = [
-  {
-    href: "/",
-    label: "Home"
-  },
-  {
-    href: "/about",
-    label: "About ORLS"
-  },
-  {
-    href: "/admissions",
-    label: "Admissions"
-  },
-  {
-    href: "/academics",
-    label: "Academics"
-  },
-  {
-    href: "/student-life",
-    label: "Student Life",
-    subnav: [
-      {
-        href: "/student-life",
-        label: "Student Life"
-      },
-      {
-        href: "/student-life",
-        label: "Student Life"
-      },
-      {
-        href: "/student-life",
-        label: "Student Life"
-      }
-    ]
-  },
-  {
-    href: "/support-orls",
-    label: "Support ORLS",
-    subnav: [
-      {
-        href: "/support-orls",
-        label: "Support ORLS"
-      },
-      {
-        href: "/support-orls",
-        label: "Support ORLS"
-      }
-    ]
-  },
-  {
-    href: "/alumni",
-    label: "Alumni",
-    subnav: [
-      {
-        href: "/alumni",
-        label: "Alumni"
-      },
-      {
-        href: "/alumni",
-        label: "Alumni"
-      }
-    ]
-  }
-]
+type NavigationSubItem = {
+  href: string;
+  label: string;
+};
 
-export default function Navigation() {
+type NavigationItem = {
+  href: string;
+  label: string;
+  subnav?: NavigationSubItem[];
+};
+
+export type NavigationProps = {
+  navigationItems: NavigationItem[];
+};
+
+export default function Navigation({ navigationItems }: NavigationProps) {
   const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
