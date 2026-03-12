@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Hero from '@/app/components/HeroBanner'
 import Subnav from '@/app/components/Subnav'
 import TitleAndSubtitle from '@/app/components/TitleAndSubtitle'
@@ -28,6 +28,7 @@ import TwoCtasWithImage from '@/app/components/TwoCtasWithImage'
 import TallTwoColTextWithCard from '@/app/components/TallTwoColTextWithCard'
 import CardGrid from '@/app/components/CardGrid'
 import Calendar from '@/app/components/Calendar'
+import ClubsViewBlock from '@/app/components/ClubsViewBlock'
 import { dataAttr } from '@/sanity/lib/utils'
 import { PageBuilderSection } from '@/sanity/lib/types'
 
@@ -72,6 +73,7 @@ const Blocks = {
   tallTwoColTextWithCard: TallTwoColTextWithCard,
   cardGrid: CardGrid,
   calendar: Calendar,
+  clubsView: ClubsViewBlock,
 } as BlocksType
 
 /**
